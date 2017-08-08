@@ -42,7 +42,7 @@ class MyPasswordResetForm(forms.Form):
              subject_template_name='registration/password_reset_subject.txt',
              email_template_name='registration/password_reset_email.html',
              use_https=False, token_generator=default_token_generator,
-             from_email=None, request=none, html_email_template_name=None, 
+             from_email=None, request=None, html_email_template_name=None, 
              extra_mail_content=None):
         """
         Generates a one-use only link for resetting password and sends to the user.
