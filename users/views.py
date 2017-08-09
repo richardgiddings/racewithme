@@ -29,9 +29,9 @@ def signup(request):
             })
             user.email_user(subject, message)
             return redirect('account_activation_sent')
-        else:
-            form = SignUpForm()
-        return render(request, 'signup.html', {'form': form})
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
 
 def activate(request, uid64, token):
     try:
