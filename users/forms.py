@@ -16,7 +16,7 @@ class SignUpForm(UserCreationForm):
         help_text='Required, a valid email address.')
 
     class Meta:
-        models = User
+        model = User
         fields = ('username', 'email', 'password1', 'password2')
 
 class MyPasswordResetForm(forms.Form):
