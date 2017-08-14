@@ -4,20 +4,28 @@
 <html>
     <head>
         <title>{% block title %}Race With Me{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{% static '/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static '/racewithme/style.css' %}" />
     </head>
     <body>
         <header>
-            {% block header %}{% endblock %}
+            {% block header %}
+            <div class="main-header">
+                <h1>RACE WITH ME</h1>
+            </div>
+            {% endblock %}
         </header>
         <nav>
-            {% block nav %}{% endblock %}
+            <div class="main-nav">
+                {% block nav %}{% endblock %}
+            </div>
         </nav>
         <main>
-            {% block main %}{% endblock %}
+            <div class="main-content">
+                {% block main %}{% endblock %}
+            </div>
         </main>
         <footer>
-            {% block footer %}{% endblock %}
+            {% block footer %}<div class="main-footer"></div>{% endblock %}
         </footer>
     </body>
 </html>
