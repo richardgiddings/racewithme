@@ -38,12 +38,20 @@ class MyPasswordResetForm(forms.Form):
 
         email_message.send()
 
+    def get_users(self, username):
+        """
+        Given a username, return matching user(s) who should receive a reset.
+        """
+        active_users = get_user_model()._default_manager.filter(
+            username__iexact=username, is_active=True)
+        return (u for u in active_users if u.has_usable_password())
+
     def save(self, domain_override=None,
              subject_template_name='registration/password_reset_subject.txt',
              email_template_name='registration/password_reset_email.html',
              use_https=False, token_generator=default_token_generator,
              from_email=None, request=None, html_email_template_name=None, 
-             extra_mail_content=None):
+             extra_email_context=None):
         """
         Generates a one-use only link for resetting password and sends to the user.
         """
