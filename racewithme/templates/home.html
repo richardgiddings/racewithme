@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block nav %}
+{% if user.is_authenticated %}
 <div class="main-nav">
     <div class="logout-link"><a href={% url 'logout' %}>Log out</a></div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block main %}
