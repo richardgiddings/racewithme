@@ -5,6 +5,20 @@
     <head>
         <title>{% block title %}Race With Me{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="{% static '/racewithme/style.css' %}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $('#user-dropdown-button').hover(function() {
+                $('#user-dropdown-content').css("display", "block");
+            });
+            $('#user-dropdown-content').hover(null, function() {
+                $('#user-dropdown-content').css("display", "none");
+            });
+            $('#user-dropdown a').click(function() {
+                $('#user-dropdown-content').css("display", "none");
+            });
+        });
+        </script>
     </head>
     <body>
         <header>
