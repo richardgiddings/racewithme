@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
+{% block nav %}
+<div class="main-nav">
+    <div class="logout-link"><a href={% url 'logout' %}>Log out</a></div>
+</div>
+{% endblock %}
+
 {% block main %}
 {% if user.is_authenticated %}
 <h2>Welcome, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
 <p>You are now logged in!</p>
-<p>Click <a href={% url 'logout' %}>here</a> to log out.</p>
+
 {% else %}
 <p>Did you want the login page? If so click <a href={% url 'login' %}>here</a>.</p>
 {% endif %}
