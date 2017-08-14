@@ -76,12 +76,13 @@ form label[for="id_password2"] {
     color: black; }
 
 #user-dropdown {
-  line-height: 50px;
+  line-height: 48px;
   float: right; }
   #user-dropdown button {
     border: none;
-    background-color: #338a44;
-    font-size: 2.4em;
+    color: white;
+    background-color: #3ea853;
+    font-size: 2em;
     padding: 6px 28px 6px 28px; }
   #user-dropdown button:hover {
     cursor: pointer; }
@@ -90,12 +91,12 @@ form label[for="id_password2"] {
     position: absolute;
     top: 180px;
     right: 0px;
-    background-color: #338a44;
+    background-color: #dbdbdb;
     width: 120px;
     z-index: 1; }
     #user-dropdown #user-dropdown-content a {
       color: black;
-      padding: 4px 20px;
+      padding: 0px 20px;
       text-decoration: none;
       display: block; }
       #user-dropdown #user-dropdown-content a:hover {

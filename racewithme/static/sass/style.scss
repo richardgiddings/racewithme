@@ -103,13 +103,14 @@ form {
     }
 }
 #user-dropdown {
-    line-height: 50px;
+    line-height: 48px;
     float: right;
 
     button {
         border: none;
-        background-color: $theme-colour1;
-        font-size: 2.4em;
+        color: white;
+        background-color: $theme-colour2;
+        font-size: 2em;
         padding: 6px 28px 6px 28px;
     }
     button:hover {
@@ -121,13 +122,13 @@ form {
         position: absolute;
         top: 180px;
         right: 0px;
-        background-color: $theme-colour1;
+        background-color: #dbdbdb;
         width: 120px;
         z-index: 1;
 
         a {
             color: black;
-            padding: 4px 20px;
+            padding: 0px 20px;
             text-decoration: none;
             display: block;
 
