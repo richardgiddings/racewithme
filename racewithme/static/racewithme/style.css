@@ -75,10 +75,31 @@ form label[for="id_password2"] {
   .main-nav a:hover {
     color: black; }
 
-.logout-link {
-  line-height: 40px;
-  float: right;
-  padding-right: 20px; }
+#user-dropdown {
+  line-height: 50px;
+  float: right; }
+  #user-dropdown button {
+    border: none;
+    background-color: #338a44;
+    font-size: 2.4em;
+    padding: 6px 28px 6px 28px; }
+  #user-dropdown button:hover {
+    cursor: pointer; }
+  #user-dropdown #user-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 180px;
+    right: 0px;
+    background-color: #338a44;
+    width: 120px;
+    z-index: 1; }
+    #user-dropdown #user-dropdown-content a {
+      color: black;
+      padding: 4px 20px;
+      text-decoration: none;
+      display: block; }
+      #user-dropdown #user-dropdown-content a:hover {
+        background-color: #3ea853; }
 
 .main-content a {
   text-decoration: none;
