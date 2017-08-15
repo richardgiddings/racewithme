@@ -1,20 +1,5 @@
 {% extends "base.html" %}
 
-{% block nav %}
-{% if user.is_authenticated %}
-<div class="main-nav">
-    <div id="user-dropdown">
-        <button id="user-dropdown-button">{{ user.username }}&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></button>
-        <div id="user-dropdown-content">
-            <a href="">Profile</a>
-            <a href="">Settings</a>
-            <a href={% url 'logout' %}>Log out</a>
-        </div>
-    </div>
-</div>
-{% endif %}
-{% endblock %}
-
 {% block main %}
 {% if user.is_authenticated %}
 <h2>Welcome <small>{{ user.username }}</small></h2>

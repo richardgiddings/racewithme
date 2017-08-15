@@ -30,9 +30,29 @@
             {% endblock %}
         </header>
         <nav>
+            {% block nav %}
             <div class="main-nav">
-                {% block nav %}{% endblock %}
+                {% if user.is_authenticated %}
+                <div class="main-nav">
+                    <div id="menu">
+                        <span class="menu-option"><a href="">Races</a></span>
+                        <span class="menu-option"><a href="">Interested</a></span>
+                        <span class="menu-option"><a href="">Going</a></span>
+                        <span class="menu-option"><a href="">Completed</a></span>
+                        <span class="menu-option"><a href="">Friends</a></span>
+                    </div>
+                    <div id="user-dropdown">
+                        <button id="user-dropdown-button">{{ user.username }}&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                        <div id="user-dropdown-content">
+                            <a href="">Profile</a>
+                            <a href="">Settings</a>
+                            <a href={% url 'logout' %}>Log out</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
+            {% endblock %}
         </nav>
         <main>
             <div class="main-content">
@@ -40,7 +60,9 @@
             </div>
         </main>
         <footer>
-            {% block footer %}<div class="main-footer"></div>{% endblock %}
+            <div class="main-footer">
+                {% block footer %}{% endblock %}
+            </div>
         </footer>
     </body>
 </html>

@@ -41,6 +41,8 @@ h2 {
 .main-footer {
     height: 100px;
     background-color: $theme-colour2;
+    position:absolute;
+    bottom: 0;
 }
 
 form {
@@ -93,49 +95,64 @@ form {
 }
 
 .main-nav {
-    a {
-        font-size: 2em;
-        text-decoration: none;
-        color: white;
-        &:hover {
-            color: black;
+    padding-left: 10px;
+
+    #menu {
+        line-height: 36px;
+        .menu-option {
+            padding: 5px 20px 5px 10px;
+
+            a {
+                cursor: pointer;
+                font-size: 2em;
+                text-decoration: none;
+                color: white;
+                &:hover {
+                    color: black;
+                }
+            }
         }
-    }
-}
-#user-dropdown {
-    line-height: 48px;
-    float: right;
-
-    button {
-        border: none;
-        color: white;
-        background-color: $theme-colour2;
-        font-size: 2em;
-        padding: 6px 12px 6px 28px;
-    }
-    button:hover {
-        cursor: pointer;
+        display: inline-block;
     }
 
-    #user-dropdown-content {
-        border-left: 1px solid #696969;
-        border-bottom: 1px solid #696969;
-        display: none;
-        position: absolute;
-        top: 180px;
-        right: 0px;
-        background-color: #ededed;
-        width: 120px;
-        z-index: 1;
+    #user-dropdown {
+        float: right;
+        line-height: 34px;
+        display: inline-block;
 
-        a {
-            color: black;
-            padding: 0px 20px;
-            text-decoration: none;
-            display: block;
+        button {
+            border: none;
+            color: white;
+            background-color: $theme-colour2;
+            font-size: 2em;
+            padding: 6px 12px 6px 28px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
 
-            &:hover {
-                background-color: $theme-colour2;
+        #user-dropdown-content {
+            border-left: 1px solid #696969;
+            border-bottom: 1px solid #696969;
+            display: none;
+            position: absolute;
+            top: 180px;
+            right: 0px;
+            background-color: #ededed;
+            width: 120px;
+            z-index: 1;
+
+            a {
+                cursor: pointer;
+                color: black;
+                padding: 0px 20px;
+                font-size: 2em;
+                text-decoration: none;
+                display: block;
+
+                &:hover {
+                    background-color: $theme-colour2;
+                }
             }
         }
     }
