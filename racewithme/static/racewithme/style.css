@@ -30,12 +30,6 @@ h2 {
   background-color: #3ea853;
   content: ''; }
 
-.main-footer {
-  height: 100px;
-  background-color: #3ea853;
-  position: absolute;
-  bottom: 0; }
-
 form .helptext {
   display: block;
   padding-top: 10px;
