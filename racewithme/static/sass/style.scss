@@ -22,14 +22,19 @@ h2 {
     background-color: $theme-colour1;
     width: 100%;
     display: table;
-}
-.main-header > h1 {
-    display: table-cell; 
-    vertical-align: middle;
-    text-align: center;
-    color: white;
-    margin: 0; /* as h1 has margin */
-    font-size: 3em;
+
+    h1 {
+        display: table-cell; 
+        vertical-align: middle;
+        text-align: center;
+        margin: 0; /* as h1 has margin */
+        font-size: 3em;
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
 }
 
 .main-nav {
