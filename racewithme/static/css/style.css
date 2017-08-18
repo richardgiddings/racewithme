@@ -1,0 +1,122 @@
+body {
+  font-family: Helvetica, Times, serif;
+  font-size: 62.5%;
+  margin: 0 auto; }
+
+main {
+  margin: 80px 40px 80px 60px;
+  font-size: 1.4em; }
+
+h2 {
+  font-size: 2em; }
+
+.main-header {
+  height: 140px;
+  background-color: #338a44;
+  width: 100%;
+  display: table; }
+
+.main-header > h1 {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  margin: 0;
+  /* as h1 has margin */
+  font-size: 3em; }
+
+.main-nav {
+  height: 40px;
+  background-color: #3ea853;
+  content: ''; }
+
+form .helptext {
+  display: block;
+  padding-top: 10px;
+  color: red; }
+form ul li {
+  color: red; }
+form input[type="text"], form input[type="password"], form input[type="email"] {
+  outline: none;
+  padding: 10px;
+  border: solid 1px #c9c9c9;
+  border-radius: 4px;
+  width: 200px;
+  transition: border 0.3s; }
+  form input[type="text"]:focus, form input[type="text"].focus, form input[type="password"]:focus, form input[type="password"].focus, form input[type="email"]:focus, form input[type="email"].focus {
+    border: solid 1px #338a44; }
+form button {
+  width: 306px;
+  font-size: 1.2em;
+  padding: 10px;
+  background-color: #338a44;
+  border-radius: 4px;
+  color: white;
+  border: none; }
+  form button:hover {
+    cursor: pointer;
+    background-color: #3ea853; }
+form label[for="id_username"], form label[for="id_email"],
+form label[for="id_password"], form label[for="id_password1"] {
+  display: inline-block;
+  width: 80px; }
+form label[for="id_password2"] {
+  display: inline-block;
+  width: 160px; }
+
+.main-nav {
+  padding-left: 10px; }
+  .main-nav #menu {
+    line-height: 36px;
+    display: inline-block; }
+    .main-nav #menu .menu-option {
+      padding: 5px 20px 5px 10px; }
+      .main-nav #menu .menu-option a {
+        cursor: pointer;
+        font-size: 2em;
+        text-decoration: none;
+        color: white; }
+        .main-nav #menu .menu-option a:hover {
+          color: black; }
+  .main-nav #user-dropdown {
+    float: right;
+    line-height: 34px;
+    display: inline-block; }
+    .main-nav #user-dropdown button {
+      border: none;
+      color: white;
+      background-color: #3ea853;
+      font-size: 2em;
+      padding: 6px 12px 6px 28px; }
+    .main-nav #user-dropdown button:hover {
+      cursor: pointer; }
+    .main-nav #user-dropdown #user-dropdown-content {
+      border-left: 1px solid #696969;
+      border-bottom: 1px solid #696969;
+      display: none;
+      position: absolute;
+      top: 180px;
+      right: 0px;
+      background-color: #ededed;
+      width: 120px;
+      z-index: 1; }
+      .main-nav #user-dropdown #user-dropdown-content a {
+        cursor: pointer;
+        color: black;
+        padding: 0px 20px;
+        font-size: 2em;
+        text-decoration: none;
+        display: block; }
+        .main-nav #user-dropdown #user-dropdown-content a:hover {
+          background-color: #3ea853; }
+
+.main-content a {
+  text-decoration: none;
+  color: #338a44; }
+  .main-content a:hover {
+    color: #3ea853; }
+
+#login-page {
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */
