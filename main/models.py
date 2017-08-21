@@ -17,5 +17,8 @@ contains the basic information about the race.
 #class UserRace(models.Model):
 
 
-class Distances(models.Model):
+class Distance(models.Model):
     description = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.description
