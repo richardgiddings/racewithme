@@ -2,7 +2,9 @@
 
 {% block main %}
 <div>
-{{ profile.user.username }}
-{{ profile.favourite_distance.description }}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+</form>
 </div>
 {% endblock %}
