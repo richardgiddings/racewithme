@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block main %}
+{% for race in races.all %}
+    {{ race.race_name }}
+{% endfor %}
+{% endblock %}
