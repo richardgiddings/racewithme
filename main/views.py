@@ -14,7 +14,7 @@ def user_profile(request):
 def races(request):
 
     races = Race.objects.all()
-    races = Race.order_by('')
+    races = Race.objects.order_by('race_date')
 
     return render(request, template_name='main/races.html',
                   context={'races': races})

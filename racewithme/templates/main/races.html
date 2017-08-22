@@ -1,7 +1,24 @@
 {% extends "base.html" %}
 
 {% block main %}
-{% for race in races.all %}
-    {{ race.race_name }}
+{% if races %}
+
+{% regroup races by race_date|date:"Y" as races_by_year %}
+{% for race_year in races_by_year %}
+    <h1>{{ race_year.grouper }}</h1>
+    {% regroup race_year.list by race_date|date:"F" as races_by_month %}
+    {% for race_month in races_by_month %}
+        <h2>{{ race_month.grouper }}</h2>
+        {% for race in race_month.list %}
+            {{ race.race_date|date:"l jS" }} 
+            {{ race.race_name }}
+            {{ race.race_location }}
+            {{ race.race_distance }}
+        {% endfor %}
+    {% endfor %}
 {% endfor %}
+
+{% else %}
+<p>There are no races yet</p>
+{% endif %}
 {% endblock %}
