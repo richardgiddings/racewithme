@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 
 #class UserSettings(models.Model):
 
+RACE_STATUS = [
+    ('0', 'Not Interested'), 
+    ('1', 'Interested'), 
+    ('2', 'Going'), 
+    ('3', 'Completed'),
+]
+
 class UserRace(models.Model):
     """
     A race that a user is attending and the details
@@ -18,6 +25,9 @@ class UserRace(models.Model):
                         models.SET_NULL,
                         blank=True,
                         null=True)
+
+    # status of race
+    status = models.CharField(max_length=14, choices=RACE_STATUS, default='0')
 
     # no times if this ticked
     just_for_fun = models.BooleanField()
