@@ -65,8 +65,8 @@ class Race(models.Model):
                                 blank=True, 
                                 null=True)
     race_site_link = models.URLField()
-    race_date = models.DateField(auto_now_add=True)
-    race_time = models.TimeField(auto_now_add=True)
+    race_date = models.DateField()
+    race_time = models.TimeField()
 
     def __str__(self):
         return self.race_name
