@@ -37,12 +37,6 @@ h2 {
     }
 }
 
-.main-nav {
-    height: 40px;
-    background-color: $theme-colour2;
-    content: '';
-}
-
 form {
     .helptext {
         display: block;
@@ -94,6 +88,9 @@ form {
 
 .main-nav {
     padding-left: 10px;
+    height: 40px;
+    background-color: $theme-colour2;
+    content: '';
 
     #menu {
         line-height: 36px;
@@ -107,6 +104,9 @@ form {
                 color: white;
                 &:hover {
                     color: black;
+                }
+                &.active {
+                    color:black;
                 }
             }
         }
@@ -169,6 +169,54 @@ form {
 #login-page {
     text-align: center;
 }
-#signup-page {
+#races-page {
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1.2em;
 
+        td, th {
+            text-align: left;
+            padding: 8px;
+
+            button {
+            
+            }
+        }
+        tr {
+            border-bottom: 1px solid #d3d3d3;
+            &:not(#table-header):hover {
+                cursor: pointer;
+                background-color: #ededed;
+            }
+        }
+
+        button {
+            padding: 10px;
+            background-color: $theme-colour1;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            &:hover {
+                cursor: pointer;
+                background-color: $theme-colour2;
+            }
+        }
+    }
+    #date-column {
+        width: 100px;
+    }
+    #race-column {
+        width: 360px;
+    }
+    #location-column {
+        width: 150px;
+    }
+    #distance-column {
+        width: 120px;
+    }
+    #button-column {
+        background-color: #ffffff;
+    }
 }
+

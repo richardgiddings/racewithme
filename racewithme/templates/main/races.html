@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
+{% block extra_jquery %}
+$("#races").addClass("active");
+
+$('[id^="race-id"]').click(function() {
+    var id = $(this).attr('id').split('-')[2]; 
+    return false;
+});
+{% endblock %}
+
 {% block main %}
+<div id="races-page">
 {% if races %}
 
 {% regroup races by race_date|date:"Y" as races_by_year %}
@@ -9,16 +19,32 @@
     {% regroup race_year.list by race_date|date:"F" as races_by_month %}
     {% for race_month in races_by_month %}
         <h2>{{ race_month.grouper }}</h2>
+        <table>
+            <tr id="table-header">
+                <th id="date-column">Date</th>
+                <th id="race-column">Race</th>
+                <th id="location-column">Location</th>
+                <th id="distance-column">Distance</th>
+                <th id="button-column"></th>
+            </tr>
         {% for race in race_month.list %}
-            {{ race.race_date|date:"l jS" }} 
-            {{ race.race_name }}
-            {{ race.race_location }}
-            {{ race.race_distance }}
+            <tr class="table-row" id="race-id-{{ race.id }}">
+                <td>{{ race.race_date|date:"l jS" }}</td>
+                <td>{{ race.race_name }}</td>
+                <td>{{ race.race_location }}</td>
+                <td>{{ race.race_distance }}</td>
+                <td>
+                    <button>INTERESTED</button>
+                    <button>GOING</button>
+                </td>
+            </tr>
         {% endfor %}
+        </table>
     {% endfor %}
 {% endfor %}
 
 {% else %}
-<p>There are no races yet</p>
+    <p>There are no races yet.</p>
 {% endif %}
+</div>
 {% endblock %}
