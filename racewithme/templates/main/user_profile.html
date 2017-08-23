@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block main %}
-<div>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-</form>
+<div id="user-profile">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
 </div>
 {% endblock %}
