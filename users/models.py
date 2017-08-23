@@ -8,7 +8,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
 
-    favourite_distance = models.ForeignKey(Distance)
+    favourite_distance = models.ForeignKey(Distance, 
+                                    models.SET_NULL, 
+                                    blank=True, 
+                                    null=True)
 
     def __str__(self):
         return self.user.username
