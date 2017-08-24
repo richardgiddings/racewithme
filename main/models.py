@@ -10,11 +10,22 @@ RACE_STATUS = [
     ('3', 'Completed'),
 ]
 
+class UserRaceManager(models.Manager):
+    """
+    Manage the creation of user races
+    """
+    def create_user_race(self, user, race, status):
+        user_race = self.create(
+            user=user, race=race, status=status, just_for_fun=True)
+        return user_race
+
 class UserRace(models.Model):
     """
     A race that a user is attending and the details
     for this user
     """
+    objects = UserRaceManager()
+
     user = models.ForeignKey(
                         User,
                         models.SET_NULL,
@@ -33,20 +44,23 @@ class UserRace(models.Model):
     just_for_fun = models.BooleanField()
     
     # target time
-    target_hours = models.IntegerField()
-    target_minutes = models.IntegerField()
-    target_seconds = models.IntegerField()
+    target_hours = models.IntegerField(blank=True, null=True)
+    target_minutes = models.IntegerField(blank=True, null=True)
+    target_seconds = models.IntegerField(blank=True, null=True)
 
     # time acheived
-    achieved_hours = models.IntegerField()
-    acheveed_minutes = models.IntegerField()
-    achieved_seconds = models.IntegerField()
+    achieved_hours = models.IntegerField(blank=True, null=True)
+    acheveed_minutes = models.IntegerField(blank=True, null=True)
+    achieved_seconds = models.IntegerField(blank=True, null=True)
 
     # link to external race results and photos
     race_results_external = models.URLField()
     race_photos_external = models.URLField()
 
     # ADD PHOTO UPLOAD LATER !!!!!!!!
+
+    def __str__(self):
+        return race.race_name
 
 class Race(models.Model):
     """
