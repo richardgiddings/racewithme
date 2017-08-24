@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block extra_jquery %}
+    $("#interested").addClass("active");
+{% endblock %}
+
+{% block main %}
+<div id="interested-page">
+{% if races %}
+{% for race in races %}
+    {{ race.race.race_name }}
+{% endfor %}
+{% else %}
+    <p>You haven't picked any races yet. Mark one as interested to see it here.</p>
+{% endif %}
+</div>
+{% endblock %}

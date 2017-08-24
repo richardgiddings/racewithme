@@ -16,6 +16,10 @@ $('[id^="race-id"]').click(function() {
     }
     return false;
 });
+
+$(".buttons").click(function(e) {
+    e.stopPropagation();
+});
 {% endblock %}
 
 {% block main %}
@@ -42,9 +46,13 @@ $('[id^="race-id"]').click(function() {
                 <td>{{ race.race_name }}</td>
                 <td>{{ race.race_location }}</td>
                 <td>{{ race.race_distance }}</td>
-                <td>
-                    <button>INTERESTED</button>
-                    <button>GOING</button>
+                <td class="buttons">
+                    <form action="{% url 'interested' %}" method="post">{% csrf_token %}
+                        <button type="submit" name="race_id" value="{{ race.id }}">INTERESTED</a>
+                    </form>
+                    <form action="" method="post">{% csrf_token %}
+                        <button type="submit" name="race_id" value="{{ race.id }}">GOING</a>
+                    </form>
                 </td>
             </tr>
             <tr class="detail-row" id="detail-row-{{ race.id }}">
