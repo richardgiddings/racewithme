@@ -178,17 +178,21 @@ form {
         td, th {
             text-align: left;
             padding: 8px;
-
-            button {
-            
-            }
         }
-        tr {
+        .table-row {
             border-bottom: 1px solid #d3d3d3;
-            &:not(#table-header):hover {
+            &:hover {
                 cursor: pointer;
                 background-color: #ededed;
             }
+        }
+        #table-header {
+            border-bottom: 1px solid $theme-colour1;
+        }
+
+        .detail-row {
+            border-bottom: 1px solid #d3d3d3;
+            display: none;
         }
 
         button {

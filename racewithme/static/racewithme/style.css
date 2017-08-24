@@ -127,11 +127,16 @@ form label[for="id_password2"] {
   #races-page table td, #races-page table th {
     text-align: left;
     padding: 8px; }
-  #races-page table tr {
+  #races-page table .table-row {
     border-bottom: 1px solid #d3d3d3; }
-    #races-page table tr:not(#table-header):hover {
+    #races-page table .table-row:hover {
       cursor: pointer;
       background-color: #ededed; }
+  #races-page table #table-header {
+    border-bottom: 1px solid #338a44; }
+  #races-page table .detail-row {
+    border-bottom: 1px solid #d3d3d3;
+    display: none; }
   #races-page table button {
     padding: 10px;
     background-color: #338a44;

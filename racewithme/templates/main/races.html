@@ -4,7 +4,16 @@
 $("#races").addClass("active");
 
 $('[id^="race-id"]').click(function() {
-    var id = $(this).attr('id').split('-')[2]; 
+    var id = $(this).attr('id').split('-')[2];
+
+    if($("#detail-row-"+id).css("display") == "none") {
+        $("#detail-row-"+id).show();
+        $("#race-id-"+id).css("border-bottom", "none");
+    }
+    else {
+        $("#detail-row-"+id).hide();
+        $("#race-id-"+id).css("border-bottom", "1px solid #d3d3d3");
+    }
     return false;
 });
 {% endblock %}
@@ -36,6 +45,12 @@ $('[id^="race-id"]').click(function() {
                 <td>
                     <button>INTERESTED</button>
                     <button>GOING</button>
+                </td>
+            </tr>
+            <tr class="detail-row" id="detail-row-{{ race.id }}">
+                <td colspan="5">
+                    <b>Starts at</b> {{ race.race_time }}
+                    <p><a href="{{ race.race_site_link }}">Visit site</a></p>
                 </td>
             </tr>
         {% endfor %}
