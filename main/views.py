@@ -32,12 +32,28 @@ def interested(request):
         # create a new UserRace instance pointing to Race for User
         race_id = request.POST.get("race_id")
         race = Race.objects.get(pk=race_id)
-        user_race = UserRace.objects.create_user_race(
-            request.user, race, '1')
+        user_race = UserRace.objects.create_user_race(request.user, race)
+        user_race.status='1' # set to interested
+        user_race.save()
 
     # get all UserRaces for user that they are interested in
     races = UserRace.objects.filter(user=request.user)
     races = races.filter(status='1')
     
     return render(request, template_name='main/interested.html',
+                  context={'races': races})
+
+@login_required
+def going(request):
+    if request.method == 'POST':
+        race_id = request.POST.get("race_id")
+        race = Race.objects.get(pk=race_id)
+        user_race = UserRace.objects.create_user_race(request.user, race)
+        user_race.status = '2' # set to going
+        user_race.save()
+
+    races = UserRace.objects.filter(user=request.user)
+    races = races.filter(status='2')
+
+    return render(request, template_name='main/going.html',
                   context={'races': races})

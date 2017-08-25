@@ -14,9 +14,9 @@ class UserRaceManager(models.Manager):
     """
     Manage the creation of user races
     """
-    def create_user_race(self, user, race, status):
-        user_race = self.create(
-            user=user, race=race, status=status, just_for_fun=True)
+    def create_user_race(self, user, race):
+        user_race, created = self.get_or_create(user=user, race=race, 
+                                defaults={'just_for_fun': True})
         return user_race
 
 class UserRace(models.Model):
