@@ -19,6 +19,10 @@ def races(request):
     races = Race.objects.all()
     races = Race.objects.order_by('race_date')
 
+    # filter out races that the user has already expressed interest in
+    user_races = UserRace.objects.filter(user=request.user).values_list('race', flat=True)
+    races = [race for race in races if race.id not in user_races]
+
     return render(request, template_name='main/races.html',
                   context={'races': races})
 
