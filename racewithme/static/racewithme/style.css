@@ -137,8 +137,12 @@ form label[for="id_password2"] {
   #races-page table .detail-row {
     border-bottom: 1px solid #d3d3d3;
     display: none; }
+  #races-page table form {
+    float: left;
+    margin: 4px; }
   #races-page table button {
-    padding: 4px;
+    width: 100%;
+    padding: 6px;
     background-color: #338a44;
     border-radius: 4px;
     color: white;

@@ -195,8 +195,14 @@ form {
             display: none;
         }
 
+        form {
+            float: left;
+            margin: 4px;
+        }
+
         button {
-            padding: 4px;
+            width: 100%;
+            padding: 6px;
             background-color: $theme-colour1;
             border-radius: 4px;
             color: white;
