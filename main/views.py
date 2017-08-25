@@ -2,7 +2,9 @@ from django.shortcuts import render
 from users.models import Profile
 from .models import Race, UserRace
 from .forms import UserProfileForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def user_profile(request):
 
     profile = Profile.objects.get(user=request.user)
@@ -11,6 +13,7 @@ def user_profile(request):
     return render(request, template_name='main/user_profile.html', 
                   context={'form': form})
 
+@login_required
 def races(request):
 
     races = Race.objects.all()
@@ -19,6 +22,7 @@ def races(request):
     return render(request, template_name='main/races.html',
                   context={'races': races})
 
+@login_required
 def interested(request):
     if request.method == 'POST':
         # create a new UserRace instance pointing to Race for User
