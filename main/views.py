@@ -37,8 +37,7 @@ def interested(request):
         user_race.save()
 
     # get all UserRaces for user that they are interested in
-    races = UserRace.objects.filter(user=request.user)
-    races = races.filter(status='1')
+    races = UserRace.objects.filter(user=request.user, status='1')
     
     return render(request, template_name='main/interested.html',
                   context={'races': races})
@@ -52,8 +51,7 @@ def going(request):
         user_race.status = '2' # set to going
         user_race.save()
 
-    races = UserRace.objects.filter(user=request.user)
-    races = races.filter(status='2')
+    races = UserRace.objects.filter(user=request.user, status='2')
 
     return render(request, template_name='main/going.html',
                   context={'races': races})
@@ -65,8 +63,7 @@ def no_longer_interested(request):
     race = Race.objects.get(pk=race_id)
     UserRace.objects.get(user=request.user, race=race).delete()
 
-    races = UserRace.objects.filter(user=request.user)
-    races = races.filter(status='1')
+    races = UserRace.objects.filter(user=request.user, status='1')
 
     return render(request, template_name='main/interested.html',
                   context={'races': races})
