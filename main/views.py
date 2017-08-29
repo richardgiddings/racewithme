@@ -61,4 +61,12 @@ def going(request):
 @login_required
 def no_longer_interested(request):
 
-    return render(request)
+    race_id = request.POST.get("race_id")
+    race = Race.objects.get(pk=race_id)
+    UserRace.objects.get(user=request.user, race=race).delete()
+
+    races = UserRace.objects.filter(user=request.user)
+    races = races.filter(status='1')
+
+    return render(request, template_name='main/interested.html',
+                  context={'races': races})
