@@ -1,15 +1,71 @@
 {% extends "base.html" %}
 
 {% block extra_jquery %}
-    $("#interested").addClass("active");
+$("#interested").addClass("active");
+
+$('[id^="race-id"]').click(function() {
+    var id = $(this).attr('id').split('-')[2];
+
+    if($("#detail-row-"+id).css("display") == "none") {
+        $("#detail-row-"+id).show();
+        $("#race-id-"+id).css("border-bottom", "none");
+    }
+    else {
+        $("#detail-row-"+id).hide();
+        $("#race-id-"+id).css("border-bottom", "1px solid #d3d3d3");
+    }
+    return false;
+});
+
+$(".buttons").click(function(e) {
+    e.stopPropagation();
+});
 {% endblock %}
 
 {% block main %}
 <div id="interested-page">
 {% if races %}
-{% for race in races %}
-    {{ race.race.race_name }}
+
+{% regroup races by race.race_date|date:"Y" as races_by_year %}
+{% for race_year in races_by_year %}
+    <h1>{{ race_year.grouper }}</h1>
+    {% regroup race_year.list by race.race_date|date:"F" as races_by_month %}
+    {% for race_month in races_by_month %}
+        <h2>{{ race_month.grouper }}</h2>
+        <table>
+            <tr id="table-header">
+                <th id="date-column">Date</th>
+                <th id="race-column">Race</th>
+                <th id="location-column">Location</th>
+                <th id="distance-column">Distance</th>
+                <th id="button-column"></th>
+            </tr>
+        {% for race in race_month.list %}
+            <tr class="table-row" id="race-id-{{ race.race.id }}">
+                <td>{{ race.race.race_date|date:"l jS" }}</td>
+                <td>{{ race.race.race_name }}</td>
+                <td>{{ race.race.race_location }}</td>
+                <td>{{ race.race.race_distance }}</td>
+                <td class="buttons">
+                    <form action="{% url 'no_longer_interested' %}" method="post">{% csrf_token %}
+                        <button type="submit" name="race_id" value="{{ race.race.id }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </form>
+                    <form action="{% url 'going' %}" method="post">{% csrf_token %}
+                        <button type="submit" name="race_id" value="{{ race.race.id }}">GOING</button>
+                    </form>
+                </td>
+            </tr>
+            <tr class="detail-row" id="detail-row-{{ race.id }}">
+                <td colspan="5">
+                    <b>Starts at</b> {{ race.race.race_time }}
+                    <p><a href="{{ race.race.race_site_link }}">Visit site</a></p>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
 {% endfor %}
+
 {% else %}
     <p>You haven't picked any races yet. Mark one as interested to see it here.</p>
 {% endif %}

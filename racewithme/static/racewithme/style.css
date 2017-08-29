@@ -120,45 +120,45 @@ form label[for="id_password2"] {
 #login-page {
   text-align: center; }
 
-#races-page table {
+#races-page table, #interested-page table {
   width: 100%;
   border-collapse: collapse;
   font-size: 1.2em; }
-  #races-page table td, #races-page table th {
+  #races-page table td, #races-page table th, #interested-page table td, #interested-page table th {
     text-align: left;
     padding: 8px; }
-  #races-page table .table-row {
+  #races-page table .table-row, #interested-page table .table-row {
     border-bottom: 1px solid #d3d3d3; }
-    #races-page table .table-row:hover {
+    #races-page table .table-row:hover, #interested-page table .table-row:hover {
       cursor: pointer;
       background-color: #ededed; }
-  #races-page table #table-header {
+  #races-page table #table-header, #interested-page table #table-header {
     border-bottom: 1px solid #338a44; }
-  #races-page table .detail-row {
+  #races-page table .detail-row, #interested-page table .detail-row {
     border-bottom: 1px solid #d3d3d3;
     display: none; }
-  #races-page table form {
+  #races-page table form, #interested-page table form {
     float: left;
     margin: 4px; }
-  #races-page table button {
+  #races-page table button, #interested-page table button {
     width: 100%;
     padding: 6px;
     background-color: #338a44;
     border-radius: 4px;
     color: white;
     border: none; }
-    #races-page table button:hover {
+    #races-page table button:hover, #interested-page table button:hover {
       cursor: pointer;
       background-color: #3ea853; }
-#races-page #date-column {
+#races-page #date-column, #interested-page #date-column {
   width: 100px; }
-#races-page #race-column {
+#races-page #race-column, #interested-page #race-column {
   width: 360px; }
-#races-page #location-column {
+#races-page #location-column, #interested-page #location-column {
   width: 150px; }
-#races-page #distance-column {
+#races-page #distance-column, #interested-page #distance-column {
   width: 120px; }
-#races-page #button-column {
+#races-page #button-column, #interested-page #button-column {
   background-color: #ffffff; }
 
 /*# sourceMappingURL=style.css.map */

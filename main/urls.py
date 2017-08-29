@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^races/', views.races, name='races'),
     url(r'^interested/', views.interested, name='interested'),
     url(r'^going/', views.going, name='going'),
+    url(r'^no_longer_interested/', views.no_longer_interested, name='no_longer_interested')
 ]

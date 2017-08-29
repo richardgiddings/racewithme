@@ -57,3 +57,8 @@ def going(request):
 
     return render(request, template_name='main/going.html',
                   context={'races': races})
+
+@login_required
+def no_longer_interested(request):
+
+    return render(request)
