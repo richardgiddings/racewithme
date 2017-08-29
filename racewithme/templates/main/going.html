@@ -7,9 +7,21 @@
 {% block main %}
 <div id="going-page">
 {% if races %}
-{% for race in races %}
-    {{ race.race.race_name }}
+
+{% regroup races by race.race_date|date:"Y" as races_by_year %}
+{% for race_year in races_by_year %}
+    <h1>{{ race_year.grouper }}</h1>
+    {% regroup race_year.list by race.race_date|date:"F" as races_by_month %}
+    {% for race_month in races_by_month %}
+        <h2>{{ race_month.grouper }}</h2>
+        {% for race in race_month.list %}
+            <div>
+            {{ race.race.race_name }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 {% endfor %}
+
 {% else %}
     <p>You haven't picked any races that you are going to yet. Mark yourself as going to a race to see it here.</p>
 {% endif %}
