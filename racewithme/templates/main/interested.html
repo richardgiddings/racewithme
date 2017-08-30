@@ -50,7 +50,7 @@ $(".buttons").click(function(e) {
                     <form action="{% url 'no_longer_interested' %}" method="post">{% csrf_token %}
                         <button type="submit" name="race_id" value="{{ race.race.id }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     </form>
-                    <form action="{% url 'completed' %}" method="post">{% csrf_token %}
+                    <form action="{% url 'going' %}" method="post">{% csrf_token %}
                         <button type="submit" name="race_id" value="{{ race.race.id }}">GOING</button>
                     </form>
                 </td>
