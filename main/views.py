@@ -67,3 +67,30 @@ def no_longer_interested(request):
 
     return render(request, template_name='main/interested.html',
                   context={'races': races})
+
+@login_required
+def no_longer_going(request):
+
+    race_id = request.POST.get("race_id")
+    race = Race.objects.get(pk=race_id)
+    UserRace.objects.get(user=request.user, race=race).delete()
+
+    races = UserRace.objects.filter(user=request.user, status='2')
+
+    return render(request, template_name="main/going.html",
+                  context={'races': races})
+
+@login_required
+def completed(request):
+
+    if request.method == 'POST':
+        race_id = request.POST.get("race_id")
+        race = Race.objects.get(pk=race_id)
+        user_race = UserRace.objects.get(user=request.user, race=race)
+        user_race.status = '3' # completed race
+        user_race.save()
+
+    races = UserRace.objects.filter(user=request.user, status='3')
+
+    return render(request, template_name='main/completed.html',
+                  context={'races': races})

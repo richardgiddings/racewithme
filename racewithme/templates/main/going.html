@@ -15,8 +15,34 @@
     {% for race_month in races_by_month %}
         <h2>{{ race_month.grouper }}</h2>
         {% for race in race_month.list %}
-            <div>
-            {{ race.race.race_name }}
+            <div class="going-race">
+                <div class="going-date">
+                    {{ race.race.race_date|date:"l jS F" }} at {{ race.race.race_time|date:"P" }}
+                </div>
+                <table>
+                    <tr>
+                        <td>{{ race.race.race_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ race.race.race_location }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ race.race.race_distance }}</td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ race.race.race_site_link}}">Visit site</a></td>
+                    </tr>
+                    <tr>
+                        <td class="buttons">
+                            <form action="{% url 'completed' %}" method="post">{% csrf_token %}
+                                <button type="submit" name="race_id" value="{{ race.race.id }}">COMPLETED</button>
+                            </form>
+                            <form action="{% url 'no_longer_going' %}" method="post">{% csrf_token %}
+                                <button type="submit" name="race_id" value="{{ race.race.id }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         {% endfor %}
     {% endfor %}

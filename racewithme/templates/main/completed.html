@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block extra_jquery %}
+    $("#completed").addClass("active");
+{% endblock %}
+
+{% block main %}
+<div class="complete-page">
+{% if races %}
+    {% for race in races %}
+        {{ race.race.race_name }}
+    {% endfor %}
+{% else %}
+    <p>You have not completed any races yet.</p>
+{% endif %}
+</div>
+{% endblock %}

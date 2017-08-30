@@ -230,3 +230,45 @@ form {
     }
 }
 
+#going-page {
+    .going-race {
+        font-size: 1.2em;
+        border: 1px solid $theme-colour1;
+        padding: 10px;
+        margin-bottom: 10px;
+
+        .going-date {
+            display: inline;
+            position: relative;
+            left: 0;
+            top: 0;
+            padding: 10px;
+            border-bottom: 2px solid $theme-colour1;
+        }
+
+        table {
+            margin-top: 10px;
+            padding: 10px;
+        }
+        td {
+            padding: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 6px;
+            background-color: $theme-colour1;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            &:hover {
+                cursor: pointer;
+                background-color: $theme-colour2;
+            }
+        }
+        form {
+            float: left;
+            margin: 4px;
+        }
+    }
+}
+
