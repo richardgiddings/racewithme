@@ -55,7 +55,7 @@ $(".buttons").click(function(e) {
                     </form>
                 </td>
             </tr>
-            <tr class="detail-row" id="detail-row-{{ race.id }}">
+            <tr class="detail-row" id="detail-row-{{ race.race.id }}">
                 <td colspan="5">
                     <b>Starts at</b> {{ race.race.race_time }}
                     <p><a href="{{ race.race.race_site_link }}">Visit site</a></p>
