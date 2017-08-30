@@ -166,30 +166,36 @@ form label[for="id_password2"] {
   border: 1px solid #338a44;
   padding: 10px;
   margin-bottom: 10px; }
-  #going-page .going-race .going-date {
-    display: inline;
-    position: relative;
-    left: 0;
-    top: 0;
-    padding: 10px;
-    border-bottom: 2px solid #338a44; }
-  #going-page .going-race table {
-    margin-top: 10px;
-    padding: 10px; }
-  #going-page .going-race td {
-    padding: 4px; }
-  #going-page .going-race button {
-    width: 100%;
-    padding: 6px;
-    background-color: #338a44;
-    border-radius: 4px;
-    color: white;
-    border: none; }
-    #going-page .going-race button:hover {
-      cursor: pointer;
-      background-color: #3ea853; }
-  #going-page .going-race form {
-    float: left;
-    margin: 4px; }
+  #going-page .going-race .going-race-details {
+    display: inline-block; }
+    #going-page .going-race .going-race-details .going-date {
+      display: inline;
+      position: relative;
+      left: 0;
+      top: 0;
+      padding: 10px;
+      border-bottom: 2px solid #338a44; }
+    #going-page .going-race .going-race-details table {
+      margin-top: 10px;
+      padding: 10px; }
+    #going-page .going-race .going-race-details td {
+      padding: 4px; }
+    #going-page .going-race .going-race-details button {
+      width: 100%;
+      padding: 6px;
+      background-color: #338a44;
+      border-radius: 4px;
+      color: white;
+      border: none; }
+      #going-page .going-race .going-race-details button:hover {
+        cursor: pointer;
+        background-color: #3ea853; }
+    #going-page .going-race .going-race-details form {
+      float: left;
+      margin: 4px; }
+  #going-page .going-race .going-race-targets {
+    display: inline-block;
+    margin-left: 100px;
+    border: 1px solid black; }
 
 /*# sourceMappingURL=style.css.map */
