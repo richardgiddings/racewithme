@@ -236,9 +236,10 @@ form {
         border: 1px solid $theme-colour1;
         padding: 10px;
         margin-bottom: 10px;
+        overflow: hidden;
 
         .going-race-details {
-            display: inline-block;
+            float: left;
 
             .going-date {
                 display: inline;
@@ -274,9 +275,76 @@ form {
             }
         }
         .going-race-targets {
-            display: inline-block;
-            margin-left: 100px;
-            border: 1px solid black;
+            float: left;
+            margin-left: 40px;
+            margin-top: 46px;
+
+            form {
+                input[type="text"] {
+                    outline: none;
+                    padding: 10px;
+                    border: solid 1px #c9c9c9;
+                    border-radius: 4px;
+                    width: 50px;
+                    transition: border 0.3s;
+
+                    &:focus, &.focus {
+                        border: solid 1px $theme-colour1;
+                    }
+                }
+                .target-time {
+                    margin-top: 20px;
+                }
+                .checkbox {
+                    margin-bottom: 20px;
+                    label {
+                        display: inline-block;
+                        cursor: pointer;
+                        position: relative;
+                        padding-left: 25px;
+                        margin-right: 15px;
+
+                        &:before {
+                            content: "";
+                            display: inline-block;
+                            border-radius: 3px;
+                         
+                            width: 16px;
+                            height: 16px;
+                         
+                            margin-right: 10px;
+                            position: absolute;
+                            left: 0;
+                            bottom: 1px;
+                            background-color: $theme-colour2;
+                        }
+                    }
+                    input[type="checkbox"] {
+                        display: none;
+                    }
+                    input[type=checkbox]:checked + label:before {
+                        content: "\2713";
+                        text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+                        font-size: 15px;
+                        color: #f3f3f3;
+                        text-align: center;
+                        line-height: 15px;
+                    }
+                }
+                button {
+                    vertical-align: middle;
+                    width: 60px;
+                    padding: 6px;
+                    background-color: $theme-colour1;
+                    border-radius: 4px;
+                    color: white;
+                    border: none;
+                    &:hover {
+                        cursor: pointer;
+                        background-color: $theme-colour2;
+                    }
+                }
+            }
         }
     }
 }

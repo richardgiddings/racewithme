@@ -2,52 +2,74 @@
 
 {% block extra_jquery %}
     $("#going").addClass("active");
+
+    $("#id_just_for_fun").click(function() {
+        alert();
+    });
 {% endblock %}
 
 {% block main %}
 <div id="going-page">
-{% if races %}
+{% if race_tuples %}
 
-{% regroup races by race.race_date|date:"Y" as races_by_year %}
+{% regroup race_tuples by 0.race.race_date|date:"Y" as races_by_year %}
 {% for race_year in races_by_year %}
     <h1>{{ race_year.grouper }}</h1>
-    {% regroup race_year.list by race.race_date|date:"F" as races_by_month %}
+    {% regroup race_year.list by 0.race.race_date|date:"F" as races_by_month %}
     {% for race_month in races_by_month %}
         <h2>{{ race_month.grouper }}</h2>
         {% for race in race_month.list %}
             <div class="going-race">
+                {% with race_details=race.0.race %}
                 <div class="going-race-details">
                     <div class="going-date">
-                        {{ race.race.race_date|date:"l jS F" }} at {{ race.race.race_time|date:"P" }}
+                        {{ race_details.race_date|date:"l jS F" }} at {{ race_details.race_time|date:"P" }}
                     </div>
                     <table>
                         <tr>
-                            <td>{{ race.race.race_name }}</td>
+                            <td>{{ race_details.race_name }}</td>
                         </tr>
                         <tr>
-                            <td>{{ race.race.race_location }}</td>
+                            <td>{{ race_details.race_location }}</td>
                         </tr>
                         <tr>
-                            <td>{{ race.race.race_distance }}</td>
+                            <td>{{ race_details.race_distance }}</td>
                         </tr>
                         <tr>
-                            <td><a href="{{ race.race.race_site_link}}">Visit site</a></td>
+                            <td><a href="{{ race_details.race_site_link}}">Visit site</a></td>
                         </tr>
                         <tr>
                             <td class="buttons">
                                 <form action="{% url 'completed' %}" method="post">{% csrf_token %}
-                                    <button type="submit" name="race_id" value="{{ race.race.id }}">COMPLETED</button>
+                                    <button type="submit" name="race_id" value="{{ race_details.id }}">COMPLETED</button>
                                 </form>
                                 <form action="{% url 'no_longer_going' %}" method="post">{% csrf_token %}
-                                    <button type="submit" name="race_id" value="{{ race.race.id }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button type="submit" name="race_id" value="{{ race_details.id }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </form>
                             </td>
                         </tr>
                     </table>
                 </div>
+                {% endwith %}
+                {% with race.1 as form %}
                 <div class="going-race-targets">
-                    Hello
+                    <form>
+                        <div class="checkbox">
+                            {{ form.just_for_fun }}
+                            <label for="id_just_for_fun">Running for fun (no target time)</label>
+                        </div>
+                        <div>
+                            {{ form.target_hours }}
+                            {{ form.target_minutes }}
+                            {{ form.target_seconds }}
+                            <button type="submit" name="race_id" value="{{ race.0.race.id }}">Set</button>
+                        </div>
+                        <div class="target-time">
+                            Your target is: {{ race.0.race.target_hours }}h {{ race.0.race.target_minutes }}m {{ race.0.race.target_seconds }}s
+                        </div>
+                    </form>
                 </div>
+                {% endwith %}
             </div>
         {% endfor %}
     {% endfor %}

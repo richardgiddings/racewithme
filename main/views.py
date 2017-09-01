@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from users.models import Profile
 from .models import Race, UserRace
-from .forms import UserProfileForm
+from .forms import UserProfileForm, RaceTargetsForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -53,8 +53,10 @@ def going(request):
 
     races = UserRace.objects.filter(user=request.user, status='2')
 
+    race_tuples = [(race, RaceTargetsForm(instance=race)) for race in races]
+
     return render(request, template_name='main/going.html',
-                  context={'races': races})
+                  context={'race_tuples': race_tuples})
 
 @login_required
 def no_longer_interested(request):
