@@ -3,6 +3,8 @@ from users.models import Profile
 from .models import Race, UserRace
 from .forms import UserProfileForm, RaceTargetsForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 @login_required
 def user_profile(request):
@@ -53,7 +55,7 @@ def going(request):
 
     races = UserRace.objects.filter(user=request.user, status='2')
 
-    race_tuples = [(race, RaceTargetsForm(instance=race)) for race in races]
+    race_tuples = [(race, RaceTargetsForm(instance=race, auto_id='id_%s_'+str(race.race.id))) for race in races]
 
     return render(request, template_name='main/going.html',
                   context={'race_tuples': race_tuples})
@@ -96,3 +98,16 @@ def completed(request):
 
     return render(request, template_name='main/completed.html',
                   context={'races': races})
+
+@login_required
+def set_target_time(request):
+
+    if request.method == 'POST':
+        race_id = request.POST.get("race_id")
+        user_race = UserRace.objects.get(pk=race_id)
+        form = RaceTargetsForm(request.POST, instance=user_race)
+
+        if form.is_valid():
+            form.save()
+            
+    return HttpResponseRedirect(reverse('going'))

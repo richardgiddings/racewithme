@@ -199,16 +199,20 @@ form label[for="id_password2"] {
     margin-left: 40px;
     margin-top: 46px; }
     #going-page .going-race .going-race-targets form input[type="text"] {
+      display: block;
       outline: none;
       padding: 10px;
+      margin-right: 10px;
       border: solid 1px #c9c9c9;
       border-radius: 4px;
       width: 50px;
       transition: border 0.3s; }
       #going-page .going-race .going-race-targets form input[type="text"]:focus, #going-page .going-race .going-race-targets form input[type="text"].focus {
         border: solid 1px #338a44; }
+    #going-page .going-race .going-race-targets form .target-input {
+      float: left; }
     #going-page .going-race .going-race-targets form .target-time {
-      margin-top: 20px; }
+      margin-top: 40px; }
     #going-page .going-race .going-race-targets form .checkbox {
       margin-bottom: 20px; }
       #going-page .going-race .going-race-targets form .checkbox label {
@@ -238,7 +242,8 @@ form label[for="id_password2"] {
         text-align: center;
         line-height: 15px; }
     #going-page .going-race .going-race-targets form button {
-      vertical-align: middle;
+      position: relative;
+      top: 20px;
       width: 60px;
       padding: 6px;
       background-color: #338a44;

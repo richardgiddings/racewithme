@@ -281,8 +281,10 @@ form {
 
             form {
                 input[type="text"] {
+                    display:block;
                     outline: none;
                     padding: 10px;
+                    margin-right: 10px;
                     border: solid 1px #c9c9c9;
                     border-radius: 4px;
                     width: 50px;
@@ -292,8 +294,11 @@ form {
                         border: solid 1px $theme-colour1;
                     }
                 }
+                .target-input {
+                    float: left; 
+                }
                 .target-time {
-                    margin-top: 20px;
+                    margin-top: 40px;
                 }
                 .checkbox {
                     margin-bottom: 20px;
@@ -332,7 +337,8 @@ form {
                     }
                 }
                 button {
-                    vertical-align: middle;
+                    position: relative;
+                    top: 20px;
                     width: 60px;
                     padding: 6px;
                     background-color: $theme-colour1;
