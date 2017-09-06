@@ -50,7 +50,7 @@ class UserRace(models.Model):
 
     # time acheived
     achieved_hours = models.IntegerField(blank=True, null=True)
-    acheveed_minutes = models.IntegerField(blank=True, null=True)
+    achieved_minutes = models.IntegerField(blank=True, null=True)
     achieved_seconds = models.IntegerField(blank=True, null=True)
 
     # link to external race results and photos
@@ -60,7 +60,7 @@ class UserRace(models.Model):
     # ADD PHOTO UPLOAD LATER !!!!!!!!
 
     def __str__(self):
-        return race.race_name
+        return self.race.race_name
 
 class Race(models.Model):
     """
