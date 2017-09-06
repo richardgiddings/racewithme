@@ -54,8 +54,8 @@ class UserRace(models.Model):
     achieved_seconds = models.IntegerField(blank=True, null=True)
 
     # link to external race results and photos
-    race_results_external = models.URLField()
-    race_photos_external = models.URLField()
+    race_results_external = models.URLField(blank=True, null=True)
+    race_photos_external = models.URLField(blank=True, null=True)
 
     # ADD PHOTO UPLOAD LATER !!!!!!!!
 
