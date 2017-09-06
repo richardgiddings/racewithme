@@ -65,7 +65,8 @@ def no_longer_interested(request):
 
     race_id = request.POST.get("race_id")
     race = Race.objects.get(pk=race_id)
-    UserRace.objects.get(user=request.user, race=race).delete()
+    user_race = UserRace.objects.get(user=request.user, race=race)
+    user_race.delete()
 
     races = UserRace.objects.filter(user=request.user, status='1')
 
@@ -77,7 +78,8 @@ def no_longer_going(request):
 
     race_id = request.POST.get("race_id")
     race = Race.objects.get(pk=race_id)
-    UserRace.objects.get(user=request.user, race=race).delete()
+    user_race = UserRace.objects.get(user=request.user, race=race)
+    user_race.delete()
 
     races = UserRace.objects.filter(user=request.user, status='2')
 
