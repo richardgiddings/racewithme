@@ -4,10 +4,7 @@
     $("#going").addClass("active");
 
     $('[id^="id_just_for_fun"]').on('change',function(){
-        alert();
-        var id = $(this).attr('id').split('-')[3];
-        alert(id);
-
+        var id = $(this).attr('id').split('_')[4];
         $('#form_'+id).submit();
     });
 {% endblock %}

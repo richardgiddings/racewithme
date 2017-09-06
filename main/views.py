@@ -53,9 +53,9 @@ def going(request):
         user_race.status = '2' # set to going
         user_race.save()
 
-    races = UserRace.objects.filter(user=request.user, status='2')
+    races = UserRace.objects.filter(user=request.user, status='2').order_by('race__race_date')
 
-    race_tuples = [(race, RaceTargetsForm(instance=race, auto_id='id_%s_'+str(race.race.id))) for race in races]
+    race_tuples = [(race, RaceTargetsForm(instance=race, auto_id='id_%s_'+str(race.id))) for race in races]
 
     return render(request, template_name='main/going.html',
                   context={'race_tuples': race_tuples})
