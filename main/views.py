@@ -5,6 +5,7 @@ from .forms import UserProfileForm, RaceTargetsForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from datetime import datetime
 
 @login_required
 def user_profile(request):
@@ -18,8 +19,7 @@ def user_profile(request):
 @login_required
 def races(request):
 
-    races = Race.objects.all()
-    races = Race.objects.order_by('race_date')
+    races = Race.objects.filter(race_date__gte=datetime.now()).order_by('race_date')
 
     # filter out races that the user has already expressed interest in
     user_races = UserRace.objects.filter(user=request.user).values_list('race', flat=True)
