@@ -151,7 +151,7 @@ form label[for="id_password2"] {
       cursor: pointer;
       background-color: #3ea853; }
 #races-page #date-column, #interested-page #date-column {
-  width: 100px; }
+  width: 140px; }
 #races-page #race-column, #interested-page #race-column {
   width: 360px; }
 #races-page #location-column, #interested-page #location-column {
