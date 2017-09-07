@@ -42,7 +42,7 @@ form input[type="text"], form input[type="password"], form input[type="email"] {
   form input[type="text"]:focus, form input[type="text"].focus, form input[type="password"]:focus, form input[type="password"].focus, form input[type="email"]:focus, form input[type="email"].focus {
     border: solid 1px #338a44; }
 form button {
-  width: 306px;
+  width: 100%;
   font-size: 1.2em;
   padding: 10px;
   background-color: #338a44;
