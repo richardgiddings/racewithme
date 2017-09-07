@@ -48,10 +48,10 @@ $(".buttons").click(function(e) {
                 <td>{{ race.race_distance }}</td>
                 <td class="buttons">
                     <form action="{% url 'interested' %}" method="post">{% csrf_token %}
-                        <button type="submit" name="race_id" value="{{ race.id }}">INTERESTED</button>
+                        <button type="submit" name="race_id" value="{{ race.id }}"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;INTERESTED</button>
                     </form>
                     <form action="{% url 'going' %}" method="post">{% csrf_token %}
-                        <button type="submit" name="race_id" value="{{ race.id }}">GOING</button>
+                        <button type="submit" name="race_id" value="{{ race.id }}"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;GOING</button>
                     </form>
                 </td>
             </tr>
