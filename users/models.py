@@ -5,10 +5,12 @@ from django.dispatch import receiver
 from main.models import Distance
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, 
+                               related_name='users_profile', 
+                               on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
 
-    favourite_distance = models.ForeignKey(Distance, 
+    favourite_distance = models.ForeignKey(Distance,
                                     models.SET_NULL, 
                                     blank=True, 
                                     null=True)
