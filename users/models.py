@@ -6,7 +6,7 @@ from main.models import Distance
 
 class Profile(models.Model):
     user = models.OneToOneField(User, 
-                               related_name='users_profile', 
+                               related_name='+', 
                                on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
 
