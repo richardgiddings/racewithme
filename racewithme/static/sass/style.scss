@@ -9,7 +9,7 @@ body {
 }
 
 main {
-    margin: 80px 40px 80px 60px;
+    margin: 80px 20px 80px 20px;
     font-size: 1.4em;
 }
 
@@ -34,55 +34,6 @@ h2 {
             text-decoration: none;
             color: white;
         }
-    }
-}
-
-form {
-    .helptext {
-        display: block;
-        padding-top: 10px;
-        color: red;
-    }
-
-    ul li {
-        color: red;
-    }
-
-    input[type="text"], input[type="password"], input[type="email"] {
-        outline: none;
-        padding: 10px;
-        border: solid 1px #c9c9c9;
-        border-radius: 4px;
-        width: 200px;
-        transition: border 0.3s;
-
-        &:focus, &.focus {
-            border: solid 1px $theme-colour1;
-        }
-    }
-
-    button {
-        width: 100%;
-        font-size: 1.2em;
-        padding: 10px;
-        background-color: $theme-colour1;
-        border-radius: 4px;
-        color: white;
-        border: none;
-        &:hover {
-            cursor: pointer;
-            background-color: $theme-colour2;
-        }
-    }
-
-    label[for="id_username"], label[for="id_email"], 
-    label[for="id_password"], label[for="id_password1"] {
-        display: inline-block;
-        width: 80px;
-    }
-    label[for="id_password2"] {
-        display: inline-block;
-        width: 160px;
     }
 }
 
@@ -166,9 +117,101 @@ form {
     }
 }
 
+/******************************************************
+
+PAGES
+
+*/
+
 #login-page {
     text-align: center;
+    width: 266px; 
+    margin: auto;
+
+    input[type="text"], input[type="password"] {
+        outline: none;
+        padding: 10px;
+        border: solid 1px #c9c9c9;
+        border-radius: 4px;
+        width: 170px;
+        transition: border 0.3s;
+
+        &:focus, &.focus {
+            border: solid 1px $theme-colour1;
+        }
+    }    
+
+    button {
+        position: relative;
+        width: 100%;
+        font-size: 1.2em;
+        padding: 10px;
+        background-color: $theme-colour1;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        &:hover {
+            cursor: pointer;
+            background-color: $theme-colour2;
+        }
+    }
+
+    label[for="id_username"], label[for="id_password"] {
+        display: inline-block;
+        width: 68px;
+    }
 }
+
+#signup-page {
+    .helptext {
+        display: block;
+        padding-top: 10px;
+        color: red;
+    }
+
+    ul li {
+        color: red;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"] {
+        outline: none;
+        padding: 10px;
+        border: solid 1px #c9c9c9;
+        border-radius: 4px;
+        width: 200px;
+        transition: border 0.3s;
+
+        &:focus, &.focus {
+            border: solid 1px $theme-colour1;
+        }
+    }
+
+    button {
+        position: relative;
+        width: 100%;
+        font-size: 1.2em;
+        padding: 10px;
+        background-color: $theme-colour1;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        &:hover {
+            cursor: pointer;
+            background-color: $theme-colour2;
+        }
+    }
+
+    label[for="id_username"], label[for="id_email"], 
+    label[for="id_password"], label[for="id_password1"] {
+        display: inline-block;
+        width: 80px;
+    }
+    label[for="id_password2"] {
+        display: inline-block;
+        width: 160px;
+    }
+}
+
 #races-page, #interested-page {
     table {
         width: 100%;

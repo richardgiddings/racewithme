@@ -4,7 +4,7 @@ body {
   margin: 0 auto; }
 
 main {
-  margin: 80px 40px 80px 60px;
+  margin: 80px 20px 80px 20px;
   font-size: 1.4em; }
 
 h2 {
@@ -25,40 +25,6 @@ h2 {
     .main-header h1 a {
       text-decoration: none;
       color: white; }
-
-form .helptext {
-  display: block;
-  padding-top: 10px;
-  color: red; }
-form ul li {
-  color: red; }
-form input[type="text"], form input[type="password"], form input[type="email"] {
-  outline: none;
-  padding: 10px;
-  border: solid 1px #c9c9c9;
-  border-radius: 4px;
-  width: 200px;
-  transition: border 0.3s; }
-  form input[type="text"]:focus, form input[type="text"].focus, form input[type="password"]:focus, form input[type="password"].focus, form input[type="email"]:focus, form input[type="email"].focus {
-    border: solid 1px #338a44; }
-form button {
-  width: 100%;
-  font-size: 1.2em;
-  padding: 10px;
-  background-color: #338a44;
-  border-radius: 4px;
-  color: white;
-  border: none; }
-  form button:hover {
-    cursor: pointer;
-    background-color: #3ea853; }
-form label[for="id_username"], form label[for="id_email"],
-form label[for="id_password"], form label[for="id_password1"] {
-  display: inline-block;
-  width: 80px; }
-form label[for="id_password2"] {
-  display: inline-block;
-  width: 160px; }
 
 .main-nav {
   padding-left: 10px;
@@ -117,8 +83,74 @@ form label[for="id_password2"] {
   .main-content a:hover {
     color: #3ea853; }
 
+/******************************************************
+
+PAGES
+
+*/
 #login-page {
-  text-align: center; }
+  text-align: center;
+  width: 266px;
+  margin: auto; }
+  #login-page input[type="text"], #login-page input[type="password"] {
+    outline: none;
+    padding: 10px;
+    border: solid 1px #c9c9c9;
+    border-radius: 4px;
+    width: 170px;
+    transition: border 0.3s; }
+    #login-page input[type="text"]:focus, #login-page input[type="text"].focus, #login-page input[type="password"]:focus, #login-page input[type="password"].focus {
+      border: solid 1px #338a44; }
+  #login-page button {
+    position: relative;
+    width: 100%;
+    font-size: 1.2em;
+    padding: 10px;
+    background-color: #338a44;
+    border-radius: 4px;
+    color: white;
+    border: none; }
+    #login-page button:hover {
+      cursor: pointer;
+      background-color: #3ea853; }
+  #login-page label[for="id_username"], #login-page label[for="id_password"] {
+    display: inline-block;
+    width: 68px; }
+
+#signup-page .helptext {
+  display: block;
+  padding-top: 10px;
+  color: red; }
+#signup-page ul li {
+  color: red; }
+#signup-page input[type="text"], #signup-page input[type="password"], #signup-page input[type="email"] {
+  outline: none;
+  padding: 10px;
+  border: solid 1px #c9c9c9;
+  border-radius: 4px;
+  width: 200px;
+  transition: border 0.3s; }
+  #signup-page input[type="text"]:focus, #signup-page input[type="text"].focus, #signup-page input[type="password"]:focus, #signup-page input[type="password"].focus, #signup-page input[type="email"]:focus, #signup-page input[type="email"].focus {
+    border: solid 1px #338a44; }
+#signup-page button {
+  position: relative;
+  width: 100%;
+  font-size: 1.2em;
+  padding: 10px;
+  background-color: #338a44;
+  border-radius: 4px;
+  color: white;
+  border: none; }
+  #signup-page button:hover {
+    cursor: pointer;
+    background-color: #3ea853; }
+#signup-page label[for="id_username"], #signup-page label[for="id_email"],
+#signup-page label[for="id_password"], #signup-page label[for="id_password1"] {
+  display: inline-block;
+  width: 80px; }
+#signup-page label[for="id_password2"] {
+  display: inline-block;
+  width: 160px; }
 
 #races-page table, #interested-page table {
   width: 100%;
