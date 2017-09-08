@@ -142,7 +142,6 @@ PAGES
     }    
 
     button {
-        position: relative;
         width: 100%;
         font-size: 1.2em;
         padding: 10px;
@@ -187,7 +186,6 @@ PAGES
     }
 
     button {
-        position: relative;
         width: 100%;
         font-size: 1.2em;
         padding: 10px;
@@ -244,6 +242,7 @@ PAGES
         }
 
         button {
+            font-size: 1em;
             width: 100%;
             padding: 6px;
             background-color: $theme-colour1;
@@ -301,6 +300,7 @@ PAGES
                 padding: 4px;
             }
             button {
+                font-size: 1em;
                 width: 100%;
                 padding: 6px;
                 background-color: $theme-colour1;

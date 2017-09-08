@@ -102,7 +102,6 @@ PAGES
     #login-page input[type="text"]:focus, #login-page input[type="text"].focus, #login-page input[type="password"]:focus, #login-page input[type="password"].focus {
       border: solid 1px #338a44; }
   #login-page button {
-    position: relative;
     width: 100%;
     font-size: 1.2em;
     padding: 10px;
@@ -133,7 +132,6 @@ PAGES
   #signup-page input[type="text"]:focus, #signup-page input[type="text"].focus, #signup-page input[type="password"]:focus, #signup-page input[type="password"].focus, #signup-page input[type="email"]:focus, #signup-page input[type="email"].focus {
     border: solid 1px #338a44; }
 #signup-page button {
-  position: relative;
   width: 100%;
   font-size: 1.2em;
   padding: 10px;
@@ -173,6 +171,7 @@ PAGES
     float: left;
     margin: 4px; }
   #races-page table button, #interested-page table button {
+    font-size: 1em;
     width: 100%;
     padding: 6px;
     background-color: #338a44;
@@ -214,6 +213,7 @@ PAGES
     #going-page .going-race .going-race-details td {
       padding: 4px; }
     #going-page .going-race .going-race-details button {
+      font-size: 1em;
       width: 100%;
       padding: 6px;
       background-color: #338a44;
