@@ -211,6 +211,9 @@ PAGES
 }
 
 #races-page, #interested-page {
+    margin-left: 40px;
+    margin-right: 40px;
+
     table {
         width: 100%;
         border-collapse: collapse;
@@ -273,6 +276,9 @@ PAGES
 }
 
 #going-page {
+    margin-left: 40px;
+    margin-right: 40px;
+
     .going-race {
         font-size: 1.2em;
         border: 1px solid $theme-colour1;

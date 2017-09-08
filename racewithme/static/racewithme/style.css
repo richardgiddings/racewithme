@@ -150,69 +150,30 @@ PAGES
   display: inline-block;
   width: 160px; }
 
-#races-page table, #interested-page table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1.2em; }
-  #races-page table td, #races-page table th, #interested-page table td, #interested-page table th {
-    text-align: left;
-    padding: 8px; }
-  #races-page table .table-row, #interested-page table .table-row {
-    border-bottom: 1px solid #d3d3d3; }
-    #races-page table .table-row:hover, #interested-page table .table-row:hover {
-      cursor: pointer;
-      background-color: #ededed; }
-  #races-page table #table-header, #interested-page table #table-header {
-    border-bottom: 1px solid #338a44; }
-  #races-page table .detail-row, #interested-page table .detail-row {
-    border-bottom: 1px solid #d3d3d3;
-    display: none; }
-  #races-page table form, #interested-page table form {
-    float: left;
-    margin: 4px; }
-  #races-page table button, #interested-page table button {
-    font-size: 1em;
+#races-page, #interested-page {
+  margin-left: 40px;
+  margin-right: 40px; }
+  #races-page table, #interested-page table {
     width: 100%;
-    padding: 6px;
-    background-color: #338a44;
-    border-radius: 4px;
-    color: white;
-    border: none; }
-    #races-page table button:hover, #interested-page table button:hover {
-      cursor: pointer;
-      background-color: #3ea853; }
-#races-page #date-column, #interested-page #date-column {
-  width: 140px; }
-#races-page #race-column, #interested-page #race-column {
-  width: 360px; }
-#races-page #location-column, #interested-page #location-column {
-  width: 150px; }
-#races-page #distance-column, #interested-page #distance-column {
-  width: 120px; }
-#races-page #button-column, #interested-page #button-column {
-  background-color: #ffffff; }
-
-#going-page .going-race {
-  font-size: 1.2em;
-  border: 1px solid #338a44;
-  padding: 10px;
-  margin-bottom: 10px;
-  overflow: hidden; }
-  #going-page .going-race .going-race-details {
-    float: left; }
-    #going-page .going-race .going-race-details .going-date {
-      display: inline;
-      position: relative;
-      left: 0;
-      top: 0;
-      padding: 10px;
-      border-bottom: 2px solid #338a44; }
-    #going-page .going-race .going-race-details table {
-      margin-top: 10px;
-      padding: 10px; }
-    #going-page .going-race .going-race-details td {
-      padding: 4px; }
-    #going-page .going-race .going-race-details button {
+    border-collapse: collapse;
+    font-size: 1.2em; }
+    #races-page table td, #races-page table th, #interested-page table td, #interested-page table th {
+      text-align: left;
+      padding: 8px; }
+    #races-page table .table-row, #interested-page table .table-row {
+      border-bottom: 1px solid #d3d3d3; }
+      #races-page table .table-row:hover, #interested-page table .table-row:hover {
+        cursor: pointer;
+        background-color: #ededed; }
+    #races-page table #table-header, #interested-page table #table-header {
+      border-bottom: 1px solid #338a44; }
+    #races-page table .detail-row, #interested-page table .detail-row {
+      border-bottom: 1px solid #d3d3d3;
+      display: none; }
+    #races-page table form, #interested-page table form {
+      float: left;
+      margin: 4px; }
+    #races-page table button, #interested-page table button {
       font-size: 1em;
       width: 100%;
       padding: 6px;
@@ -220,70 +181,115 @@ PAGES
       border-radius: 4px;
       color: white;
       border: none; }
-      #going-page .going-race .going-race-details button:hover {
+      #races-page table button:hover, #interested-page table button:hover {
         cursor: pointer;
         background-color: #3ea853; }
-    #going-page .going-race .going-race-details form {
-      float: left;
-      margin: 4px; }
-  #going-page .going-race .going-race-targets {
-    float: left;
-    margin-left: 40px;
-    margin-top: 46px; }
-    #going-page .going-race .going-race-targets form input[type="text"] {
-      display: block;
-      outline: none;
-      padding: 10px;
-      margin-right: 10px;
-      border: solid 1px #c9c9c9;
-      border-radius: 4px;
-      width: 50px;
-      transition: border 0.3s; }
-      #going-page .going-race .going-race-targets form input[type="text"]:focus, #going-page .going-race .going-race-targets form input[type="text"].focus {
-        border: solid 1px #338a44; }
-    #going-page .going-race .going-race-targets form .target-input {
+  #races-page #date-column, #interested-page #date-column {
+    width: 140px; }
+  #races-page #race-column, #interested-page #race-column {
+    width: 360px; }
+  #races-page #location-column, #interested-page #location-column {
+    width: 150px; }
+  #races-page #distance-column, #interested-page #distance-column {
+    width: 120px; }
+  #races-page #button-column, #interested-page #button-column {
+    background-color: #ffffff; }
+
+#going-page {
+  margin-left: 40px;
+  margin-right: 40px; }
+  #going-page .going-race {
+    font-size: 1.2em;
+    border: 1px solid #338a44;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: hidden; }
+    #going-page .going-race .going-race-details {
       float: left; }
-    #going-page .going-race .going-race-targets form .target-time {
-      margin-top: 40px; }
-    #going-page .going-race .going-race-targets form .checkbox {
-      margin-bottom: 20px; }
-      #going-page .going-race .going-race-targets form .checkbox label {
-        display: inline-block;
-        cursor: pointer;
+      #going-page .going-race .going-race-details .going-date {
+        display: inline;
         position: relative;
-        padding-left: 25px;
-        margin-right: 15px; }
-        #going-page .going-race .going-race-targets form .checkbox label:before {
-          content: "";
-          display: inline-block;
-          border-radius: 3px;
-          width: 16px;
-          height: 16px;
-          margin-right: 10px;
-          position: absolute;
-          left: 0;
-          bottom: 1px;
+        left: 0;
+        top: 0;
+        padding: 10px;
+        border-bottom: 2px solid #338a44; }
+      #going-page .going-race .going-race-details table {
+        margin-top: 10px;
+        padding: 10px; }
+      #going-page .going-race .going-race-details td {
+        padding: 4px; }
+      #going-page .going-race .going-race-details button {
+        font-size: 1em;
+        width: 100%;
+        padding: 6px;
+        background-color: #338a44;
+        border-radius: 4px;
+        color: white;
+        border: none; }
+        #going-page .going-race .going-race-details button:hover {
+          cursor: pointer;
           background-color: #3ea853; }
-      #going-page .going-race .going-race-targets form .checkbox input[type="checkbox"] {
-        display: none; }
-      #going-page .going-race .going-race-targets form .checkbox input[type=checkbox]:checked + label:before {
-        content: "\2713";
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-        font-size: 15px;
-        color: #f3f3f3;
-        text-align: center;
-        line-height: 15px; }
-    #going-page .going-race .going-race-targets form button {
-      position: relative;
-      top: 20px;
-      width: 60px;
-      padding: 6px;
-      background-color: #338a44;
-      border-radius: 4px;
-      color: white;
-      border: none; }
-      #going-page .going-race .going-race-targets form button:hover {
-        cursor: pointer;
-        background-color: #3ea853; }
+      #going-page .going-race .going-race-details form {
+        float: left;
+        margin: 4px; }
+    #going-page .going-race .going-race-targets {
+      float: left;
+      margin-left: 40px;
+      margin-top: 46px; }
+      #going-page .going-race .going-race-targets form input[type="text"] {
+        display: block;
+        outline: none;
+        padding: 10px;
+        margin-right: 10px;
+        border: solid 1px #c9c9c9;
+        border-radius: 4px;
+        width: 50px;
+        transition: border 0.3s; }
+        #going-page .going-race .going-race-targets form input[type="text"]:focus, #going-page .going-race .going-race-targets form input[type="text"].focus {
+          border: solid 1px #338a44; }
+      #going-page .going-race .going-race-targets form .target-input {
+        float: left; }
+      #going-page .going-race .going-race-targets form .target-time {
+        margin-top: 40px; }
+      #going-page .going-race .going-race-targets form .checkbox {
+        margin-bottom: 20px; }
+        #going-page .going-race .going-race-targets form .checkbox label {
+          display: inline-block;
+          cursor: pointer;
+          position: relative;
+          padding-left: 25px;
+          margin-right: 15px; }
+          #going-page .going-race .going-race-targets form .checkbox label:before {
+            content: "";
+            display: inline-block;
+            border-radius: 3px;
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 1px;
+            background-color: #3ea853; }
+        #going-page .going-race .going-race-targets form .checkbox input[type="checkbox"] {
+          display: none; }
+        #going-page .going-race .going-race-targets form .checkbox input[type=checkbox]:checked + label:before {
+          content: "\2713";
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+          font-size: 15px;
+          color: #f3f3f3;
+          text-align: center;
+          line-height: 15px; }
+      #going-page .going-race .going-race-targets form button {
+        position: relative;
+        top: 20px;
+        width: 60px;
+        padding: 6px;
+        background-color: #338a44;
+        border-radius: 4px;
+        color: white;
+        border: none; }
+        #going-page .going-race .going-race-targets form button:hover {
+          cursor: pointer;
+          background-color: #3ea853; }
 
 /*# sourceMappingURL=style.css.map */
