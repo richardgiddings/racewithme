@@ -39,7 +39,7 @@ def interested(request):
         user_race.save()
 
     # get all UserRaces for user that they are interested in
-    races = UserRace.objects.filter(user=request.user, status='1')
+    races = UserRace.objects.filter(user=request.user, status='1').order_by('race__race_date')
     
     return render(request, template_name='main/interested.html',
                   context={'races': races})
