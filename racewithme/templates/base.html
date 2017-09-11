@@ -19,6 +19,10 @@
             $('#user-dropdown a').click(function() {
                 $('#user-dropdown-content').css("display", "none");
             });
+
+            $('.dropbtn').click(function() {
+                $('.menu-dropdown-content').toggle();
+            });
             {% block extra_jquery %}{% endblock %}
         });
         </script>
@@ -42,6 +46,16 @@
                         <span class="menu-option"><a id="going" href="{% url 'going' %}">Going</a></span>
                         <span class="menu-option"><a id="completed" href="{% url 'completed' %}">Completed</a></span>
                         <span class="menu-option"><a id="friends" href="">Friends</a></span>
+                    </div>
+                    <div id="menu-dropdown">
+                        <button class="dropbtn"><img src="{% static '/racewithme/images/menu.png' %}" /></button>
+                        <div class="menu-dropdown-content">
+                            <a id="races" href="{% url 'races' %}">Races</a>
+                            <a id="interested" href="{% url 'interested' %}">Interested</a>
+                            <a id="going" href="{% url 'going' %}">Going</a>
+                            <a id="completed" href="{% url 'completed' %}">Completed</a>
+                            <a id="friends" href="">Friends</a>
+                        </div>
                     </div>
                     <div id="user-dropdown">
                         <button id="user-dropdown-button">{{ user.username }}&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></button>

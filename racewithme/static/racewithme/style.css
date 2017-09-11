@@ -27,10 +27,12 @@ h2 {
       color: white; }
 
 .main-nav {
-  padding-left: 10px;
   height: 40px;
   background-color: #3ea853;
-  content: ''; }
+  content: '';
+  /* Dropdown Content (Hidden by Default) */
+  /* Links inside the dropdown */
+  /* Change color of dropdown links on hover */ }
   .main-nav #menu {
     line-height: 36px;
     display: inline-block; }
@@ -45,9 +47,38 @@ h2 {
           color: black; }
         .main-nav #menu .menu-option a.active {
           color: black; }
+  .main-nav #menu-dropdown {
+    display: none;
+    position: relative; }
+    .main-nav #menu-dropdown button {
+      border: none;
+      background-color: #3ea853; }
+    .main-nav #menu-dropdown button:hover {
+      cursor: pointer; }
+  .main-nav .menu-dropdown-content {
+    width: 100vw;
+    height: 100vh;
+    font-size: 2em;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    z-index: 1; }
+  .main-nav .menu-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; }
+  .main-nav .menu-dropdown-content a:hover {
+    background-color: #f1f1f1; }
+  @media (max-width: 768px) {
+    .main-nav {
+      border-left: none; }
+      .main-nav #menu {
+        display: none; }
+      .main-nav #menu-dropdown {
+        display: inline-block; } }
   .main-nav #user-dropdown {
     float: right;
-    line-height: 34px;
     display: inline-block; }
     .main-nav #user-dropdown button {
       border: none;
