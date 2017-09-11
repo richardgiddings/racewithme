@@ -9,7 +9,7 @@ body {
 }
 
 main {
-    margin: 80px 20px 80px 20px;
+    margin-top: 80px;
     font-size: 1.4em;
 }
 
@@ -211,8 +211,72 @@ PAGES
 }
 
 #races-page, #interested-page {
+
     margin-left: 40px;
     margin-right: 40px;
+
+    /* 
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @media 
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        margin-left: 10px;
+        margin-right: 10px;
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr { 
+            display: block; 
+        }
+        
+        /* Hide table headers (but not display: none;, for accessibility) */
+        #table-header { 
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        } 
+
+        .detail-row {
+            td {
+                padding-left: 6px;
+            }
+        }
+        
+        .table-row {
+            /*
+            Label the data
+            */
+            td:nth-of-type(1):before { content: "Date"; font-weight: bolder}
+            td:nth-of-type(2):before { content: "Race"; font-weight: bolder }
+            td:nth-of-type(3):before { content: "Location"; font-weight: bolder }
+            td:nth-of-type(4):before { content: "Distance"; font-weight: bolder }
+
+            border-top: 1px solid #d3d3d3; 
+            border-bottom: 1px solid #d3d3d3; 
+            padding-top: 8px;
+            
+            td { 
+                /* Behave  like a "row" */
+                border: none;
+                position: relative;
+                padding-left: 50%; 
+            }
+            
+            td:before { 
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%; 
+                padding-right: 0px; 
+                white-space: nowrap;
+            }
+        }
+    }
 
     table {
         width: 100%;
@@ -221,7 +285,7 @@ PAGES
 
         td, th {
             text-align: left;
-            padding: 8px;
+            padding-bottom: 8px;
         }
         .table-row {
             border-bottom: 1px solid #d3d3d3;
@@ -235,12 +299,16 @@ PAGES
         }
 
         .detail-row {
-            border-bottom: 1px solid #d3d3d3;
             display: none;
+
+            td {
+                -webkit-column-span: all; /* Chrome, Safari, Opera */
+                column-span: all;
+            }
         }
 
         form {
-            float: left;
+            display: inline-block;
             margin: 4px;
         }
 

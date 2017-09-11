@@ -4,7 +4,7 @@ body {
   margin: 0 auto; }
 
 main {
-  margin: 80px 20px 80px 20px;
+  margin-top: 80px;
   font-size: 1.4em; }
 
 h2 {
@@ -152,14 +152,66 @@ PAGES
 
 #races-page, #interested-page {
   margin-left: 40px;
-  margin-right: 40px; }
+  margin-right: 40px;
+  /* 
+  Max width before this PARTICULAR table gets nasty
+  This query will take effect for any screen smaller than 760px
+  and also iPads specifically.
+  */ }
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    #races-page, #interested-page {
+      margin-left: 10px;
+      margin-right: 10px;
+      /* Force table to not be like tables anymore */
+      /* Hide table headers (but not display: none;, for accessibility) */ }
+      #races-page table, #races-page thead, #races-page tbody, #races-page th, #races-page td, #races-page tr, #interested-page table, #interested-page thead, #interested-page tbody, #interested-page th, #interested-page td, #interested-page tr {
+        display: block; }
+      #races-page #table-header, #interested-page #table-header {
+        position: absolute;
+        top: -9999px;
+        left: -9999px; }
+      #races-page .detail-row td, #interested-page .detail-row td {
+        padding-left: 6px; }
+      #races-page .table-row, #interested-page .table-row {
+        /*
+        Label the data
+        */
+        border-top: 1px solid #d3d3d3;
+        border-bottom: 1px solid #d3d3d3;
+        padding-top: 8px; }
+        #races-page .table-row td:nth-of-type(1):before, #interested-page .table-row td:nth-of-type(1):before {
+          content: "Date";
+          font-weight: bolder; }
+        #races-page .table-row td:nth-of-type(2):before, #interested-page .table-row td:nth-of-type(2):before {
+          content: "Race";
+          font-weight: bolder; }
+        #races-page .table-row td:nth-of-type(3):before, #interested-page .table-row td:nth-of-type(3):before {
+          content: "Location";
+          font-weight: bolder; }
+        #races-page .table-row td:nth-of-type(4):before, #interested-page .table-row td:nth-of-type(4):before {
+          content: "Distance";
+          font-weight: bolder; }
+        #races-page .table-row td, #interested-page .table-row td {
+          /* Behave  like a "row" */
+          border: none;
+          position: relative;
+          padding-left: 50%; }
+        #races-page .table-row td:before, #interested-page .table-row td:before {
+          /* Now like a table header */
+          position: absolute;
+          /* Top/left values mimic padding */
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 0px;
+          white-space: nowrap; } }
   #races-page table, #interested-page table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1.2em; }
     #races-page table td, #races-page table th, #interested-page table td, #interested-page table th {
       text-align: left;
-      padding: 8px; }
+      padding-bottom: 8px; }
     #races-page table .table-row, #interested-page table .table-row {
       border-bottom: 1px solid #d3d3d3; }
       #races-page table .table-row:hover, #interested-page table .table-row:hover {
@@ -168,10 +220,13 @@ PAGES
     #races-page table #table-header, #interested-page table #table-header {
       border-bottom: 1px solid #338a44; }
     #races-page table .detail-row, #interested-page table .detail-row {
-      border-bottom: 1px solid #d3d3d3;
       display: none; }
+      #races-page table .detail-row td, #interested-page table .detail-row td {
+        -webkit-column-span: all;
+        /* Chrome, Safari, Opera */
+        column-span: all; }
     #races-page table form, #interested-page table form {
-      float: left;
+      display: inline-block;
       margin: 4px; }
     #races-page table button, #interested-page table button {
       font-size: 1em;
