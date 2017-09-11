@@ -16,7 +16,7 @@ class RaceTargetsForm(forms.ModelForm):
         model = UserRace
         fields = ('just_for_fun', 'target_hours', 'target_minutes', 'target_seconds')
         widgets = {
-            'target_hours': forms.TextInput(attrs={'placeholder': 'hours'}),
-            'target_minutes': forms.TextInput(attrs={'placeholder': 'minutes'}),
-            'target_seconds': forms.TextInput(attrs={'placeholder': 'seconds'}),
+            'target_hours': forms.TextInput(attrs={'placeholder': 'h'}),
+            'target_minutes': forms.TextInput(attrs={'placeholder': 'm'}),
+            'target_seconds': forms.TextInput(attrs={'placeholder': 's'}),
         }

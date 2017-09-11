@@ -363,12 +363,12 @@ PAGES
                 left: 0;
                 top: 0;
                 padding: 10px;
-                border-bottom: 2px solid $theme-colour1;
             }
 
             table {
                 margin-top: 10px;
                 padding: 10px;
+                border-top: 2px solid $theme-colour1;
             }
             td {
                 padding: 4px;
@@ -393,7 +393,7 @@ PAGES
         }
         .going-race-targets {
             float: left;
-            margin-left: 40px;
+            margin-left: 20px;
             margin-top: 46px;
 
             form {
@@ -404,7 +404,7 @@ PAGES
                     margin-right: 10px;
                     border: solid 1px #c9c9c9;
                     border-radius: 4px;
-                    width: 50px;
+                    width: 20px;
                     transition: border 0.3s;
 
                     &:focus, &.focus {
@@ -454,6 +454,7 @@ PAGES
                     }
                 }
                 button {
+                    font-size: 1em;
                     position: relative;
                     top: 20px;
                     width: 60px;

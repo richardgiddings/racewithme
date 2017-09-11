@@ -61,22 +61,22 @@
                         </div>
                         <div id="targets_{{ race.0.id }}" {% if form.just_for_fun.value %}style="display: none;"{% endif %}>
                             <div class="target-input">
-                                <label for="id_target_hours">Hours</label>
+                                <label for="id_target_hours">Hrs</label>
                                 {{ form.target_hours }}
                             </div>
                             <div class="target-input">
-                                <label for="id_target_minutes">Minutes</label>
+                                <label for="id_target_minutes">Mins</label>
                                 {{ form.target_minutes }}
                             </div>
                             <div class="target-input">
-                                <label for="id_target_seconds">Seconds</label>
+                                <label for="id_target_seconds">Secs</label>
                                 {{ form.target_seconds }}
                             </div>
                             <input type="hidden" name="race_id" value="{{ race.0.id }}" />
                             <button type="submit">Set</button>
                         </div>
                         <div class="target-time" id="target_time_{{ race.0.id }}" {% if form.just_for_fun.value %}style="display: none;"{% endif %}>
-                            Your target is: {{ race.0.target_hours|default_if_none:"0" }}h {{ race.0.target_minutes|default_if_none:"0" }}m {{ race.0.target_seconds|default_if_none:"0" }}s
+                            Your target: {{ race.0.target_hours|default_if_none:"0" }}h {{ race.0.target_minutes|default_if_none:"0" }}m {{ race.0.target_seconds|default_if_none:"0" }}s
                         </div>
                     </form>
                 </div>
