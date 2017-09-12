@@ -189,6 +189,10 @@ PAGES
   display: inline-block;
   width: 160px; }
 
+#home-page {
+  margin-left: 40px;
+  margin-right: 40px; }
+
 #races-page, #interested-page {
   margin-left: 40px;
   margin-right: 40px;

@@ -2,16 +2,18 @@
 
 {% block main %}
 {% if user.is_authenticated %}
-<h2>Welcome <small>{{ user.username }}</small></h2>
-<p>
-<ul>
-    <li>Start planning races you want to go to by clicking on the Races tab.</li>
-    <li>Add friends to groups and plan races together.</li>
-    <li>Mark yourself as Interested or Going to tell your friends what you are doing.</li>
-    <li>Set yourself a target time or just do the race for fun. When you have completed the race add the time you did it in or upload photos of the race.</li>
-    <li>Look back at the races you have Completed, the times you did them in, who was there and photos of the event.</li>
-</ul>
-</p>
+<div id="home-page">
+    <h2>Welcome <small>{{ user.username }}</small></h2>
+    <p>
+    <ul>
+        <li>Start planning races you want to go to by clicking on the Races tab.</li>
+        <li>Add friends to groups and plan races together.</li>
+        <li>Mark yourself as Interested or Going to tell your friends what you are doing.</li>
+        <li>Set yourself a target time or just do the race for fun. When you have completed the race add the time you did it in or upload photos of the race.</li>
+        <li>Look back at the races you have Completed, the times you did them in, who was there and photos of the event.</li>
+    </ul>
+    </p>
+</div>
 {% else %}
 <p>Did you want the login page? If so click <a href={% url 'login' %}>here</a>.</p>
 {% endif %}
