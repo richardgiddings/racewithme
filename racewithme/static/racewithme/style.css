@@ -1,7 +1,8 @@
 body {
   font-family: Helvetica, Times, serif;
   font-size: 62.5%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  overflow-x: hidden; }
 
 main {
   margin-top: 60px;
