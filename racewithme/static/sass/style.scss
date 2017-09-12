@@ -182,6 +182,21 @@ PAGES
     margin-right: 40px;    
 }
 
+#forgot-password-page {
+    button {
+        font-size: 1.2em;
+        padding: 10px;
+        background-color: $theme-colour1;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        &:hover {
+            cursor: pointer;
+            background-color: $theme-colour2;
+        }
+    }    
+}
+
 #login-page {
     text-align: center;
     width: 266px; 
@@ -245,7 +260,6 @@ PAGES
     }
 
     button {
-        width: 100%;
         font-size: 1.2em;
         padding: 10px;
         background-color: $theme-colour1;

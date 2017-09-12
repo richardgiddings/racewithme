@@ -133,6 +133,17 @@ PAGES
   margin-left: 40px;
   margin-right: 40px; }
 
+#forgot-password-page button {
+  font-size: 1.2em;
+  padding: 10px;
+  background-color: #338a44;
+  border-radius: 4px;
+  color: white;
+  border: none; }
+  #forgot-password-page button:hover {
+    cursor: pointer;
+    background-color: #3ea853; }
+
 #login-page {
   text-align: center;
   width: 266px;
@@ -177,7 +188,6 @@ PAGES
   #signup-page input[type="text"]:focus, #signup-page input[type="text"].focus, #signup-page input[type="password"]:focus, #signup-page input[type="password"].focus, #signup-page input[type="email"]:focus, #signup-page input[type="email"].focus {
     border: solid 1px #338a44; }
 #signup-page button {
-  width: 100%;
   font-size: 1.2em;
   padding: 10px;
   background-color: #338a44;
