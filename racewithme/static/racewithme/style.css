@@ -34,7 +34,8 @@ h2 {
   /* Links inside the dropdown */
   /* Change color of dropdown links on hover */ }
   .main-nav #menu {
-    line-height: 36px;
+    margin-left: 10px;
+    line-height: 40px;
     display: inline-block; }
     .main-nav #menu .menu-option {
       padding: 5px 20px 5px 10px; }
