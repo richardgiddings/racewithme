@@ -129,6 +129,10 @@ header p {
 PAGES
 
 */
+.default-margins {
+  margin-left: 40px;
+  margin-right: 40px; }
+
 #login-page {
   text-align: center;
   width: 266px;
@@ -191,13 +195,7 @@ PAGES
   display: inline-block;
   width: 160px; }
 
-#home-page {
-  margin-left: 40px;
-  margin-right: 40px; }
-
 #races-page, #interested-page {
-  margin-left: 40px;
-  margin-right: 40px;
   /* 
   Max width before this PARTICULAR table gets nasty
   This query will take effect for any screen smaller than 760px
@@ -295,102 +293,99 @@ PAGES
   #races-page #button-column, #interested-page #button-column {
     background-color: #ffffff; }
 
-#going-page {
-  margin-left: 40px;
-  margin-right: 40px; }
-  #going-page .going-race {
-    font-size: 1.2em;
-    border: 1px solid #338a44;
-    padding: 10px;
-    margin-bottom: 10px;
-    overflow: hidden; }
-    #going-page .going-race .going-race-details {
-      float: left; }
-      #going-page .going-race .going-race-details .going-date {
-        display: inline;
-        position: relative;
-        left: 0;
-        top: 0;
-        padding: 10px; }
-      #going-page .going-race .going-race-details table {
-        margin-top: 10px;
-        padding: 10px;
-        border-top: 2px solid #338a44; }
-      #going-page .going-race .going-race-details td {
-        padding: 4px; }
-      #going-page .going-race .going-race-details button {
-        font-size: 1em;
-        width: 100%;
-        padding: 6px;
-        background-color: #338a44;
-        border-radius: 4px;
-        color: white;
-        border: none; }
-        #going-page .going-race .going-race-details button:hover {
-          cursor: pointer;
-          background-color: #3ea853; }
-      #going-page .going-race .going-race-details form {
-        float: left;
-        margin: 4px; }
-    #going-page .going-race .going-race-targets {
+#going-page .going-race {
+  font-size: 1.2em;
+  border: 1px solid #338a44;
+  padding: 10px;
+  margin-bottom: 10px;
+  overflow: hidden; }
+  #going-page .going-race .going-race-details {
+    float: left; }
+    #going-page .going-race .going-race-details .going-date {
+      display: inline;
+      position: relative;
+      left: 0;
+      top: 0;
+      padding: 10px; }
+    #going-page .going-race .going-race-details table {
+      margin-top: 10px;
+      padding: 10px;
+      border-top: 2px solid #338a44; }
+    #going-page .going-race .going-race-details td {
+      padding: 4px; }
+    #going-page .going-race .going-race-details button {
+      font-size: 1em;
+      width: 100%;
+      padding: 6px;
+      background-color: #338a44;
+      border-radius: 4px;
+      color: white;
+      border: none; }
+      #going-page .going-race .going-race-details button:hover {
+        cursor: pointer;
+        background-color: #3ea853; }
+    #going-page .going-race .going-race-details form {
       float: left;
-      margin-left: 20px;
-      margin-top: 46px; }
-      #going-page .going-race .going-race-targets form input[type="text"] {
-        display: block;
-        outline: none;
-        padding: 10px;
-        margin-right: 10px;
-        border: solid 1px #c9c9c9;
-        border-radius: 4px;
-        width: 20px;
-        transition: border 0.3s; }
-        #going-page .going-race .going-race-targets form input[type="text"]:focus, #going-page .going-race .going-race-targets form input[type="text"].focus {
-          border: solid 1px #338a44; }
-      #going-page .going-race .going-race-targets form .target-input {
-        float: left; }
-      #going-page .going-race .going-race-targets form .target-time {
-        margin-top: 40px; }
-      #going-page .going-race .going-race-targets form .checkbox {
-        margin-bottom: 20px; }
-        #going-page .going-race .going-race-targets form .checkbox label {
-          display: inline-block;
-          cursor: pointer;
-          position: relative;
-          padding-left: 25px;
-          margin-right: 15px; }
-          #going-page .going-race .going-race-targets form .checkbox label:before {
-            content: "";
-            display: inline-block;
-            border-radius: 3px;
-            width: 16px;
-            height: 16px;
-            margin-right: 10px;
-            position: absolute;
-            left: 0;
-            bottom: 1px;
-            background-color: #3ea853; }
-        #going-page .going-race .going-race-targets form .checkbox input[type="checkbox"] {
-          display: none; }
-        #going-page .going-race .going-race-targets form .checkbox input[type=checkbox]:checked + label:before {
-          content: "\2713";
-          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-          font-size: 15px;
-          color: #f3f3f3;
-          text-align: center;
-          line-height: 15px; }
-      #going-page .going-race .going-race-targets form button {
-        font-size: 1em;
+      margin: 4px; }
+  #going-page .going-race .going-race-targets {
+    float: left;
+    margin-left: 20px;
+    margin-top: 46px; }
+    #going-page .going-race .going-race-targets form input[type="text"] {
+      display: block;
+      outline: none;
+      padding: 10px;
+      margin-right: 10px;
+      border: solid 1px #c9c9c9;
+      border-radius: 4px;
+      width: 20px;
+      transition: border 0.3s; }
+      #going-page .going-race .going-race-targets form input[type="text"]:focus, #going-page .going-race .going-race-targets form input[type="text"].focus {
+        border: solid 1px #338a44; }
+    #going-page .going-race .going-race-targets form .target-input {
+      float: left; }
+    #going-page .going-race .going-race-targets form .target-time {
+      margin-top: 40px; }
+    #going-page .going-race .going-race-targets form .checkbox {
+      margin-bottom: 20px; }
+      #going-page .going-race .going-race-targets form .checkbox label {
+        display: inline-block;
+        cursor: pointer;
         position: relative;
-        top: 20px;
-        width: 60px;
-        padding: 6px;
-        background-color: #338a44;
-        border-radius: 4px;
-        color: white;
-        border: none; }
-        #going-page .going-race .going-race-targets form button:hover {
-          cursor: pointer;
+        padding-left: 25px;
+        margin-right: 15px; }
+        #going-page .going-race .going-race-targets form .checkbox label:before {
+          content: "";
+          display: inline-block;
+          border-radius: 3px;
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+          position: absolute;
+          left: 0;
+          bottom: 1px;
           background-color: #3ea853; }
+      #going-page .going-race .going-race-targets form .checkbox input[type="checkbox"] {
+        display: none; }
+      #going-page .going-race .going-race-targets form .checkbox input[type=checkbox]:checked + label:before {
+        content: "\2713";
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        font-size: 15px;
+        color: #f3f3f3;
+        text-align: center;
+        line-height: 15px; }
+    #going-page .going-race .going-race-targets form button {
+      font-size: 1em;
+      position: relative;
+      top: 20px;
+      width: 60px;
+      padding: 6px;
+      background-color: #338a44;
+      border-radius: 4px;
+      color: white;
+      border: none; }
+      #going-page .going-race .going-race-targets form button:hover {
+        cursor: pointer;
+        background-color: #3ea853; }
 
 /*# sourceMappingURL=style.css.map */

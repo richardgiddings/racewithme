@@ -177,6 +177,11 @@ PAGES
 
 */
 
+.default-margins {
+    margin-left: 40px;
+    margin-right: 40px;    
+}
+
 #login-page {
     text-align: center;
     width: 266px; 
@@ -264,16 +269,7 @@ PAGES
     }
 }
 
-#home-page {
-    margin-left: 40px;
-    margin-right: 40px;    
-}
-
 #races-page, #interested-page {
-
-    margin-left: 40px;
-    margin-right: 40px;
-
     /* 
     Max width before this PARTICULAR table gets nasty
     This query will take effect for any screen smaller than 760px
@@ -403,9 +399,6 @@ PAGES
 }
 
 #going-page {
-    margin-left: 40px;
-    margin-right: 40px;
-
     .going-race {
         font-size: 1.2em;
         border: 1px solid $theme-colour1;

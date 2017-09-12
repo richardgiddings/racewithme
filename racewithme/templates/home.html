@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block main %}
+<div id="home-page" class="default-margins">
 {% if user.is_authenticated %}
-<div id="home-page">
     <h2>Welcome <small>{{ user.username }}</small></h2>
     <p>
     <ul>
@@ -13,8 +13,8 @@
         <li>Look back at the races you have Completed, the times you did them in, who was there and photos of the event.</li>
     </ul>
     </p>
-</div>
 {% else %}
-<p>Did you want the login page? If so click <a href={% url 'login' %}>here</a>.</p>
+    <p>Did you want the login page? If so click <a href={% url 'login' %}>here</a>.</p>
 {% endif %}
+</div>
 {% endblock %}
