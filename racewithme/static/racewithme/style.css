@@ -59,6 +59,7 @@ header p {
     display: none;
     position: relative; }
     .main-nav #menu-dropdown button {
+      margin-top: 0px;
       border: none;
       background-color: #3ea853; }
     .main-nav #menu-dropdown button:hover {
