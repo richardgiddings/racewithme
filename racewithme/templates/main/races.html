@@ -24,6 +24,10 @@ $(".buttons").click(function(e) {
 
 {% block main %}
 <div id="races-page">
+    <header>
+        <h1>Races</h1>
+        <p>This is a list of all the races available to you along with the details of each race. Here you can mark yourself as Interested to show your friends that you are thinking of going to this race or mark yourself as going, where you will be able to set a target time to aim for.</p>
+    </header>    
 {% if races %}
 
 {% regroup races by race_date|date:"Y" as races_by_year %}
