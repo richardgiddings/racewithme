@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^no_longer_interested/', views.no_longer_interested, name='no_longer_interested'),
     url(r'^no_longer_going/', views.no_longer_going, name='no_longer_going'),
     url(r'^completed/', views.completed, name='completed'),
-    url(r'^set_target_time', views.set_target_time, name='set_target_time')
+    url(r'^set_target_time', views.set_target_time, name='set_target_time'),
+    url(r'^completed_race/(?P<id>\d+)$', views.completed_race, name='completed_race'),
 ]

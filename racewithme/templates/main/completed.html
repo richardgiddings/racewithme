@@ -7,9 +7,13 @@
 {% block main %}
 <div class="complete-page">
 {% if races %}
+    {{ calendar }}
+    <h2>All races</h2>
+    <ul>
     {% for race in races %}
-        {{ race.race.race_name }}
+        <li><a href="{{ race.get_absolute_url }}">{{ race.race.race_name }}</a></li>
     {% endfor %}
+    </ul>
 {% else %}
     <p>You have not completed any races yet.</p>
 {% endif %}

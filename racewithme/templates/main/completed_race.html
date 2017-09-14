@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block extra_jquery %}
+    $("#completed").addClass("active");
+{% endblock %}
+
+{% block main %}
+<div class="completed-race-page">
+    {{ race.race.race_name }}
+</div>
+{% endblock %}
