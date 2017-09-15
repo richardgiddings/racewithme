@@ -535,3 +535,27 @@ PAGES
     }
 }
 
+#complete-page {
+
+    table {
+        font-size: 1.2em;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    tr {
+        padding: 0px;
+
+    }
+    td {
+        padding: 10px;
+    }
+
+    .table-header-month {
+        background-color: $theme-colour1;
+        color: white;
+    }
+    .table-cell-date {
+        width: 140px;
+    }
+}
+

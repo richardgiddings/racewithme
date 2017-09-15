@@ -5,15 +5,26 @@
 {% endblock %}
 
 {% block main %}
-<div class="complete-page">
+<div id="complete-page" class="default-margins">
 {% if races %}
-    {{ calendar }}
-    <h2>All races</h2>
-    <ul>
-    {% for race in races %}
-        <li><a href="{{ race.get_absolute_url }}">{{ race.race.race_name }}</a></li>
+    {% regroup races by race.race_date|date:"Y" as races_by_year %}
+    {% for race_year in races_by_year %}
+        <h1>{{ race_year.grouper }}</h1>
+        <table>
+        {% regroup race_year.list by race.race_date|date:"F" as races_by_month %}
+        {% for race_month in races_by_month %}
+            <tr class="table-header-month">
+                <td colspan="2">{{ race_month.grouper }}</td>
+            </tr>
+            {% for race in race_month.list %}
+                <tr>
+                    <td class="table-cell-date">{{ race.race.race_date|date:"l jS" }}</td>
+                    <td><a href="{{ race.get_absolute_url }}">{{ race.race.race_name }}</a></td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        </table>
     {% endfor %}
-    </ul>
 {% else %}
     <p>You have not completed any races yet.</p>
 {% endif %}

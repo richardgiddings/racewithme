@@ -394,4 +394,18 @@ PAGES
         cursor: pointer;
         background-color: #3ea853; }
 
+#complete-page table {
+  font-size: 1.2em;
+  width: 100%;
+  border-collapse: collapse; }
+#complete-page tr {
+  padding: 0px; }
+#complete-page td {
+  padding: 10px; }
+#complete-page .table-header-month {
+  background-color: #338a44;
+  color: white; }
+#complete-page .table-cell-date {
+  width: 140px; }
+
 /*# sourceMappingURL=style.css.map */

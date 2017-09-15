@@ -104,10 +104,11 @@ def completed(request):
 
     races = UserRace.objects.filter(user=request.user, status='3').order_by('race__race_date')
 
-    cal = RaceCalendar(races).formatmonth(2017, 12)
+    #cal = RaceCalendar(races).formatmonth(2017, 12)
 
     return render(request, template_name='main/completed.html',
-                  context={'races': races, 'calendar': mark_safe(cal)})
+                  context={'races': races })
+                  #context={'races': races, 'calendar': mark_safe(cal)})
 
 @login_required
 def completed_race(request, id):
@@ -145,7 +146,7 @@ class RaceCalendar(HTMLCalendar):
                 body = ['<ul>']
                 for user_race in self.user_races[day]:
                     body.append('<li>')
-                    body.append('<a href="%s">' % user_race.get_absolute_url())
+                    body.append('<a href="%s">%s' % (user_race.get_absolute_url(), self.tooltip(user_race.race.race_name)))
                     body.append(esc(user_race.race.race_name))
                     body.append('</a></li>')
                 body.append('</ul>')
@@ -162,6 +163,9 @@ class RaceCalendar(HTMLCalendar):
         return dict(
             [(day, list(items)) for day, items in groupby(user_races, field)]
         )
+
+    def tooltip(self, body):
+        return '<span class="tooltiptext">%s</span>' % body
 
     def day_cell(self, cssclass, body):
         return '<td class="%s">%s</td>' % (cssclass, body)
