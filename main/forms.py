@@ -20,3 +20,13 @@ class RaceTargetsForm(forms.ModelForm):
             'target_minutes': forms.TextInput(attrs={'placeholder': 'm'}),
             'target_seconds': forms.TextInput(attrs={'placeholder': 's'}),
         }
+
+class RaceAchievedForm(forms.ModelForm):
+    class Meta:
+        model = UserRace
+        fields = ('just_for_fun', 'achieved_hours', 'achieved_minutes', 'achieved_seconds')
+        widgets = {
+            'achieved_hours': forms.TextInput(attrs={'placeholder': 'h'}),
+            'achieved_minutes': forms.TextInput(attrs={'placeholder': 'm'}),
+            'achieved_seconds': forms.TextInput(attrs={'placeholder': 's'}),
+        }

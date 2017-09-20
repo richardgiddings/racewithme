@@ -6,6 +6,30 @@
 
 {% block main %}
 <div id="completed-race-page" class="default-margins">
-    {{ race.race.race_name }}
+    <h1>{{ race.race.race_name }}</h1>
+    <p>The race distance was {{ race.race.race_distance }}
+    {% if not race.just_for_fun %}
+        <div>Your target time was: {{ race.target_hours|default_if_none:"0" }} hours {{ race.target_minutes|default_if_none:"0" }} minutes {{ race.target_seconds|default_if_none:"0" }} seconds</div>
+        <div class="completed-race-times">
+            <h2>Time achieved</h2>
+            <form action="{% url 'set_achieved_time' %}" method="post">{% csrf_token %}
+                <div class="achieved-input">
+                    <label for="id_achieved_hours">Hrs</label>
+                    {{ time_achieved_form.achieved_hours }}
+                </div>
+                <div class="achieved-input">
+                    <label for="id_achieved_minutes">Mins</label>
+                    {{ time_achieved_form.achieved_minutes }}
+                </div>
+                <div class="achieved-input">
+                    <label for="id_achieved_seconds">Secs</label>
+                    {{ time_achieved_form.achieved_seconds }}
+                </div>
+                <input type="hidden" name="race_id" value="{{ race.id }}" />
+                <button type="submit">Set</button>
+            </form>
+            <div class="achieved-time">Your time was: {{ race.achieved_hours|default_if_none:"0" }} hours {{ race.achieved_minutes|default_if_none:"0" }} minutes {{ race.achieved_seconds|default_if_none:"0" }} seconds</div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
