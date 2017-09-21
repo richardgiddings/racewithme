@@ -560,12 +560,23 @@ PAGES
 }
 
 #completed-race-page {
-    .forms {
+
+    #toggle-extra-detail {
+        text-align: left;
+
+        #show-hide-label {
+            vertical-align: super;
+        }
+    }
+    .detail-active {
+        color: $theme-colour1;
+    }   
+
+    #extra-detail {
         float: left;
         margin-top: 20px;
-        padding: 0px 20px 20px 20px;
-        border: 1px solid $theme-colour1;
-        border-radius: 3px;
+        padding: 0px 20px 20px 0px;
+        display: none;
 
         form {
             input[type="text"] {
@@ -582,16 +593,18 @@ PAGES
                 }
             }
             #times {
-                margin-top: 20px;
-                display: block;
+                
             }
             #links {
-                display: block;
-                padding-top: 60px;
+                clear: both;
+                padding-top: 10px;
             }
 
             .time-input {
                 float: left; 
+                input {
+                    width: 40px;
+                }
             }
             .link-input {
                 margin-top: 10px;
@@ -599,10 +612,13 @@ PAGES
                     display: block;
                     margin-bottom: 10px;
                 }
+                input {
+                    width: 184px;
+                }
             }
             button {
                 font-size: 1em;
-                width: 60px;
+                width: 200px;
                 margin-top: 20px;
                 padding: 6px;
                 background-color: $theme-colour1;

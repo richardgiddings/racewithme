@@ -2,6 +2,11 @@
 
 {% block extra_jquery %}
     $("#completed").addClass("active");
+
+    $('#toggle-extra-detail').click(function() {
+        $('.detail-inactive, .detail-active').toggle();
+        $('#extra-detail').toggle();
+    });
 {% endblock %}
 
 {% block main %}
@@ -15,39 +20,47 @@
     <p><a href="{{ race.race_photos_external }}">Race photos</a></p>
     {% endif %}
     {% if not race.just_for_fun %}
-        <p>Your target time was: {{ race.target_hours|default_if_none:"0" }} hours {{ race.target_minutes|default_if_none:"0" }} minutes {{ race.target_seconds|default_if_none:"0" }} seconds<br/>You finished in: {{ race.achieved_hours|default_if_none:"0" }} hours {{ race.achieved_minutes|default_if_none:"0" }} minutes {{ race.achieved_seconds|default_if_none:"0" }} seconds</p>
-        <div class="forms">
-            <form action="{% url 'results_form' %}" method="post">{% csrf_token %}
-                <div id="times">
-                    <h3>Enter time achieved</h3>
-                    <div class="time-input">
-                        <label for="id_achieved_hours">Hrs</label>
-                        {{ results_form.achieved_hours }}
-                    </div>
-                    <div class="time-input">
-                        <label for="id_achieved_minutes">Mins</label>
-                        {{ results_form.achieved_minutes }}
-                    </div>
-                    <div class="time-input">
-                        <label for="id_achieved_seconds">Secs</label>
-                        {{ results_form.achieved_seconds }}
-                    </div>
-                </div>
-                <div id="links">
-                    <h3>Links</h3>
-                    <div class="link-input">
-                        <label for="id_race_results_external">Race results</label>
-                        {{ results_form.race_results_external }}
-                    </div>
-                    <div class="link-input">
-                        <label for="id_race_photos_external">Race photos</label>
-                        {{ results_form.race_photos_external }}
-                    </div>
-                </div>
-                <input type="hidden" name="race_id" value="{{ race.id }}" />
-                <button type="submit">Save</button>
-            </form>
-        </div>
+    <p>Your target time was: {{ race.target_hours|default_if_none:"0" }} hours {{ race.target_minutes|default_if_none:"0" }} minutes {{ race.target_seconds|default_if_none:"0" }} seconds</p>
     {% endif %}
+    {% if race.achieved_hours > 0 or race.achieved_minutes > 0 or race.achieved_seconds > 0 %}
+    <p>You finished in: {{ race.achieved_hours|default_if_none:"0" }} hours {{ race.achieved_minutes|default_if_none:"0" }} minutes {{ race.achieved_seconds|default_if_none:"0" }} seconds</p>
+    {% endif %}
+    <div id="toggle-extra-detail">
+        <i class="fa fa-toggle-on fa-2x detail-active" id="on" style="display:none;"></i>
+        <i class="fa fa-toggle-on fa-2x fa-rotate-180 detail-inactive" id="off" ></i>
+        <span id="show-hide-label">Show/hide extra details</span>
+    </div>
+    <div id="extra-detail">
+        <form action="{% url 'results_form' %}" method="post">{% csrf_token %}
+            <div id="times">
+                <h3>Enter time achieved</h3>
+                <div class="time-input">
+                    <label for="id_achieved_hours">Hours</label>
+                    {{ results_form.achieved_hours }}
+                </div>
+                <div class="time-input">
+                    <label for="id_achieved_minutes">Minutes</label>
+                    {{ results_form.achieved_minutes }}
+                </div>
+                <div class="time-input">
+                    <label for="id_achieved_seconds">Seconds</label>
+                    {{ results_form.achieved_seconds }}
+                </div>
+            </div>
+            <div id="links">
+                <h3>Links</h3>
+                <div class="link-input">
+                    <label for="id_race_results_external">Race results</label>
+                    {{ results_form.race_results_external }}
+                </div>
+                <div class="link-input">
+                    <label for="id_race_photos_external">Race photos</label>
+                    {{ results_form.race_photos_external }}
+                </div>
+            </div>
+            <input type="hidden" name="race_id" value="{{ race.id }}" />
+            <button type="submit">Save</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

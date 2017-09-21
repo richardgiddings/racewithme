@@ -408,13 +408,18 @@ PAGES
 #complete-page .table-cell-date {
   width: 140px; }
 
-#completed-race-page .forms {
+#completed-race-page #toggle-extra-detail {
+  text-align: left; }
+  #completed-race-page #toggle-extra-detail #show-hide-label {
+    vertical-align: super; }
+#completed-race-page .detail-active {
+  color: #338a44; }
+#completed-race-page #extra-detail {
   float: left;
   margin-top: 20px;
-  padding: 0px 20px 20px 20px;
-  border: 1px solid #338a44;
-  border-radius: 3px; }
-  #completed-race-page .forms form input[type="text"] {
+  padding: 0px 20px 20px 0px;
+  display: none; }
+  #completed-race-page #extra-detail form input[type="text"] {
     display: block;
     outline: none;
     padding: 10px;
@@ -422,31 +427,32 @@ PAGES
     border: solid 1px #c9c9c9;
     border-radius: 4px;
     transition: border 0.3s; }
-    #completed-race-page .forms form input[type="text"]:focus, #completed-race-page .forms form input[type="text"].focus {
+    #completed-race-page #extra-detail form input[type="text"]:focus, #completed-race-page #extra-detail form input[type="text"].focus {
       border: solid 1px #338a44; }
-  #completed-race-page .forms form #times {
-    margin-top: 20px;
-    display: block; }
-  #completed-race-page .forms form #links {
-    display: block;
-    padding-top: 60px; }
-  #completed-race-page .forms form .time-input {
+  #completed-race-page #extra-detail form #links {
+    clear: both;
+    padding-top: 10px; }
+  #completed-race-page #extra-detail form .time-input {
     float: left; }
-  #completed-race-page .forms form .link-input {
+    #completed-race-page #extra-detail form .time-input input {
+      width: 40px; }
+  #completed-race-page #extra-detail form .link-input {
     margin-top: 10px; }
-    #completed-race-page .forms form .link-input label {
+    #completed-race-page #extra-detail form .link-input label {
       display: block;
       margin-bottom: 10px; }
-  #completed-race-page .forms form button {
+    #completed-race-page #extra-detail form .link-input input {
+      width: 184px; }
+  #completed-race-page #extra-detail form button {
     font-size: 1em;
-    width: 60px;
+    width: 200px;
     margin-top: 20px;
     padding: 6px;
     background-color: #338a44;
     border-radius: 4px;
     color: white;
     border: none; }
-    #completed-race-page .forms form button:hover {
+    #completed-race-page #extra-detail form button:hover {
       cursor: pointer;
       background-color: #3ea853; }
 
