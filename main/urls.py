@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^completed/', views.completed, name='completed'),
     url(r'^set_target_time', views.set_target_time, name='set_target_time'),
     url(r'^completed_race/(?P<id>\d+)$', views.completed_race, name='completed_race'),
-    url(r'^set_achieved_time', views.set_achieved_time, name='set_achieved_time'),
+    url(r'^results_form', views.results_form, name='results_form'),
 ]

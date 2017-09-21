@@ -560,38 +560,50 @@ PAGES
 }
 
 #completed-race-page {
-    .completed-race-times {
+    .forms {
         float: left;
-        margin-left: 20px;
-        margin-top: 46px;
-
-        .achieved-time {
-            margin-top: 40px;
-        }
+        margin-top: 20px;
+        padding: 0px 20px 20px 20px;
+        border: 1px solid $theme-colour1;
+        border-radius: 3px;
 
         form {
             input[type="text"] {
-                display:block;
+                display: block;
                 outline: none;
                 padding: 10px;
                 margin-right: 10px;
                 border: solid 1px #c9c9c9;
                 border-radius: 4px;
-                width: 20px;
                 transition: border 0.3s;
 
                 &:focus, &.focus {
                     border: solid 1px $theme-colour1;
                 }
             }
-            .achieved-input {
+            #times {
+                margin-top: 20px;
+                display: block;
+            }
+            #links {
+                display: block;
+                padding-top: 60px;
+            }
+
+            .time-input {
                 float: left; 
+            }
+            .link-input {
+                margin-top: 10px;
+                label {
+                    display: block;
+                    margin-bottom: 10px;
+                }
             }
             button {
                 font-size: 1em;
-                position: relative;
-                top: 20px;
                 width: 60px;
+                margin-top: 20px;
                 padding: 6px;
                 background-color: $theme-colour1;
                 border-radius: 4px;

@@ -408,36 +408,45 @@ PAGES
 #complete-page .table-cell-date {
   width: 140px; }
 
-#completed-race-page .completed-race-times {
+#completed-race-page .forms {
   float: left;
-  margin-left: 20px;
-  margin-top: 46px; }
-  #completed-race-page .completed-race-times .achieved-time {
-    margin-top: 40px; }
-  #completed-race-page .completed-race-times form input[type="text"] {
+  margin-top: 20px;
+  padding: 0px 20px 20px 20px;
+  border: 1px solid #338a44;
+  border-radius: 3px; }
+  #completed-race-page .forms form input[type="text"] {
     display: block;
     outline: none;
     padding: 10px;
     margin-right: 10px;
     border: solid 1px #c9c9c9;
     border-radius: 4px;
-    width: 20px;
     transition: border 0.3s; }
-    #completed-race-page .completed-race-times form input[type="text"]:focus, #completed-race-page .completed-race-times form input[type="text"].focus {
+    #completed-race-page .forms form input[type="text"]:focus, #completed-race-page .forms form input[type="text"].focus {
       border: solid 1px #338a44; }
-  #completed-race-page .completed-race-times form .achieved-input {
+  #completed-race-page .forms form #times {
+    margin-top: 20px;
+    display: block; }
+  #completed-race-page .forms form #links {
+    display: block;
+    padding-top: 60px; }
+  #completed-race-page .forms form .time-input {
     float: left; }
-  #completed-race-page .completed-race-times form button {
+  #completed-race-page .forms form .link-input {
+    margin-top: 10px; }
+    #completed-race-page .forms form .link-input label {
+      display: block;
+      margin-bottom: 10px; }
+  #completed-race-page .forms form button {
     font-size: 1em;
-    position: relative;
-    top: 20px;
     width: 60px;
+    margin-top: 20px;
     padding: 6px;
     background-color: #338a44;
     border-radius: 4px;
     color: white;
     border: none; }
-    #completed-race-page .completed-race-times form button:hover {
+    #completed-race-page .forms form button:hover {
       cursor: pointer;
       background-color: #3ea853; }
 

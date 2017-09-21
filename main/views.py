@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from users.models import Profile
 from .models import Race, UserRace
-from .forms import UserProfileForm, RaceTargetsForm, RaceAchievedForm
+from .forms import UserProfileForm, RaceTargetsForm, RaceResultsForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -114,10 +114,10 @@ def completed(request):
 def completed_race(request, id):
     race = UserRace.objects.get(pk=id)
 
-    time_achieved_form = RaceAchievedForm(instance=race)
+    results_form = RaceResultsForm(instance=race)
 
     return render(request, template_name='main/completed_race.html',
-                  context={'race': race, 'time_achieved_form': time_achieved_form})
+                  context={'race': race, 'results_form': results_form })
 
 @login_required
 def set_target_time(request):
@@ -133,19 +133,18 @@ def set_target_time(request):
     return HttpResponseRedirect(reverse('going'))
 
 @login_required
-def set_achieved_time(request):
+def results_form(request):
 
     if request.method == 'POST':
         race_id = request.POST.get("race_id")
         user_race = UserRace.objects.get(pk=race_id)
-        form = RaceAchievedForm(request.POST, instance=user_race)
+        form = RaceResultsForm(request.POST, instance=user_race)
 
         if form.is_valid():
             form.save()
             
     return HttpResponseRedirect(reverse('completed_race', 
                                         kwargs={ 'id': race_id }))
-
 
 class RaceCalendar(HTMLCalendar):
 
