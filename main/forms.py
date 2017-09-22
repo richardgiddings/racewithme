@@ -25,7 +25,6 @@ class RaceResultsForm(forms.ModelForm):
     class Meta:
         model = UserRace
         fields = (
-            'just_for_fun', 
             'achieved_hours', 
             'achieved_minutes', 
             'achieved_seconds',
