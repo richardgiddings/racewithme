@@ -8,7 +8,7 @@
 <div id="complete-page" class="default-margins">
     <header>
         <h1>Completed</h1>
-        <p>These are the races you have completed. Well done! Here you can look back at your races and see how you did. If you chose to set a target time you can now enter the actual time you did it in, add a link to the race results and to any race photos.</p>
+        <p>These are the races you have completed. Well done! Here you can look back at your races and see how you did. If you chose to set a target time you can now enter the actual time you did it in. You can also add a link to the race results and to any race photos.</p>
     </header>
 {% if races %}
     {% regroup races by race.race_date|date:"Y" as races_by_year %}
