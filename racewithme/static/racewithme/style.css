@@ -409,7 +409,8 @@ PAGES
   width: 140px; }
 
 #completed-race-page #toggle-extra-detail {
-  text-align: left; }
+  text-align: left;
+  margin-top: 30px; }
   #completed-race-page #toggle-extra-detail #show-hide-label {
     vertical-align: super; }
 #completed-race-page .detail-active {
