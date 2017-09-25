@@ -1,6 +1,7 @@
 logfile
 main/__pycache__/
 main/migrations/__pycache__/
+racewithme/*.pyc
 racewithme/__pycache__/
 racewithme/settings/__pycache__/
 racewithme/static/.sass-cache/
