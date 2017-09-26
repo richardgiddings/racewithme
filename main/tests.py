@@ -239,11 +239,55 @@ class ViewTests(TestCase):
 
     # list of races
     def test_going_page_initial(self):
-        pass
+        # add a going race
+        race = Race.objects.create(
+            race_name = "Going Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='2',
+            just_for_fun=True,
+        )
+
+        # check that it appears on going page
+        response = self.client.get(reverse('going'))
+        self.assertTemplateUsed(response, 'main/going.html')
+        self.assertQuerysetEqual(response.context['race_tuples'],
+            ['(<UserRace: Going Race>, <RaceTargetsForm bound=False, valid=Unknown, '
+            'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'])
 
     # mark as just for fun
     def test_going_page_mark_as_fun(self):
-        pass
+        # add a going race
+        race = Race.objects.create(
+            race_name = "Going Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='2',
+            just_for_fun=False,
+        )
+
+        # go to going page
+        response = self.client.get(reverse('going'))
+        print(response.context['form'])
+
+        # get the form and mark race as going
+        #form = response.context.form
 
     # set targets
     def test_going_page_set_targets(self):
