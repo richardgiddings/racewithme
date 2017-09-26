@@ -1,7 +1,9 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.contrib import auth
 from .models import Race, UserRace, Location, Distance
+from .forms import RaceTargetsForm
 
 from datetime import datetime, timedelta
 
@@ -97,7 +99,36 @@ class ViewTests(TestCase):
 
     # mark as going
     def test_races_page_mark_going(self):
-        pass
+
+        # add a race
+        race = Race.objects.create(
+            race_name = "Race 1",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+
+        # go to races page
+        response = self.client.get(reverse('races'))
+
+        # 'click' the interested button
+        response = self.client.post(
+            reverse('going'),
+            data={ 'race_id': race.id },
+            follow=True
+        )
+
+        # check that a userrace is created
+        self.assertEqual(UserRace.objects.count(), 1)
+        self.assertQuerysetEqual(response.context['race_tuples'], 
+            ['(<UserRace: Race 1>, <RaceTargetsForm bound=False, valid=Unknown, '
+                                    'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'])
+
+        # check that we are on going page
+        self.assertTemplateUsed(response, 'main/going.html')
+        self.assertContains(response, "Race 1")
 
     """
     Interested Page
@@ -105,15 +136,102 @@ class ViewTests(TestCase):
 
     # list of races
     def test_interested_page_initial(self):
-        pass
+        # create a race and userrace
+        race = Race.objects.create(
+            race_name = "Interested Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='1',
+            just_for_fun=True,
+        )
+
+        # go to interested page and check the race is there
+        response = self.client.get(reverse('interested'))
+        self.assertTemplateUsed(response, 'main/interested.html')
+        self.assertQuerysetEqual(response.context['races'], 
+                                 ['<UserRace: Interested Race>'])
+        self.assertContains(response, 'Interested Race')
 
     # remove race
     def test_interested_page_remove_race(self):
-        pass
+        # add a race and a user race
+        race = Race.objects.create(
+            race_name = "Interested Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='1',
+            just_for_fun=True,
+        )
+
+        # go to interested page
+        response = self.client.get(reverse('interested'))
+
+        # before marking the race as no longer interested 
+        # we have a userrace entry
+        self.assertEqual(UserRace.objects.count(), 1)
+
+        # post to remove the race
+        response = self.client.post(
+            reverse('no_longer_interested'),
+            data={'race_id': race.id},
+            follow=True,
+        )
+
+        # the userrace is deleted
+        self.assertEqual(UserRace.objects.count(), 0)
+        # no races in context
+        self.assertQuerysetEqual(response.context['races'], [])
 
     # mark as going
     def test_interested_page_mark_going(self):
-        pass
+        race = Race.objects.create(
+            race_name = "Int to Going Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='1',
+            just_for_fun=True,
+        )
+
+        # go to interested page
+        response = self.client.get(reverse('interested'))
+
+        # mark race as going
+        response = self.client.post(
+            reverse('going'),
+            data={'race_id': race.id},
+            follow=True,
+        )
+
+        # check that we are on going page and there is a 
+        # userrace in the context
+        self.assertTemplateUsed(response, 'main/going.html')
+        self.assertQuerysetEqual(response.context['race_tuples'], 
+            ['(<UserRace: Int to Going Race>, <RaceTargetsForm bound=False, valid=Unknown, '
+            'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'])
 
     """
     Going Page
