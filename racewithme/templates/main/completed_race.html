@@ -11,6 +11,7 @@
 
 {% block main %}
 <div id="completed-race-page" class="default-margins">
+    <a href="{% url 'completed' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Back to completed races</a>
     <h1>{{ race.race.race_name }}</h1>
     <p>{{ race.race.race_date|date:"l jS F" }} at {{ race.race.race_time|date:"P" }}</p>
     <p>The race distance was {{ race.race.race_distance }}</p>
