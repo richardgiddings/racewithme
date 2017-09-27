@@ -339,12 +339,12 @@ class ViewTests(TestCase):
                                  ['<UserRace: Going to Complete Race>'])
 
     # mark as just for fun
-    def test_going_page_mark_as_fun(self):
-        pass
+    #def test_going_page_mark_as_fun(self):
+    #    pass
 
     # set targets
-    def test_going_page_set_targets(self):
-        pass
+    #def test_going_page_set_targets(self):
+    #    pass
 
     """
     Completed Page
@@ -352,25 +352,94 @@ class ViewTests(TestCase):
 
     # list of races
     def test_completed_page_intial(self):
-        pass
+        race = Race.objects.create(
+            race_name = "Completed Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='3',
+            just_for_fun=True,
+        )
+
+        # view completed race page
+        response = self.client.get(reverse('completed'))
+        self.assertTemplateUsed(response, 'main/completed.html')
+        self.assertQuerysetEqual(response.context['races'], 
+                                 ['<UserRace: Completed Race>'])
 
     # view individua race
-    def test_ind_completed_page_intiail(self):
-        pass
+    def test_ind_completed_page_initial(self):
+        race = Race.objects.create(
+            race_name = "Completed Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='3',
+            just_for_fun=True,
+        )
 
-    # show hide details
-    def test_ind_completed_page_show_details(self):
-        pass
+        # view individual completed race page
+        response = self.client.get(reverse('completed_race', 
+                    kwargs={ 'id': user_race.id }))
+        self.assertTemplateUsed(response, 'main/completed_race.html')
+        self.assertEqual(response.context['race'], user_race)
 
-    # set achieved time
-    def test_ind_completed_page_set_achieved_time(self):
-        pass
+    
+    def test_ind_completed_page_set_results(self):
+        race = Race.objects.create(
+            race_name = "Completed Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='3',
+            just_for_fun=True,
+        )
 
-    # set race results
-    def test_ind_completed_page_set_race_results(self):
-        pass
+        # view individual completed race page
+        response = self.client.get(reverse('completed_race', 
+                                           kwargs={ 'id': user_race.id }))
 
-    # set race photos
-    def test_ind_completed_page_set_race_photos(self):
-        pass
+        # get form
+        form = response.context['results_form']
+        data = form.initial
 
+        # set achieved time
+        data['achieved_hours'] = 2
+        data['achieved_minutes'] = 3
+        data['achieved_seconds'] = 4
+        # set race results
+        data['race_results_external'] = 'https://race-results.com'
+        # set race photos
+        data['race_photos_external'] = 'https://race-photos.net'
+
+        # post the form
+        data['race_id'] = user_race.id
+        response = self.client.post(reverse('results_form'), 
+                                    data,
+                                    follow=True)
+        
+        # check results
+        self.assertTemplateUsed(response, 'main/completed_race.html')
+        self.assertContains(response, 'https://race-results.com')
+        self.assertContains(response, 'https://race-photos.net')
