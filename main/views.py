@@ -146,6 +146,13 @@ def results_form(request):
     return HttpResponseRedirect(reverse('completed_race', 
                                         kwargs={ 'id': race_id }))
 
+@login_required
+def friends(request):
+    # return friends list
+    friends = None
+    return render(request, template_name='main/friends.html',
+                  context={ 'friends': friends })
+
 class RaceCalendar(HTMLCalendar):
 
     def __init__(self, user_races):

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block extra_jquery %}
+$("#interested").addClass("friends");
+{% endblock %}
+
+{% block main %}
+<div id="friends-page" class="default-margins">
+    <header>
+        <h1>Friends</h1>
+        <p>Search here for people to join races with. See what races they are interested or are going to. See how they are getting on by seeing which races they have already completed.</p>
+    </header>
+{% if friends %}
+    <p>Friends List</p>
+{% else %}
+    <p>You haven't added anyone yet. Search for other like-minded souls to join races with.</p>
+{% endif %}
+</div>
+{% endblock %}
+
