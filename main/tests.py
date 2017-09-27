@@ -263,9 +263,9 @@ class ViewTests(TestCase):
             ['(<UserRace: Going Race>, <RaceTargetsForm bound=False, valid=Unknown, '
             'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'])
 
-    # mark as just for fun
-    def test_going_page_mark_as_fun(self):
-        # add a going race
+    # remove race
+    def test_going_page_remove_race(self):
+       # add a race and a user race
         race = Race.objects.create(
             race_name = "Going Race",
             race_location = self.location1,
@@ -279,26 +279,71 @@ class ViewTests(TestCase):
             user=user,
             race=race,
             status='2',
-            just_for_fun=False,
+            just_for_fun=True,
         )
 
         # go to going page
         response = self.client.get(reverse('going'))
-        print(response.context['form'])
 
-        # get the form and mark race as going
-        #form = response.context.form
+        # before marking the race as no longer going 
+        # we have a userrace entry
+        self.assertEqual(UserRace.objects.count(), 1)
 
-    # set targets
-    def test_going_page_set_targets(self):
-        pass
+        # post to remove the race
+        response = self.client.post(
+            reverse('no_longer_going'),
+            data={'race_id': race.id},
+            follow=True,
+        )
 
-    # remove race
-    def test_going_page_remove_race(self):
-        pass
+        # on going page
+        self.assertTemplateUsed(response, 'main/going.html')
+
+        # the userrace is deleted
+        self.assertEqual(UserRace.objects.count(), 0)
+        # no races in context
+        self.assertQuerysetEqual(response.context['races'], [])
 
     # mark as completed 
     def test_going_page_mark_completed(self):
+        race = Race.objects.create(
+            race_name = "Going to Complete Race",
+            race_location = self.location1,
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user = auth.get_user(self.client)
+        user_race = UserRace.objects.create(
+            user=user,
+            race=race,
+            status='2',
+            just_for_fun=True,
+        )
+
+        # go to going page
+        response = self.client.get(reverse('going'))
+
+        # mark race as going
+        response = self.client.post(
+            reverse('completed'),
+            data={'race_id': race.id},
+            follow=True,
+        )
+
+        # check that we are on going page and there is a 
+        # userrace in the context
+        self.assertTemplateUsed(response, 'main/completed.html')
+        self.assertQuerysetEqual(response.context['races'], 
+                                 ['<UserRace: Going to Complete Race>'])
+
+    # mark as just for fun
+    def test_going_page_mark_as_fun(self):
+        pass
+
+    # set targets
+    def test_going_page_set_targets(self):
         pass
 
     """
