@@ -149,7 +149,7 @@ def results_form(request):
 @login_required
 def friends(request):
     # return friends list
-    friends = None
+    friends = request.user.profile.get_friends()
     return render(request, template_name='main/friends.html',
                   context={ 'friends': friends })
 
