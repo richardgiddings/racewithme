@@ -66,6 +66,9 @@ class UserRace(models.Model):
     def get_absolute_url(self):
         return reverse('completed_race', args=[str(self.id)])
 
+    def status_verbose(self):
+        return dict(RACE_STATUS)[self.status]
+
 class Race(models.Model):
     """
     A Race listed on the website for people to join. This

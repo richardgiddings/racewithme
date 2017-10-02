@@ -635,3 +635,26 @@ PAGES
     }    
 }
 
+#friends-page {
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1.2em;
+
+        td, th {
+            text-align: left;
+            padding: 8px;
+        }
+        .table-row {
+            border-bottom: 1px solid #d3d3d3;
+            &:hover {
+                cursor: pointer;
+                background-color: #ededed;
+            }
+        }
+        #table-header {
+            border-bottom: 1px solid $theme-colour1;
+        }
+    }
+}
+

@@ -150,8 +150,10 @@ def results_form(request):
 def friends(request):
     # return friends list
     friends = request.user.profile.get_friends()
+    friends_and_races = [(friend, friend.get_races()) for friend in friends]
+
     return render(request, template_name='main/friends.html',
-                  context={ 'friends': friends })
+                  context={ 'friends_and_races': friends_and_races })
 
 class RaceCalendar(HTMLCalendar):
 

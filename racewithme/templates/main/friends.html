@@ -10,9 +10,24 @@ $("#friends").addClass("active");
         <h1>Friends</h1>
         <p>Search here for people to join races with. See what races they are interested or are going to. See how they are getting on by seeing which races they have already completed.</p>
     </header>
-{% if friends %}
-    {% for friend in friends %}
-        {{ friend.friend_profile.user.username }}
+{% if friends_and_races %}
+    {% for f in friends_and_races %}
+        <table>
+            <tr id="table-header">
+                <th>Friend</th>
+                <th>Race</th>
+                <th>Distance</th>
+                <th>Status</th>
+            </tr>
+        {% for user_race in f.1 %}
+            <tr class="table-row">
+                <td>{{ f.0.friend_profile.user.username }}</td>
+                <td>{{ user_race.race.race_name }}</td>
+                <td>{{ user_race.race.race_distance }}</td>
+                <td>{{ user_race.status_verbose }}</td>
+            </tr>
+        {% endfor %}
+        </table>
     {% endfor %}
 {% else %}
     <p>You haven't added anyone yet. Search for other like-minded souls to join races with.</p>

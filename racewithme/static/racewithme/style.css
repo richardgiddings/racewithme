@@ -457,4 +457,19 @@ PAGES
       cursor: pointer;
       background-color: #3ea853; }
 
+#friends-page table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2em; }
+  #friends-page table td, #friends-page table th {
+    text-align: left;
+    padding: 8px; }
+  #friends-page table .table-row {
+    border-bottom: 1px solid #d3d3d3; }
+    #friends-page table .table-row:hover {
+      cursor: pointer;
+      background-color: #ededed; }
+  #friends-page table #table-header {
+    border-bottom: 1px solid #338a44; }
+
 /*# sourceMappingURL=style.css.map */

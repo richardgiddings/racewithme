@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from main.models import Distance
+from main.models import Distance, UserRace
 
 class Profile(models.Model):
     user = models.OneToOneField(User, 
@@ -34,3 +34,6 @@ class Friend(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     user_profile = models.ForeignKey(Profile, related_name="friend_user")
     friend_profile = models.ForeignKey(Profile, related_name="friend")
+
+    def get_races(self):
+        return UserRace.objects.filter(user=self.friend_profile.user)
