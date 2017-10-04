@@ -466,10 +466,75 @@ PAGES
     padding: 8px; }
   #friends-page table .table-row {
     border-bottom: 1px solid #d3d3d3; }
-    #friends-page table .table-row:hover {
-      cursor: pointer;
-      background-color: #ededed; }
   #friends-page table #table-header {
     border-bottom: 1px solid #338a44; }
+  #friends-page table a:hover {
+    cursor: pointer; }
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  #friends-page {
+    /* Force table to not be like tables anymore */
+    /* Hide table headers (but not display: none;, for accessibility) */ }
+    #friends-page table, #friends-page thead, #friends-page tbody, #friends-page th, #friends-page td, #friends-page tr {
+      display: block; }
+    #friends-page #table-header {
+      position: absolute;
+      top: -9999px;
+      left: -9999px; }
+    #friends-page .detail-row td {
+      padding-left: 6px; }
+    #friends-page .table-row {
+      /*
+      Label the data
+      */
+      border-top: 1px solid #d3d3d3;
+      border-bottom: 1px solid #d3d3d3;
+      padding-top: 8px; }
+      #friends-page .table-row td:nth-of-type(1):before {
+        content: "Friend";
+        font-weight: bolder; }
+      #friends-page .table-row td:nth-of-type(2):before {
+        content: "Race";
+        font-weight: bolder; }
+      #friends-page .table-row td:nth-of-type(3):before {
+        content: "Date";
+        font-weight: bolder; }
+      #friends-page .table-row td:nth-of-type(4):before {
+        content: "Distance";
+        font-weight: bolder; }
+      #friends-page .table-row td:nth-of-type(5):before {
+        content: "Status";
+        font-weight: bolder; }
+      #friends-page .table-row td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding-left: 50%; }
+      #friends-page .table-row td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 0px;
+        white-space: nowrap; } }
+
+.ui-dialog {
+  font-size: 1.4em;
+  background-color: white; }
+  .ui-dialog .ui-dialog-titlebar {
+    background: #338a44;
+    border: none; }
+  .ui-dialog .ui-dialog-titlebar-close {
+    display: none; }
+  .ui-dialog .ui-button-text {
+    color: #338a44; }
+  .ui-dialog .ui-dialog-buttonpane, .ui-dialog .ui-dialog-content, .ui-dialog .ui-resizable-handle {
+    background-color: white; }
+  .ui-dialog a {
+    text-decoration: none;
+    color: #338a44; }
+    .ui-dialog a:hover {
+      color: #3ea853; }
 
 /*# sourceMappingURL=style.css.map */
