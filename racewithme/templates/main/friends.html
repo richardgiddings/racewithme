@@ -7,7 +7,7 @@ $(function() {
     $( ".dialog" ).dialog({
         autoOpen: false, 
         modal: true,
-        title: "Race details",
+        title: "RACE DETAILS",
         buttons: [{
             "text": 'Close',
             "click": function() {$(this).dialog("close");},
@@ -27,6 +27,13 @@ $(function() {
         <h1>Friends</h1>
         <p>Search here for people to join races with. See what races they are interested or are going to. See how they are getting on by seeing which races they have already completed.</p>
     </header>
+    <div id="find-friends-container">
+        <form >
+            <label for="username">Find friends</label>
+            <input type="text" name="username" id="username" placeholder="username" />
+            <button type="submit">Find</button>
+        </form>
+    </div>
 {% if friends_and_races %}
     {% for f in friends_and_races %}
         <table>
