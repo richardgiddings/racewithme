@@ -457,67 +457,95 @@ PAGES
       cursor: pointer;
       background-color: #3ea853; }
 
-#friends-page table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1.2em; }
-  #friends-page table td, #friends-page table th {
-    text-align: left;
-    padding: 8px; }
-  #friends-page table .table-row {
-    border-bottom: 1px solid #d3d3d3; }
-  #friends-page table #table-header {
-    border-bottom: 1px solid #338a44; }
-  #friends-page table a:hover {
-    cursor: pointer; }
-@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-  #friends-page {
-    /* Force table to not be like tables anymore */
-    /* Hide table headers (but not display: none;, for accessibility) */ }
-    #friends-page table, #friends-page thead, #friends-page tbody, #friends-page th, #friends-page td, #friends-page tr {
-      display: block; }
-    #friends-page #table-header {
-      position: absolute;
-      top: -9999px;
-      left: -9999px; }
-    #friends-page .detail-row td {
-      padding-left: 6px; }
-    #friends-page .table-row {
-      /*
-      Label the data
-      */
-      border-top: 1px solid #d3d3d3;
-      border-bottom: 1px solid #d3d3d3;
-      padding-top: 8px; }
-      #friends-page .table-row td:nth-of-type(1):before {
-        content: "Friend";
-        font-weight: bolder; }
-      #friends-page .table-row td:nth-of-type(2):before {
-        content: "Race";
-        font-weight: bolder; }
-      #friends-page .table-row td:nth-of-type(3):before {
-        content: "Date";
-        font-weight: bolder; }
-      #friends-page .table-row td:nth-of-type(4):before {
-        content: "Distance";
-        font-weight: bolder; }
-      #friends-page .table-row td:nth-of-type(5):before {
-        content: "Status";
-        font-weight: bolder; }
-      #friends-page .table-row td {
-        /* Behave  like a "row" */
-        border: none;
-        position: relative;
-        padding-left: 50%; }
-      #friends-page .table-row td:before {
-        /* Now like a table header */
+#friends-page {
+  font-size: 1em; }
+  #friends-page #find-friends-container {
+    border: 1px solid #338a44;
+    padding: 0px 20px 20px 20px;
+    margin: 20px 0px 20px 0px; }
+    #friends-page #find-friends-container input[type="text"] {
+      outline: none;
+      padding: 10px;
+      border: solid 1px #c9c9c9;
+      border-radius: 4px;
+      width: 170px;
+      transition: border 0.3s; }
+      #friends-page #find-friends-container input[type="text"]:focus, #friends-page #find-friends-container input[type="text"].focus {
+        border: solid 1px #338a44; }
+    #friends-page #find-friends-container button {
+      font-size: 1em;
+      width: 200px;
+      height: 36px;
+      margin-top: 20px;
+      padding: 6px;
+      background-color: #338a44;
+      border-radius: 4px;
+      color: white;
+      border: none; }
+      #friends-page #find-friends-container button:hover {
+        cursor: pointer;
+        background-color: #3ea853; }
+  #friends-page table {
+    font-size: 1.2em;
+    width: 100%;
+    border-collapse: collapse; }
+    #friends-page table td, #friends-page table th {
+      text-align: left;
+      padding: 8px; }
+    #friends-page table .table-row {
+      border-bottom: 1px solid #d3d3d3; }
+    #friends-page table #table-header {
+      border-bottom: 1px solid #338a44; }
+    #friends-page table a:hover {
+      cursor: pointer; }
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    #friends-page {
+      /* Force table to not be like tables anymore */
+      /* Hide table headers (but not display: none;, for accessibility) */ }
+      #friends-page table, #friends-page thead, #friends-page tbody, #friends-page th, #friends-page td, #friends-page tr {
+        display: block; }
+      #friends-page #table-header {
         position: absolute;
-        /* Top/left values mimic padding */
-        top: 6px;
-        left: 6px;
-        width: 45%;
-        padding-right: 0px;
-        white-space: nowrap; } }
+        top: -9999px;
+        left: -9999px; }
+      #friends-page .detail-row td {
+        padding-left: 6px; }
+      #friends-page .table-row {
+        /*
+        Label the data
+        */
+        border-top: 1px solid #d3d3d3;
+        border-bottom: 1px solid #d3d3d3;
+        padding-top: 8px; }
+        #friends-page .table-row td:nth-of-type(1):before {
+          content: "Friend";
+          font-weight: bolder; }
+        #friends-page .table-row td:nth-of-type(2):before {
+          content: "Race";
+          font-weight: bolder; }
+        #friends-page .table-row td:nth-of-type(3):before {
+          content: "Date";
+          font-weight: bolder; }
+        #friends-page .table-row td:nth-of-type(4):before {
+          content: "Distance";
+          font-weight: bolder; }
+        #friends-page .table-row td:nth-of-type(5):before {
+          content: "Status";
+          font-weight: bolder; }
+        #friends-page .table-row td {
+          /* Behave  like a "row" */
+          border: none;
+          position: relative;
+          padding-left: 50%; }
+        #friends-page .table-row td:before {
+          /* Now like a table header */
+          position: absolute;
+          /* Top/left values mimic padding */
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 0px;
+          white-space: nowrap; } }
 
 .ui-dialog {
   font-size: 1.4em;

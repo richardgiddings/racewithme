@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^completed_race/(?P<id>\d+)$', views.completed_race, name='completed_race'),
     url(r'^results_form', views.results_form, name='results_form'),
     url(r'^friends/', views.friends, name='friends'),
+    url(r'^add_friend/', views.add_friend, name='add_friend'),
 ]

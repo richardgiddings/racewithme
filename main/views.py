@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from users.models import Profile
 from .models import Race, UserRace
+from users.models import User, Friend
 from .forms import UserProfileForm, RaceTargetsForm, RaceResultsForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -12,6 +13,10 @@ from django.utils.safestring import mark_safe
 from itertools import groupby
 from datetime import date
 from django.utils.html import conditional_escape as esc
+
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+
 
 @login_required
 def user_profile(request):
@@ -154,6 +159,27 @@ def friends(request):
 
     return render(request, template_name='main/friends.html',
                   context={ 'friends_and_races': friends_and_races })
+
+@login_required
+def add_friend(request):
+
+    username = request.POST.get('username')
+    try:
+        friend = User.objects.get(username=username)
+    except ObjectDoesNotExist:
+        messages.info(request, '{} does not exist.'.format(username))
+
+    result = Friend.objects.filter(user_profile=request.user.profile, 
+                                   friend_profile=friend.profile)
+    if result:
+        messages.info(request, '{} is already a friend.'.format(username))
+    else:
+        Friend.objects.create(user_profile=request.user.profile, 
+                              friend_profile=friend.profile)
+        messages.info(request, '{} added.'.format(username))
+        # send email
+
+    return HttpResponseRedirect(reverse('friends'))
 
 class RaceCalendar(HTMLCalendar):
 

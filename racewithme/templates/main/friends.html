@@ -28,11 +28,17 @@ $(function() {
         <p>Search here for people to join races with. See what races they are interested or are going to. See how they are getting on by seeing which races they have already completed.</p>
     </header>
     <div id="find-friends-container">
-        <form >
-            <label for="username">Find friends</label>
+        <form action="{% url 'add_friend' %}" method="post">{% csrf_token %}
             <input type="text" name="username" id="username" placeholder="username" />
-            <button type="submit">Find</button>
+            <button type="submit">Add friend</button>
         </form>
+        {% if messages %}
+        <p>
+        {% for message in messages %}
+            {{ message }}<br/>
+        {% endfor %}
+        </p>
+        {% endif %}
     </div>
 {% if friends_and_races %}
     {% for f in friends_and_races %}
