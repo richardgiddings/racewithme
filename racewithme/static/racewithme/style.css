@@ -461,11 +461,13 @@ PAGES
   font-size: 1em; }
   #friends-page #find-friends-container {
     border: 1px solid #338a44;
-    padding: 0px 20px 20px 20px;
-    margin: 20px 0px 20px 0px; }
+    padding: 0px 20px 20px 20px; }
+    #friends-page #find-friends-container form {
+      margin-top: 20px; }
     #friends-page #find-friends-container input[type="text"] {
       outline: none;
       padding: 10px;
+      margin-bottom: 20px;
       border: solid 1px #c9c9c9;
       border-radius: 4px;
       width: 170px;
@@ -474,9 +476,8 @@ PAGES
         border: solid 1px #338a44; }
     #friends-page #find-friends-container button {
       font-size: 1em;
-      width: 200px;
+      width: 192px;
       height: 36px;
-      margin-top: 20px;
       padding: 6px;
       background-color: #338a44;
       border-radius: 4px;
@@ -488,7 +489,8 @@ PAGES
   #friends-page table {
     font-size: 1.2em;
     width: 100%;
-    border-collapse: collapse; }
+    border-collapse: collapse;
+    margin-top: 20px; }
     #friends-page table td, #friends-page table th {
       text-align: left;
       padding: 8px; }

@@ -168,6 +168,7 @@ def add_friend(request):
         friend = User.objects.get(username=username)
     except ObjectDoesNotExist:
         messages.info(request, '{} does not exist.'.format(username))
+        return HttpResponseRedirect(reverse('friends'))
 
     result = Friend.objects.filter(user_profile=request.user.profile, 
                                    friend_profile=friend.profile)

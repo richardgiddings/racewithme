@@ -641,11 +641,15 @@ PAGES
     #find-friends-container {
         border: 1px solid $theme-colour1;
         padding: 0px 20px 20px 20px;
-        margin: 20px 0px 20px 0px;
+
+        form {
+            margin-top: 20px;
+        }
 
         input[type="text"] {
             outline: none;
             padding: 10px;
+            margin-bottom: 20px;
             border: solid 1px #c9c9c9;
             border-radius: 4px;
             width: 170px;
@@ -658,9 +662,8 @@ PAGES
 
         button {
             font-size: 1em;
-            width: 200px;
+            width: 192px;
             height: 36px;
-            margin-top: 20px;
             padding: 6px;
             background-color: $theme-colour1;
             border-radius: 4px;
@@ -677,6 +680,7 @@ PAGES
         font-size: 1.2em;
         width: 100%;
         border-collapse: collapse;
+        margin-top: 20px;
 
         td, th {
             text-align: left;
