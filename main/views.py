@@ -17,6 +17,11 @@ from django.utils.html import conditional_escape as esc
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.core.mail import EmailMessage
+import sys
+import threading
+from django.conf import settings
+
 
 @login_required
 def user_profile(request):
@@ -178,9 +183,35 @@ def add_friend(request):
         Friend.objects.create(user_profile=request.user.profile, 
                               friend_profile=friend.profile)
         messages.info(request, '{} added.'.format(username))
+        
         # send email
+        try:
+            subject = "{} has added you as a friend".format(request.user.username)
+            body = """{} has added you as a friend. 
+Why not add them to your friends to see which races they are signing up to.""".format(request.user.username)
+            recipient_list = [friend.email,]
+
+            EmailThread(subject, body, recipient_list).start()
+        except Exception as detail:
+            print >> sys.stderr, detail  
 
     return HttpResponseRedirect(reverse('friends'))
+
+class EmailThread(threading.Thread):
+    """
+    Setup email functionality as a thread.
+    """
+    def __init__(self, subject, body, recipient_list):
+        self.subject = subject
+        self.body = body
+        self.recipient_list = recipient_list
+        threading.Thread.__init__(self)
+
+    def run(self):
+        msg = EmailMessage(subject=self.subject, body=self.body, 
+                           from_email=[settings.DEFAULT_FROM_EMAIL], 
+                           to=self.recipient_list)
+        msg.send()
 
 class RaceCalendar(HTMLCalendar):
 
