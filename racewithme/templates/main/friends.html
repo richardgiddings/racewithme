@@ -68,7 +68,9 @@ $(function() {
                             {% if user_race.race_photos_external %}
                                 <p><a href="{{ user_race.race_photos_external }}">Race photos</a></p>
                             {% endif %}
-                            {% if not user_race.just_for_fun %}
+                            {% if user_race.just_for_fun %}
+                                <p>Run just for fun. No targets set.</p>
+                            {% else %}
                                 <p>Target time was:<br/>{{ user_race.target_hours|default_if_none:"0" }} hours {{ user_race.target_minutes|default_if_none:"0" }} minutes {{ user_race.target_seconds|default_if_none:"0" }} seconds</p>
                                 {% endif %}
                                 {% if user_race.achieved_hours > 0 or user_race.achieved_minutes > 0 or user_race.achieved_seconds > 0 %}
