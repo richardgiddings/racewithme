@@ -26,7 +26,13 @@ import threading
 def user_profile(request):
 
     profile = Profile.objects.get(user=request.user)
-    form = UserProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save() 
+    else:
+        form = UserProfileForm(instance=profile)
 
     return render(request, template_name='main/user_profile.html', 
                   context={'form': form})

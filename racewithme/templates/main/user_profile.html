@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
 {% block main %}
-<div id="user-profile">
-    <form method="post">
+<div id="user-profile" class="default-margins">
+    <header>
+        <h1>User profile</h1>
+        <p>Change details in your user profile here.</p>
+    </header>
+    <form action="{% url 'user_profile' %}" method="post">{% csrf_token %}
         {% csrf_token %}
         {{ form.as_p }}
+        <button type="submit">Save</button>
     </form>
 </div>
 {% endblock %}

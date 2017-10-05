@@ -755,6 +755,37 @@ PAGES
     }
 }
 
+#user-profile {
+    font-size: 1em;
+
+    form p {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    select {
+        outline: none;
+        padding: 10px;
+        height: 30px;
+        border: solid 1px $theme-colour1;
+        border-radius: 4px;    
+    }
+
+    button {
+        width: 192px;
+        height: 36px;
+        padding: 6px;
+        background-color: $theme-colour1;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        &:hover {
+            cursor: pointer;
+            background-color: $theme-colour2;
+        }
+    }
+}
+
 .ui-dialog {
     font-size: 1.4em;
     background-color: white;
