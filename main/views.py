@@ -20,7 +20,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
 import sys
 import threading
-from django.conf import settings
 
 
 @login_required
@@ -209,7 +208,6 @@ class EmailThread(threading.Thread):
 
     def run(self):
         msg = EmailMessage(subject=self.subject, body=self.body, 
-                           from_email=[settings.DEFAULT_FROM_EMAIL], 
                            to=self.recipient_list)
         msg.send()
 
