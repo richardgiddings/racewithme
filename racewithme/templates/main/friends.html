@@ -41,7 +41,6 @@ $(function() {
         {% endif %}
     </div>
 {% if friends_and_races %}
-    {% for f in friends_and_races %}
         <table>
             <tr id="table-header">
                 <th>Friend</th>
@@ -50,6 +49,7 @@ $(function() {
                 <th>Distance</th>
                 <th>Status</th>
             </tr>
+    {% for f in friends_and_races %}
         {% for user_race in f.1 %}
             <tr class="table-row">
                 <td>{{ f.0.friend_profile.user.username }}</td>
@@ -83,8 +83,8 @@ $(function() {
                 </td>
             </tr>
         {% endfor %}
-        </table>
     {% endfor %}
+    </table>
 {% else %}
     <p>You haven't added anyone yet. Search for other like-minded souls to join races with.</p>
 {% endif %}
