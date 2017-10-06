@@ -3,7 +3,7 @@
 {% block main %}
 <div id="home-page" class="default-margins">
 {% if user.is_authenticated %}
-    <h2>Welcome <small>{{ user.username }}</small></h2>
+    <h2>Welcome <small>{% if user.profile.first_name %}{{user.profile.first_name}}&nbsp;{{user.profile.last_name}}{% else %}{{ user.username }}{% endif %}</small></h2>
     <p>
     <ul>
         <li>Start planning races you want to go to by clicking on the Races tab.</li>
