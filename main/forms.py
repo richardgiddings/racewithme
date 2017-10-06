@@ -5,7 +5,7 @@ from main.models import Distance, UserRace
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('favourite_distance',)
+        fields = ('first_name', 'last_name', 'favourite_distance',)
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)

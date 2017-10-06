@@ -15,6 +15,9 @@ class Profile(models.Model):
                                     blank=True, 
                                     null=True)
 
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+
     def get_friends(self):
         return Friend.objects.filter(user_profile=self)
 

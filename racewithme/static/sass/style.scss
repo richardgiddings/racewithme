@@ -771,6 +771,19 @@ PAGES
         border-radius: 4px;    
     }
 
+    input[type="text"], input[type="password"], input[type="email"] {
+        outline: none;
+        padding: 10px;
+        border: solid 1px #c9c9c9;
+        border-radius: 4px;
+        width: 200px;
+        transition: border 0.3s;
+
+        &:focus, &.focus {
+            border: solid 1px $theme-colour1;
+        }
+    }
+
     button {
         width: 192px;
         height: 36px;

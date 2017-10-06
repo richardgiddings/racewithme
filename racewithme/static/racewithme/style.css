@@ -560,6 +560,15 @@ PAGES
     height: 30px;
     border: solid 1px #338a44;
     border-radius: 4px; }
+  #user-profile input[type="text"], #user-profile input[type="password"], #user-profile input[type="email"] {
+    outline: none;
+    padding: 10px;
+    border: solid 1px #c9c9c9;
+    border-radius: 4px;
+    width: 200px;
+    transition: border 0.3s; }
+    #user-profile input[type="text"]:focus, #user-profile input[type="text"].focus, #user-profile input[type="password"]:focus, #user-profile input[type="password"].focus, #user-profile input[type="email"]:focus, #user-profile input[type="email"].focus {
+      border: solid 1px #338a44; }
   #user-profile button {
     width: 192px;
     height: 36px;
