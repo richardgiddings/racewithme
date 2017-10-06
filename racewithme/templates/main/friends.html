@@ -52,7 +52,7 @@ $(function() {
     {% for f in friends_and_races %}
         {% for user_race in f.1 %}
             <tr class="table-row">
-                <td>{{ f.0.friend_profile.user.username }}</td>
+                <td>{% if f.0.friend_profile.first_name %}{{f.0.friend_profile.first_name}}&nbsp;{{f.0.friend_profile.last_name}}{% else %}{{ f.0.friend_profile.user.username }}{% endif %}</td>
                 <td>{{ user_race.race.race_name }}</td>
                 <td>{{ user_race.race.race_date|date:"jS M Y" }}</td>
                 <td>{{ user_race.race.race_distance }}</td>
