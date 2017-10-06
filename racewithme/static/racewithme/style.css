@@ -171,9 +171,9 @@ PAGES
 #signup-page .helptext {
   display: block;
   padding-top: 10px;
-  color: red; }
+  color: #338a44; }
 #signup-page ul li {
-  color: red; }
+  color: #338a44; }
 #signup-page input[type="text"], #signup-page input[type="password"], #signup-page input[type="email"] {
   outline: none;
   padding: 10px;

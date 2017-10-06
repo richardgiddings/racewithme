@@ -235,11 +235,11 @@ PAGES
     .helptext {
         display: block;
         padding-top: 10px;
-        color: red;
+        color: $theme-colour1;
     }
 
     ul li {
-        color: red;
+        color: $theme-colour1;
     }
 
     input[type="text"], input[type="password"], input[type="email"] {
