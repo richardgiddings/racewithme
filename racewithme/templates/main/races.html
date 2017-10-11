@@ -30,10 +30,10 @@ $(".buttons").click(function(e) {
     </header>    
 {% if races %}
 
-{% regroup races by race_date|date:"Y" as races_by_year %}
+{% regroup races by 0.race_date|date:"Y" as races_by_year %}
 {% for race_year in races_by_year %}
     <h1>{{ race_year.grouper }}</h1>
-    {% regroup race_year.list by race_date|date:"F" as races_by_month %}
+    {% regroup race_year.list by 0.race_date|date:"F" as races_by_month %}
     {% for race_month in races_by_month %}
         <h2>{{ race_month.grouper }}</h2>
         <table>
@@ -45,24 +45,28 @@ $(".buttons").click(function(e) {
                 <th id="button-column"></th>
             </tr>
         {% for race in race_month.list %}
-            <tr class="table-row" id="race-id-{{ race.id }}">
-                <td>{{ race.race_date|date:"l jS" }}</td>
-                <td>{{ race.race_name }}</td>
-                <td>{{ race.race_location }}</td>
-                <td>{{ race.race_distance }}</td>
+            <tr class="table-row" id="race-id-{{ race.0.id }}">
+                <td>{{ race.0.race_date|date:"l jS" }}</td>
+                <td>{{ race.0.race_name }}</td>
+                <td>{{ race.0.race_location }}</td>
+                <td>{{ race.0.race_distance }}</td>
                 <td class="buttons">
+                    {% if race.1 == '' %}
                     <form action="{% url 'interested' %}" method="post">{% csrf_token %}
-                        <button type="submit" name="race_id" value="{{ race.id }}"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;INTERESTED</button>
+                        <button type="submit" name="race_id" value="{{ race.0.id }}"><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;INTERESTED</button>
                     </form>
                     <form action="{% url 'going' %}" method="post">{% csrf_token %}
-                        <button type="submit" name="race_id" value="{{ race.id }}"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;GOING</button>
+                        <button type="submit" name="race_id" value="{{ race.0.id }}"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;GOING</button>
                     </form>
+                    {% else %}
+                        <p>{{ race.1 }}</p>
+                    {% endif %}
                 </td>
             </tr>
-            <tr class="detail-row" id="detail-row-{{ race.id }}">
+            <tr class="detail-row" id="detail-row-{{ race.0.id }}">
                 <td colspan="5">
-                    <b>Starts at</b> {{ race.race_time }}
-                    <p><a href="{{ race.race_site_link }}">Visit site</a></p>
+                    <b>Starts at</b> {{ race.0.race_time }}
+                    <p><a href="{{ race.0.race_site_link }}">Visit site</a></p>
                 </td>
             </tr>
         {% endfor %}

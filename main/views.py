@@ -41,13 +41,20 @@ def user_profile(request):
 def races(request):
 
     races = Race.objects.filter(race_date__gte=datetime.now()).order_by('race_date')
+    user_races = UserRace.objects.filter(user=request.user)
 
-    # filter out races that the user has already expressed interest in
-    user_races = UserRace.objects.filter(user=request.user).values_list('race', flat=True)
-    races = [race for race in races if race.id not in user_races]
+    return_list = []
+    for race in races:
+        for user_race in user_races:
+            if race.id == user_race.race.id:
+                return_list.append((race, user_race.status_verbose()))
+                break
+        else:
+            return_list.append((race, ''))
+
 
     return render(request, template_name='main/races.html',
-                  context={'races': races})
+                  context={'races': return_list})
 
 @login_required
 def interested(request):
