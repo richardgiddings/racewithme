@@ -187,20 +187,30 @@ def add_friend(request):
         messages.info(request, '{} does not exist.'.format(username))
         return HttpResponseRedirect(reverse('friends'))
 
+    # Can't add yourself!
+    if request.user.id == friend.profile.user.id:
+        messages.info(request, "That's you!")
+        return HttpResponseRedirect(reverse('friends'))
+
     result = Friend.objects.filter(user_profile=request.user.profile, 
                                    friend_profile=friend.profile)
+
     if result:
         messages.info(request, '{} is already a friend.'.format(username))
     else:
         Friend.objects.create(user_profile=request.user.profile, 
                               friend_profile=friend.profile)
         messages.info(request, '{} added.'.format(username))
-        
+
         # send email
         try:
+            already_friend = Friend.objects.filter(user_profile=friend.profile, 
+                                                   friend_profile=request.user.profile)
+
             subject = "{} has added you as a friend".format(request.user.username)
-            body = """{} has added you as a friend. 
-Why not add them to your friends to see which races they are signing up to.""".format(request.user.username)
+            body = "{} has added you as a friend.\n".format(request.user.username)
+            if not already_friend:
+                body += "Why not add them to your friends to see which races they are signing up to."
             recipient_list = [friend.email,]
 
             EmailThread(subject, body, recipient_list).start()
