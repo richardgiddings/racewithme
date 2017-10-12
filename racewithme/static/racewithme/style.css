@@ -172,8 +172,10 @@ PAGES
   display: block;
   padding-top: 10px;
   color: #338a44; }
-#signup-page ul li {
+#signup-page ul:not(.errorlist) li {
   color: #338a44; }
+#signup-page .errorlist li {
+  color: red; }
 #signup-page input[type="text"], #signup-page input[type="password"], #signup-page input[type="email"] {
   outline: none;
   padding: 10px;

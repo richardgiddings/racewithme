@@ -238,8 +238,12 @@ PAGES
         color: $theme-colour1;
     }
 
-    ul li {
+    ul:not(.errorlist) li {
         color: $theme-colour1;
+    }
+
+    .errorlist li {
+        color: red;
     }
 
     input[type="text"], input[type="password"], input[type="email"] {
