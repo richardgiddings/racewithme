@@ -180,11 +180,11 @@ def friends(request):
 @login_required
 def add_friend(request):
 
-    username = request.POST.get('username')
+    email = request.POST.get('email')
     try:
-        friend = User.objects.get(username=username)
+        friend = User.objects.get(email=email)
     except ObjectDoesNotExist:
-        messages.info(request, '{} does not exist.'.format(username))
+        messages.info(request, 'User does not exist.')
         return HttpResponseRedirect(reverse('friends'))
 
     # Can't add yourself!
@@ -196,19 +196,33 @@ def add_friend(request):
                                    friend_profile=friend.profile)
 
     if result:
-        messages.info(request, '{} is already a friend.'.format(username))
+        messages.info(request, 'They are already a friend.')
     else:
         Friend.objects.create(user_profile=request.user.profile, 
                               friend_profile=friend.profile)
-        messages.info(request, '{} added.'.format(username))
+
+        # get the new friend's name
+        if friend.profile.first_name:
+            display_name = "{} {}".format(friend.profile.first_name, 
+                                          friend.profile.last_name)
+        else:
+            display_name = friend.username
+
+        messages.info(request, '{} added.'.format(display_name))
 
         # send email
         try:
             already_friend = Friend.objects.filter(user_profile=friend.profile, 
                                                    friend_profile=request.user.profile)
 
-            subject = "{} has added you as a friend".format(request.user.username)
-            body = "{} has added you as a friend.\n".format(request.user.username)
+            if request.user.profile.first_name:
+                user_name = "{} {}".format(request.user.profile.first_name, 
+                                           request.user.profile.last_name)
+            else:
+                user_name = request.user.username
+
+            subject = "{} has added you as a friend".format(user_name)
+            body = "{} has added you as a friend.\n".format(user_name)
             if not already_friend:
                 body += "Why not add them to your friends to see which races they are signing up to."
             recipient_list = [friend.email,]

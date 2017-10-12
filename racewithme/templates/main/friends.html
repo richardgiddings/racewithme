@@ -29,7 +29,7 @@ $(function() {
     </header>
     <div id="find-friends-container">
         <form action="{% url 'add_friend' %}" method="post">{% csrf_token %}
-            <input type="text" name="username" id="username" placeholder="username" />
+            <input type="text" name="email" id="email" placeholder="email" />
             <button type="submit">Add friend</button>
         </form>
         {% if messages %}
