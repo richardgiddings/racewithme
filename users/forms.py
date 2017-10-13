@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -11,7 +11,13 @@ from django.utils.encoding import force_bytes
 from django.template import loader
 from django.core.mail import EmailMultiAlternatives
 
-class SignUpForm(UserCreationForm):
+class EmailRequiredMixin(object):
+    def __init__(self, *args, **kwargs):
+        super(EmailRequiredMixin, self).__init__(*args, **kwargs)
+        # make user email field required
+        self.fields['email'].required = True
+
+class SignUpForm(EmailRequiredMixin, UserCreationForm):
     email = forms.EmailField(max_length=254, 
         help_text='Required, a valid email address.')
 
@@ -19,6 +25,14 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).exists():
+            raise forms.ValidationError(u'Email addresses must be unique.')
+        return email
+
+class UserChangeForm(EmailRequiredMixin, UserChangeForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
