@@ -225,7 +225,7 @@ def add_friend(request):
         recipient_list = [friend.email,]
 
         # queue emails using redis
-        queue = django_rq.get_queue('high')
+        queue = django_rq.get_queue('email')
         job = queue.enqueue(send_email, subject, body, recipient_list)
 
     return HttpResponseRedirect(reverse('friends'))

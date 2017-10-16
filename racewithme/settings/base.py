@@ -96,18 +96,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Django-rq settings
 
 RQ_QUEUES = {
-    'default': {
+    'email': {
         'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
         'DEFAULT_TIMEOUT': 500,
     },
-    'high': {
-        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
-        'DEFAULT_TIMEOUT': 500,
-    },
-    'low': {
-        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
-        'DEFAULT_TIMEOUT': 500,
-    }
 }
 
 # Internationalization
