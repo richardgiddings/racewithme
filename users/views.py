@@ -7,6 +7,7 @@ from users.forms import SignUpForm
 from users.tokens import account_activation_token
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+import django_rq
 
 def account_activation_sent(request):
     return render(request, 'account_activation_sent.html')
@@ -27,7 +28,9 @@ def signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            user.email_user(subject, message)
+            queue = django_rq.get_queue('email')
+            job = queue.enqueue(user.email_user, subject, message)
+
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
