@@ -10,6 +10,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.template import loader
 from django.core.mail import EmailMultiAlternatives
+import django_rq
 
 class EmailRequiredMixin(object):
     def __init__(self, *args, **kwargs):
@@ -57,7 +58,9 @@ class MyPasswordResetForm(forms.Form):
             html_email = loader.render_to_string(html_email_template_name, context)
             email_message.attach_alternative(html_email, 'text/hmtl')
 
-        email_message.send()
+        # add email to RQ queue
+        queue = django_rq.get_queue('email')
+        job = queue.enqueue(email_message.send)
 
     def get_users(self, username):
         """
