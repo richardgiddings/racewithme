@@ -17,10 +17,8 @@ from django.utils.html import conditional_escape as esc
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-from django.core.mail import EmailMessage
-import sys
-import threading
-
+import django_rq
+from .tasks import send_email
 
 @login_required
 def user_profile(request):
@@ -211,79 +209,23 @@ def add_friend(request):
         messages.info(request, '{} added.'.format(display_name))
 
         # send email
-        try:
-            already_friend = Friend.objects.filter(user_profile=friend.profile, 
+        already_friend = Friend.objects.filter(user_profile=friend.profile, 
                                                    friend_profile=request.user.profile)
 
-            if request.user.profile.first_name:
-                user_name = "{} {}".format(request.user.profile.first_name, 
-                                           request.user.profile.last_name)
-            else:
-                user_name = request.user.username
+        if request.user.profile.first_name:
+            user_name = "{} {}".format(request.user.profile.first_name, 
+                                       request.user.profile.last_name)
+        else:
+            user_name = request.user.username
 
-            subject = "{} has added you as a friend".format(user_name)
-            body = "{} has added you as a friend.\n".format(user_name)
-            if not already_friend:
-                body += "Why not add them to your friends to see which races they are signing up to."
-            recipient_list = [friend.email,]
+        subject = "{} has added you as a friend".format(user_name)
+        body = "{} has added you as a friend.\n".format(user_name)
+        if not already_friend:
+            body += "Why not add them to your friends to see which races they are signing up to."
+        recipient_list = [friend.email,]
 
-            EmailThread(subject, body, recipient_list).start()
-        except Exception as detail:
-            print >> sys.stderr, detail  
+        # queue emails using redis
+        queue = django_rq.get_queue('high')
+        job = queue.enqueue(send_email, subject, body, recipient_list)
 
     return HttpResponseRedirect(reverse('friends'))
-
-class EmailThread(threading.Thread):
-    """
-    Setup email functionality as a thread.
-    """
-    def __init__(self, subject, body, recipient_list):
-        self.subject = subject
-        self.body = body
-        self.recipient_list = recipient_list
-        threading.Thread.__init__(self)
-
-    def run(self):
-        msg = EmailMessage(subject=self.subject, body=self.body, 
-                           to=self.recipient_list)
-        msg.send()
-
-class RaceCalendar(HTMLCalendar):
-
-    def __init__(self, user_races):
-        super(RaceCalendar, self).__init__()
-        self.user_races = self.group_by_day(user_races)
-
-    def formatday(self, day, weekday):
-        if day != 0:
-            cssclass = self.cssclasses[weekday]
-            if date.today() == date(self.year, self.month, day):
-                cssclass =+ ' today'
-            if day in self.user_races:
-                cssclass += ' filled'
-                body = ['<ul>']
-                for user_race in self.user_races[day]:
-                    body.append('<li>')
-                    body.append('<a href="%s">%s' % (user_race.get_absolute_url(), self.tooltip(user_race.race.race_name)))
-                    body.append(esc(user_race.race.race_name))
-                    body.append('</a></li>')
-                body.append('</ul>')
-                return self.day_cell(cssclass, '%d %s' % (day, ''.join(body)))
-            return self.day_cell(cssclass, day)
-        return self.day_cell('noday', '&nbsp;')
-
-    def formatmonth(self, year, month):
-        self.year, self.month = year, month
-        return super(RaceCalendar, self).formatmonth(year, month)
-
-    def group_by_day(self, user_races):
-        field = lambda user_race: user_race.race.race_date.day
-        return dict(
-            [(day, list(items)) for day, items in groupby(user_races, field)]
-        )
-
-    def tooltip(self, body):
-        return '<span class="tooltiptext">%s</span>' % body
-
-    def day_cell(self, cssclass, body):
-        return '<td class="%s">%s</td>' % (cssclass, body)

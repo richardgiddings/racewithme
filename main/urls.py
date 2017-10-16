@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
@@ -14,4 +14,7 @@ urlpatterns = [
     url(r'^results_form', views.results_form, name='results_form'),
     url(r'^friends/', views.friends, name='friends'),
     url(r'^add_friend/', views.add_friend, name='add_friend'),
+
+    # email queues
+    url(r'^django-rq/', include('django_rq.urls')),
 ]
