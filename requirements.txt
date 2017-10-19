@@ -1,6 +1,7 @@
 click==6.7
 dj-database-url==0.4.2
 Django==1.11.4
+django-location-field==2.0.3
 django-rq==0.9.6
 gunicorn==19.7.1
 psycopg2==2.7.3
