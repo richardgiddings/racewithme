@@ -40,7 +40,6 @@ $(".buttons").click(function(e) {
             <tr id="table-header">
                 <th id="date-column">Date</th>
                 <th id="race-column">Race</th>
-                <th id="location-column">Location</th>
                 <th id="distance-column">Distance</th>
                 <th id="button-column"></th>
             </tr>
@@ -48,7 +47,6 @@ $(".buttons").click(function(e) {
             <tr class="table-row" id="race-id-{{ race.race.id }}">
                 <td>{{ race.race.race_date|date:"l jS" }}</td>
                 <td>{{ race.race.race_name }}</td>
-                <td>{{ race.race.race_location }}</td>
                 <td>{{ race.race.race_distance }}</td>
                 <td class="buttons">
                     <form action="{% url 'no_longer_interested' %}" method="post">{% csrf_token %}
@@ -62,6 +60,16 @@ $(".buttons").click(function(e) {
             <tr class="detail-row" id="detail-row-{{ race.race.id }}">
                 <td colspan="5">
                     <b>Starts at</b> {{ race.race.race_time }}
+                    <p><iframe 
+                      width="300" 
+                      height="170" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      marginheight="0" 
+                      marginwidth="0" 
+                      src="https://maps.google.com/maps?q={{ race.race.location }}&hl=es;z=14&amp;output=embed"
+                     >
+                     </iframe></p>
                     <p><a href="{{ race.race.race_site_link }}">Visit site</a></p>
                 </td>
             </tr>
