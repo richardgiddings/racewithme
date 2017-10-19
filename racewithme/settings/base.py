@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'users',
     'main',
     'django_rq',
+    'location_field.apps.DefaultConfig',
 ]
 
 MIDDLEWARE = [

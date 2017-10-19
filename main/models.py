@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+from django.db import models
+from location_field.models.plain import PlainLocationField
+
 #class UserSettings(models.Model):
 
 RACE_STATUS = [
@@ -75,11 +78,9 @@ class Race(models.Model):
     contains the basic information about the race.
     """
     race_name = models.CharField(max_length=50)
-    race_location = models.ForeignKey(
-                                'Location', 
-                                models.SET_NULL, 
-                                blank=True, 
-                                null=True)
+    race_location = models.CharField(max_length=255, default="Bristol")
+    location = PlainLocationField(based_fields=['race_location'], zoom=7)
+
     race_distance = models.ForeignKey(
                                 'Distance', 
                                 models.SET_NULL, 
@@ -91,15 +92,6 @@ class Race(models.Model):
 
     def __str__(self):
         return self.race_name
-
-class Location(models.Model):
-    """
-    A Race location
-    """
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 
 class Distance(models.Model):
     """

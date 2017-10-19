@@ -237,9 +237,6 @@ PAGES
           content: "Race";
           font-weight: bolder; }
         #races-page .table-row td:nth-of-type(3):before, #interested-page .table-row td:nth-of-type(3):before {
-          content: "Location";
-          font-weight: bolder; }
-        #races-page .table-row td:nth-of-type(4):before, #interested-page .table-row td:nth-of-type(4):before {
           content: "Distance";
           font-weight: bolder; }
         #races-page .table-row td, #interested-page .table-row td {
