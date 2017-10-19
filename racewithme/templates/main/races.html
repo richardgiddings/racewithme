@@ -63,7 +63,6 @@ $(".buttons").click(function(e) {
             </tr>
             <tr class="detail-row" id="detail-row-{{ race.0.id }}">
                 <td colspan="5">
-                    <b>Starts at</b> {{ race.0.race_time }}
                     <p><iframe 
                       width="300" 
                       height="170" 
@@ -74,6 +73,7 @@ $(".buttons").click(function(e) {
                       src="https://maps.google.com/maps?q={{ race.0.location }}&hl=es;z=14&amp;output=embed"
                      >
                      </iframe></p>
+                    <b>Starts at</b> {{ race.0.race_time }}
                     <p><a href="{{ race.0.race_site_link }}">Visit site</a></p>
                 </td>
             </tr>
