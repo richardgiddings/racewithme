@@ -48,3 +48,8 @@ SERVER_EMAIL = EMAIL_HOST_USER
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ADMINS = ((env['ADMIN_NAME'], env['ADMIN_EMAIL']),)
+
+# Google maps API
+LOCATION_FIELD = {
+    'provider.google.api_key': env['MAP_KEY'],
+}
