@@ -78,7 +78,8 @@ class Race(models.Model):
     contains the basic information about the race.
     """
     race_name = models.CharField(max_length=50)
-    race_location = models.CharField(max_length=255, default="Bristol")
+    race_location = models.CharField(max_length=255, default="Bristol",
+                                    help_text="Enter a location then select on map")
     location = PlainLocationField(based_fields=['race_location'], zoom=7)
 
     race_distance = models.ForeignKey(
