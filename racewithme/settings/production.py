@@ -53,3 +53,6 @@ ADMINS = ((env['ADMIN_NAME'], env['ADMIN_EMAIL']),)
 LOCATION_FIELD = {
     'provider.google.api_key': env['MAP_KEY'],
 }
+
+# PAGINATION
+PER_PAGE = env['PER_PAGE']

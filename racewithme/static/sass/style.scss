@@ -832,3 +832,17 @@ PAGES
     }
 }
 
+.pagination {
+    margin-top: 40px;
+    text-align: center;
+    border-top: 4px solid $theme-colour1;
+    padding-top: 10px;
+
+    li {
+        font-size: 1.4em;
+        list-style-type: none;
+        display: inline;
+        padding-right: 10px;
+    }
+}
+

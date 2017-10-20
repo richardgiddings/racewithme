@@ -20,6 +20,8 @@ from django.core.exceptions import ObjectDoesNotExist
 import django_rq
 from .tasks import send_email
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 @login_required
 def user_profile(request):
 
@@ -49,6 +51,18 @@ def races(request):
                 break
         else:
             return_list.append((race, ''))
+
+    # Add pagination
+    paginator = Paginator(return_list, 5) # Show n races per page
+    page = request.GET.get('page')
+    try:
+        return_list = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        return_list = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        return_list = paginator.page(paginator.num_pages)
 
 
     return render(request, template_name='main/races.html',

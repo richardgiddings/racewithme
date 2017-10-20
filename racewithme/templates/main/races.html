@@ -82,6 +82,18 @@ $(".buttons").click(function(e) {
     {% endfor %}
 {% endfor %}
 
+<ul class="pagination">
+    {% if races.has_previous %}
+    <li><a href="?page={{ races.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+    {% endif %}
+    {% for page_num in races.paginator.page_range %}
+    <li {% if page_num == races.number %}class="active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+    {% endfor %}
+    {% if races.has_next %}
+    <li><a href="?page={{ races.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+    {% endif%}
+</ul>
+
 {% else %}
     <p>There are no races yet.</p>
 {% endif %}
