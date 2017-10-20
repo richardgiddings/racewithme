@@ -138,11 +138,20 @@ def completed(request):
 
     races = UserRace.objects.filter(user=request.user, status='3').order_by('race__race_date')
 
-    #cal = RaceCalendar(races).formatmonth(2017, 12)
+    # Add pagination
+    paginator = Paginator(races, 5) # Show n races per page
+    page = request.GET.get('page')
+    try:
+        races = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        races = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        races = paginator.page(paginator.num_pages)
 
     return render(request, template_name='main/completed.html',
                   context={'races': races })
-                  #context={'races': races, 'calendar': mark_safe(cal)})
 
 @login_required
 def completed_race(request, id):
