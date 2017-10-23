@@ -20,7 +20,9 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=50, null=True, blank=True)
 
     def get_friends(self):
-        return Friend.objects.filter(user_profile=self)
+        friends = Friend.objects.filter(user_profile=self)
+        friends = friends.order_by("friend_profile__first_name")
+        return friends
 
     def __str__(self):
         return self.user.username
