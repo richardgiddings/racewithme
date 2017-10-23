@@ -191,12 +191,10 @@ def results_form(request):
 
 @login_required
 def friends(request):
-    # return friends list
     friends = request.user.profile.get_friends()
-    friends_and_races = [(friend, friend.get_races()) for friend in friends]
 
     return render(request, template_name='main/friends.html',
-                  context={ 'friends_and_races': friends_and_races })
+                  context={ 'friends': friends })
 
 @login_required
 def add_friend(request):
@@ -252,3 +250,12 @@ def add_friend(request):
         job = queue.enqueue(send_email, subject, body, recipient_list)
 
     return HttpResponseRedirect(reverse('friends'))
+
+@login_required
+def friend_details(request, id):
+
+    friend = Friend.objects.get(pk=id)
+    user_races = friend.get_races()
+
+    return render(request, template_name='main/friend_details.html',
+                  context={ 'friend': friend, 'user_races': user_races })

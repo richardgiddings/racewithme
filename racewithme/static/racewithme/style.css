@@ -458,6 +458,14 @@ PAGES
 
 #friends-page {
   font-size: 1em; }
+  #friends-page #friends-container {
+    margin-top: 40px; }
+    #friends-page #friends-container div {
+      border: 1px solid #3ea853;
+      font-size: 1.4em;
+      display: inline;
+      padding: 10px;
+      margin-right: 10px; }
   #friends-page #find-friends-container {
     border: 1px solid #338a44;
     padding: 0px 20px 20px 20px; }
@@ -485,68 +493,66 @@ PAGES
       #friends-page #find-friends-container button:hover {
         cursor: pointer;
         background-color: #3ea853; }
-  #friends-page table {
-    font-size: 1.2em;
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px; }
-    #friends-page table td, #friends-page table th {
-      text-align: left;
-      padding: 8px; }
-    #friends-page table .table-row {
-      border-bottom: 1px solid #d3d3d3; }
-    #friends-page table #table-header {
-      border-bottom: 1px solid #338a44; }
-    #friends-page table a:hover {
-      cursor: pointer; }
-  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-    #friends-page {
-      /* Force table to not be like tables anymore */
-      /* Hide table headers (but not display: none;, for accessibility) */ }
-      #friends-page table, #friends-page thead, #friends-page tbody, #friends-page th, #friends-page td, #friends-page tr {
-        display: block; }
-      #friends-page #table-header {
+
+#friend-detail-page table {
+  font-size: 1.2em;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; }
+  #friend-detail-page table td, #friend-detail-page table th {
+    text-align: left;
+    padding: 8px; }
+  #friend-detail-page table .table-row {
+    border-bottom: 1px solid #d3d3d3; }
+  #friend-detail-page table #table-header {
+    border-bottom: 1px solid #338a44; }
+  #friend-detail-page table a:hover {
+    cursor: pointer; }
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  #friend-detail-page {
+    /* Force table to not be like tables anymore */
+    /* Hide table headers (but not display: none;, for accessibility) */ }
+    #friend-detail-page table, #friend-detail-page thead, #friend-detail-page tbody, #friend-detail-page th, #friend-detail-page td, #friend-detail-page tr {
+      display: block; }
+    #friend-detail-page #table-header {
+      position: absolute;
+      top: -9999px;
+      left: -9999px; }
+    #friend-detail-page .detail-row td {
+      padding-left: 6px; }
+    #friend-detail-page .table-row {
+      /*
+      Label the data
+      */
+      border-top: 1px solid #d3d3d3;
+      border-bottom: 1px solid #d3d3d3;
+      padding-top: 8px; }
+      #friend-detail-page .table-row td:nth-of-type(1):before {
+        content: "Race";
+        font-weight: bolder; }
+      #friend-detail-page .table-row td:nth-of-type(2):before {
+        content: "Date";
+        font-weight: bolder; }
+      #friend-detail-page .table-row td:nth-of-type(3):before {
+        content: "Distance";
+        font-weight: bolder; }
+      #friend-detail-page .table-row td:nth-of-type(4):before {
+        content: "Status";
+        font-weight: bolder; }
+      #friend-detail-page .table-row td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding-left: 50%; }
+      #friend-detail-page .table-row td:before {
+        /* Now like a table header */
         position: absolute;
-        top: -9999px;
-        left: -9999px; }
-      #friends-page .detail-row td {
-        padding-left: 6px; }
-      #friends-page .table-row {
-        /*
-        Label the data
-        */
-        border-top: 1px solid #d3d3d3;
-        border-bottom: 1px solid #d3d3d3;
-        padding-top: 8px; }
-        #friends-page .table-row td:nth-of-type(1):before {
-          content: "Friend";
-          font-weight: bolder; }
-        #friends-page .table-row td:nth-of-type(2):before {
-          content: "Race";
-          font-weight: bolder; }
-        #friends-page .table-row td:nth-of-type(3):before {
-          content: "Date";
-          font-weight: bolder; }
-        #friends-page .table-row td:nth-of-type(4):before {
-          content: "Distance";
-          font-weight: bolder; }
-        #friends-page .table-row td:nth-of-type(5):before {
-          content: "Status";
-          font-weight: bolder; }
-        #friends-page .table-row td {
-          /* Behave  like a "row" */
-          border: none;
-          position: relative;
-          padding-left: 50%; }
-        #friends-page .table-row td:before {
-          /* Now like a table header */
-          position: absolute;
-          /* Top/left values mimic padding */
-          top: 6px;
-          left: 6px;
-          width: 45%;
-          padding-right: 0px;
-          white-space: nowrap; } }
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 0px;
+        white-space: nowrap; } }
 
 #user-profile {
   font-size: 1em; }

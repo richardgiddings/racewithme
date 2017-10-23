@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block extra_jquery %}
+$("#friends").addClass("active");
+
+$(function() {
+    $( ".dialog" ).dialog({
+        autoOpen: false, 
+        modal: true,
+        title: "RACE DETAILS",
+        buttons: [{
+            "text": 'Close',
+            "click": function() {$(this).dialog("close");},
+        }],
+        width: 300,
+    });
+    $( '[id^="completed"]' ).click(function() {
+        var id = $(this).attr('id').split('-')[1];
+        $("#dialog-"+id).dialog("open");
+    });
+});
+{% endblock %}
+
+{% block main %}
+<div id="friend-detail-page" class="default-margins">
+    <header>
+        <h1>{% if friend.friend_profile.first_name %}{{friend.friend_profile.first_name}}&nbsp;{{friend.friend_profile.last_name}}{% else %}{{ friend.friend_profile.user.username }}{% endif %}</h1>
+        <a href="{% url 'friends' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Back to friends</a>
+    </header>
+    <table>
+        <tr id="table-header">
+            <th>Race</th>
+            <th>Date</th>
+            <th>Distance</th>
+            <th>Status</th>
+        </tr>
+        {% for user_race in user_races %}
+        <tr class="table-row">
+            <td>{{ user_race.race.race_name }}</td>
+            <td>{{ user_race.race.race_date|date:"jS M Y" }}</td>
+            <td>{{ user_race.race.race_distance }}</td>
+            <td>
+                {% if user_race.status == '3' %}
+                    <a id="completed-{{ user_race.id }}">Completed</a>
+                    <div id="dialog-{{ user_race.id }}" class="dialog">
+                        <h2>{{ f.0.friend_profile.user.username }}</h2>
+                        <h3>{{ user_race.race.race_name }}</h3>
+                        {% if user_race.race_results_external %}
+                            <p><a href="{{ user_race.race_results_external }}">Race results</a></p>
+                        {% endif %}
+                        {% if user_race.race_photos_external %}
+                            <p><a href="{{ user_race.race_photos_external }}">Race photos</a></p>
+                        {% endif %}
+                        {% if user_race.just_for_fun %}
+                            <p>Run just for fun. No targets set.</p>
+                        {% else %}
+                            <p>Target time was:<br/>{{ user_race.target_hours|default_if_none:"0" }} hours {{ user_race.target_minutes|default_if_none:"0" }} minutes {{ user_race.target_seconds|default_if_none:"0" }} seconds</p>
+                            {% endif %}
+                            {% if user_race.achieved_hours > 0 or user_race.achieved_minutes > 0 or user_race.achieved_seconds > 0 %}
+                            <p>They finished in:<br/>{{ user_race.achieved_hours|default_if_none:"0" }} hours {{ user_race.achieved_minutes|default_if_none:"0" }} minutes {{ user_race.achieved_seconds|default_if_none:"0" }} seconds</p>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    {{ user_race.status_verbose }}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}
+

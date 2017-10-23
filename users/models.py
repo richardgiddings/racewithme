@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from main.models import Distance, UserRace
+from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, 
@@ -40,3 +41,6 @@ class Friend(models.Model):
 
     def get_races(self):
         return UserRace.objects.filter(user=self.friend_profile.user)
+
+    def get_absolute_url(self):
+        return reverse('friend_details', args=[str(self.id)])

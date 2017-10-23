@@ -641,6 +641,18 @@ PAGES
 #friends-page {
     font-size: 1em;
 
+    #friends-container {
+        margin-top: 40px;
+
+        div {
+            border: 1px solid $theme-colour2;
+            font-size: 1.4em;
+            display: inline;
+            padding: 10px;
+            margin-right: 10px;
+        }
+    }
+
     #find-friends-container {
         border: 1px solid $theme-colour1;
         padding: 0px 20px 20px 20px;
@@ -678,7 +690,9 @@ PAGES
             }
         }
     }
+}
 
+#friend-detail-page {
     table {
         font-size: 1.2em;
         width: 100%;
@@ -727,11 +741,10 @@ PAGES
             /*
             Label the data
             */
-            td:nth-of-type(1):before { content: "Friend"; font-weight: bolder}
-            td:nth-of-type(2):before { content: "Race"; font-weight: bolder }
-            td:nth-of-type(3):before { content: "Date"; font-weight: bolder }
-            td:nth-of-type(4):before { content: "Distance"; font-weight: bolder }
-            td:nth-of-type(5):before { content: "Status"; font-weight: bolder }
+            td:nth-of-type(1):before { content: "Race"; font-weight: bolder }
+            td:nth-of-type(2):before { content: "Date"; font-weight: bolder }
+            td:nth-of-type(3):before { content: "Distance"; font-weight: bolder }
+            td:nth-of-type(4):before { content: "Status"; font-weight: bolder }
 
             border-top: 1px solid #d3d3d3; 
             border-bottom: 1px solid #d3d3d3; 
