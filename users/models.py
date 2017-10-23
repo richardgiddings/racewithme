@@ -40,7 +40,9 @@ class Friend(models.Model):
     friend_profile = models.ForeignKey(Profile, related_name="friend")
 
     def get_races(self):
-        return UserRace.objects.filter(user=self.friend_profile.user)
+        user_races = UserRace.objects.filter(user=self.friend_profile.user)
+        user_races = user_races.order_by("race__race_date")
+        return user_races
 
     def get_absolute_url(self):
         return reverse('friend_details', args=[str(self.id)])
