@@ -67,6 +67,17 @@ $(function() {
         </tr>
     {% endfor %}
     </table>
+    <ul class="pagination">
+        {% if user_races.has_previous %}
+        <li><a href="?page={{ user_races.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+        {% endif %}
+        {% for page_num in user_races.paginator.page_range %}
+        <li {% if page_num == user_races.number %}class="active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+        {% endfor %}
+        {% if user_races.has_next %}
+        <li><a href="?page={{ user_races.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+        {% endif%}
+    </ul>
 </div>
 {% endblock %}
 

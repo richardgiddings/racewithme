@@ -30,7 +30,8 @@ def user_profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            form.save() 
+            form.save()
+            messages.info(request, 'Profile changes have been saved.') 
     else:
         form = UserProfileForm(instance=profile)
 
@@ -256,6 +257,17 @@ def friend_details(request, id):
 
     friend = Friend.objects.get(pk=id)
     user_races = friend.get_races()
+
+    paginator = Paginator(user_races, 5) # Show n results per page
+    page = request.GET.get('page')
+    try:
+        user_races = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        user_races = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        user_races = paginator.page(paginator.num_pages)
 
     return render(request, template_name='main/friend_details.html',
                   context={ 'friend': friend, 'user_races': user_races })
