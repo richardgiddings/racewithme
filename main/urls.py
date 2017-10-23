@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^friends/', views.friends, name='friends'),
     url(r'^add_friend/', views.add_friend, name='add_friend'),
     url(r'^friend_details/(?P<id>\d+)$', views.friend_details, name='friend_details'),
+    url(r'^remove_friend/', views.remove_friend, name='remove_friend'),
 
     # email queues
     url(r'^django-rq/', include('django_rq.urls')),

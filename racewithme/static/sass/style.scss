@@ -693,6 +693,21 @@ PAGES
 }
 
 #friend-detail-page {
+    button {
+        font-size: 1em;
+        width: 120px;
+        height: 36px;
+        padding: 6px;
+        background-color: $theme-colour1;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        &:hover {
+            cursor: pointer;
+            background-color: $theme-colour2;
+        }
+    }
+
     table {
         font-size: 1.2em;
         width: 100%;

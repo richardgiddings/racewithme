@@ -14,11 +14,40 @@ $(function() {
         }],
         width: 300,
     });
-    $( '[id^="completed"]' ).click(function() {
-        var id = $(this).attr('id').split('-')[1];
-        $("#dialog-"+id).dialog("open");
+});
+$( '[id^="completed"]' ).click(function() {
+    var id = $(this).attr('id').split('-')[1];
+    $("#dialog-"+id).dialog("open");
+});
+
+$(function() {
+    $( "#remove-dialog" ).dialog({
+        autoOpen: false, 
+        title : "Are you sure?",
+        modal : true,
+
+        buttons: [
+            {
+                "text": "Yes",
+                "click": function() {
+                    $( this ).dialog( "close" );
+                    $("#remove-form")[0].submit();
+                },
+            }, 
+            {
+                "text": "No",
+                "click": function() {
+                    $( this ).dialog( "close" );
+                }
+            }  
+        ]
     });
 });
+$("form").submit(function( e ) {
+    e.preventDefault();
+    $("#remove-dialog").dialog("open");
+});
+
 {% endblock %}
 
 {% block main %}
@@ -27,6 +56,15 @@ $(function() {
         <h1>{% if friend.friend_profile.first_name %}{{friend.friend_profile.first_name}}&nbsp;{{friend.friend_profile.last_name}}{% else %}{{ friend.friend_profile.user.username }}{% endif %}</h1>
         <a href="{% url 'friends' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Back to friends</a>
     </header>
+    <p>
+        <form id="remove-form" action="{% url 'remove_friend' %}" method="post">{% csrf_token %}
+            <button type="submit">Remove friend</button>
+            <input type="hidden" name="id" value="{{ friend.id }}" />
+        </form>
+        <div id="remove-dialog" class="remove-dialog">
+            <p>Do you want to remove this friend?</p>
+        </div>
+    </p>
     <table>
         <tr id="table-header">
             <th>Race</th>

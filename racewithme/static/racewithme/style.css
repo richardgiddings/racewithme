@@ -494,6 +494,18 @@ PAGES
         cursor: pointer;
         background-color: #3ea853; }
 
+#friend-detail-page button {
+  font-size: 1em;
+  width: 120px;
+  height: 36px;
+  padding: 6px;
+  background-color: #338a44;
+  border-radius: 4px;
+  color: white;
+  border: none; }
+  #friend-detail-page button:hover {
+    cursor: pointer;
+    background-color: #3ea853; }
 #friend-detail-page table {
   font-size: 1.2em;
   width: 100%;

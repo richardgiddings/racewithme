@@ -253,6 +253,13 @@ def add_friend(request):
     return HttpResponseRedirect(reverse('friends'))
 
 @login_required
+def remove_friend(request):
+    friend_id = request.POST.get('id', '')
+    friend = Friend.objects.get(pk=friend_id)
+    friend.delete()
+    return HttpResponseRedirect(reverse('friends'))
+
+@login_required
 def friend_details(request, id):
 
     friend = Friend.objects.get(pk=id)
