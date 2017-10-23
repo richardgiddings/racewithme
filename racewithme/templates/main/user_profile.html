@@ -11,5 +11,13 @@
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
+
+    {% if messages %}
+    <p>
+    {% for message in messages %}
+        {{ message }}<br/>
+    {% endfor %}
+    </p>
+    {% endif %}
 </div>
 {% endblock %}
