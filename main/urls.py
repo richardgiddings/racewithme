@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
+    url(r'^user_settings/', views.user_settings, name='user_settings'),
     url(r'^user_profile/', views.user_profile, name='user_profile'),
     url(r'^races/', views.races, name='races'),
     url(r'^interested/', views.interested, name='interested'),

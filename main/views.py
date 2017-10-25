@@ -23,6 +23,10 @@ from .tasks import send_email
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
+def user_settings(request):
+    return render(request, template_name='main/user_settings.html')
+
+@login_required
 def user_profile(request):
 
     profile = Profile.objects.get(user=request.user)
