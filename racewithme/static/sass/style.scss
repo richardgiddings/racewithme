@@ -654,12 +654,16 @@ PAGES
 #friends-page {
     font-size: 1em;
 
+    p {
+        font-size: 1.4em;
+    }
+
     #friends-container {
         margin-top: 40px;
+        font-size: 1.4em;
 
         div {
             border: 1px solid $theme-colour2;
-            font-size: 1.4em;
             display: inline;
             padding: 10px;
             margin-right: 10px;

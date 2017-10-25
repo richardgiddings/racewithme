@@ -467,11 +467,13 @@ PAGES
 
 #friends-page {
   font-size: 1em; }
+  #friends-page p {
+    font-size: 1.4em; }
   #friends-page #friends-container {
-    margin-top: 40px; }
+    margin-top: 40px;
+    font-size: 1.4em; }
     #friends-page #friends-container div {
       border: 1px solid #3ea853;
-      font-size: 1.4em;
       display: inline;
       padding: 10px;
       margin-right: 10px; }
