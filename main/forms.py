@@ -37,3 +37,13 @@ class RaceResultsForm(forms.ModelForm):
             'race_results_external': forms.TextInput(attrs={'placeholder': 'link to results'}),
             'race_photos_external': forms.TextInput(attrs={'placeholder': 'link to photos'}),
         }
+
+class DistanceSelectionForm(forms.Form):
+    """
+    A form to enable the filtering of races by distance
+    """
+    distance_list = forms.ModelChoiceField(queryset=Distance.objects.all(), 
+                                           empty_label="All Distances",
+                                           widget=forms.Select(attrs={"onChange":'this.form.submit()'}))
+    distance_list.label = ''
+    distance_list.required=False

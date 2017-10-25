@@ -2,7 +2,7 @@ from django.shortcuts import render
 from users.models import Profile
 from .models import Race, UserRace
 from users.models import User, Friend
-from .forms import UserProfileForm, RaceTargetsForm, RaceResultsForm
+from .forms import UserProfileForm, RaceTargetsForm, RaceResultsForm, DistanceSelectionForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -41,8 +41,18 @@ def user_profile(request):
 @login_required
 def races(request):
 
+    # get the distance selected from the filter dropdown
+    distance_id = request.GET.get('distance_list')
+    if distance_id is None:
+        distance_id = ''
+
     races = Race.objects.filter(race_date__gte=datetime.now()).order_by('race_date')
     user_races = UserRace.objects.filter(user=request.user)
+
+    # filter the races if a distance is selected
+    if distance_id != '':
+        races = races.filter(race_distance__id=distance_id)
+        user_races = user_races.filter(race__race_distance__id=distance_id)
 
     return_list = []
     for race in races:
@@ -52,6 +62,9 @@ def races(request):
                 break
         else:
             return_list.append((race, ''))
+
+    # the distance filter dropdown
+    distance_list = DistanceSelectionForm(initial={'distance_list': distance_id})
 
     # Add pagination
     paginator = Paginator(return_list, 5) # Show n races per page
@@ -67,7 +80,7 @@ def races(request):
 
 
     return render(request, template_name='main/races.html',
-                  context={'races': return_list})
+                  context={'races': return_list, 'distance_list': distance_list})
 
 @login_required
 def interested(request):

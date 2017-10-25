@@ -284,6 +284,15 @@ PAGES
 }
 
 #races-page, #interested-page {
+
+    select {
+        font-size: 1.4em;
+        background-color: $theme-colour2;
+        color: white;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
     /* 
     Max width before this PARTICULAR table gets nasty
     This query will take effect for any screen smaller than 760px
