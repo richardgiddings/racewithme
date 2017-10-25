@@ -203,6 +203,9 @@ PAGES
   display: inline-block;
   width: 160px; }
 
+#home-page {
+  font-size: 1.2em; }
+
 #races-page, #interested-page {
   /* 
   Max width before this PARTICULAR table gets nasty
