@@ -48,3 +48,6 @@ class Friend(models.Model):
 
     def get_absolute_url(self):
         return reverse('friend_details', args=[str(self.id)])
+
+    def __str__(self):
+        return self.friend_profile.user.username
