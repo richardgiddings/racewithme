@@ -2,7 +2,8 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .models import Race, UserRace, Location, Distance
+from .models import Race, UserRace, Distance
+from users.models import Friend
 from .forms import RaceTargetsForm
 
 from datetime import datetime, timedelta
@@ -11,10 +12,9 @@ class ViewTests(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-
-        # create some race locations
-        cls.location1 = Location.objects.create(name="Bristol")
-        cls.location2 = Location.objects.create(name="London")
+        # Lcoations
+        cls.location1 = 'Warmley'
+        cls.location2 = 'Coldley'
 
         # create some race distances
         cls.distance1 = Distance.objects.create(description="10K")
@@ -39,6 +39,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Race 1",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -48,6 +49,7 @@ class ViewTests(TestCase):
         race_old = Race.objects.create(
             race_name = "Race 2",
             race_location = self.location2,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance2,
             race_site_link = "https://race-website.co.uk",
             race_date = self.yesterday,
@@ -64,6 +66,33 @@ class ViewTests(TestCase):
         # but doesn't show one from yesterday
         self.assertNotContains(response, "Race 2")
 
+    def test_races_page_filter(self):
+
+        # add a race
+        race = Race.objects.create(
+            race_name = "Race 1",
+            race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+
+        race_old = Race.objects.create(
+            race_name = "Race 2",
+            race_location = self.location2,
+            location = "51.45952699999999,-2.4742260000000442",
+            race_distance = self.distance2,
+            race_site_link = "https://race-website.co.uk",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+
+        response = self.client.get(reverse('races'), {'distance_list': '2'})
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['races'],["(<Race: Race 2>, '')"]) 
+
     # mark as interested
     def test_races_page_mark_interested(self):
 
@@ -71,6 +100,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Race 1",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -104,6 +134,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Race 1",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -140,6 +171,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Interested Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -166,6 +198,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Interested Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -203,6 +236,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Int to Going Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -243,6 +277,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Going Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -269,6 +304,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Going Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -309,6 +345,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Going to Complete Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -355,6 +392,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Completed Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -379,6 +417,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Completed Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -403,6 +442,7 @@ class ViewTests(TestCase):
         race = Race.objects.create(
             race_name = "Completed Race",
             race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
             race_distance = self.distance1,
             race_site_link = "https://race-website.com",
             race_date = self.today,
@@ -443,3 +483,124 @@ class ViewTests(TestCase):
         self.assertTemplateUsed(response, 'main/completed_race.html')
         self.assertContains(response, 'https://race-results.com')
         self.assertContains(response, 'https://race-photos.net')
+
+    """
+    Friends Page
+    """
+
+    def test_friend_page(self):
+        response = self.client.get(reverse('friends'))
+        self.assertTemplateUsed(response, 'main/friends.html')
+
+    def test_friend_details_page(self):
+        # add a second user
+        user2 = User.objects.create_user(username="user2", password="password2",
+                                         email='mail2@example.com')
+
+        # add a race for the second user
+        race = Race.objects.create(
+            race_name = "Completed Race",
+            race_location = self.location1,
+            location = "51.45952699999999,-2.4742260000000442",
+            race_distance = self.distance1,
+            race_site_link = "https://race-website.com",
+            race_date = self.today,
+            race_time = "12:10:24",
+        )
+        user_race = UserRace.objects.create(
+            user=user2,
+            race=race,
+            status='3',
+            just_for_fun=True,
+        )
+
+        # add a friend
+        friend = Friend.objects.create(
+            user_profile=auth.get_user(self.client).profile, 
+            friend_profile=user2.profile
+        )
+
+        # get details page
+        response = self.client.get(reverse('friend_details', kwargs={'id': friend.id}))
+        self.assertTemplateUsed(response, 'main/friend_details.html')
+
+        # check context contains friend and race details
+        self.assertEqual(response.context['friend'], friend)
+        self.assertQuerysetEqual(response.context['user_races'], 
+            ['<UserRace: Completed Race>'])
+
+    def test_add_friend_does_not_exist(self):
+        response = self.client.post(
+            reverse('add_friend'),
+            data={'email': 'mail2@example.com'},
+            follow=True,
+        )
+        messages = list(response.context['messages'])
+        self.assertEqual(str(messages[0]), 'User does not exist.')
+
+    def test_add_friend_is_you(self):
+        response = self.client.post(
+            reverse('add_friend'),
+            data={'email': 'mail@example.com'},
+            follow=True,
+        )
+        messages = list(response.context['messages'])
+        self.assertEqual(str(messages[0]), "That's you!")
+
+    def test_add_friend_already_friend(self):
+        user2 = User.objects.create_user(username="user2", password="password2",
+                                         email='mail2@example.com')
+        friend = Friend.objects.create(
+            user_profile=auth.get_user(self.client).profile, 
+            friend_profile=user2.profile
+        )
+
+        response = self.client.post(
+            reverse('add_friend'),
+            data={'email': 'mail2@example.com'},
+            follow=True,
+        )
+        messages = list(response.context['messages'])
+        self.assertEqual(str(messages[0]), "They are already a friend.")
+
+    def test_add_friend_success(self):
+        # currently requires the following to be running for emails:
+        # 1) /redis-4.0.2/src/redis-server
+        # 2) /races/racewithme/manage.py rqworker email
+        user2 = User.objects.create_user(username="user2", password="password2",
+                                         email='mail2@example.com')
+        response = self.client.post(
+            reverse('add_friend'),
+            data={'email': 'mail2@example.com'},
+            follow=True,
+        )
+        messages = list(response.context['messages'])
+        self.assertEqual(str(messages[0]), "{} added.".format(user2.username))
+
+        self.assertTemplateUsed(response, 'main/friends.html')
+        self.assertQuerysetEqual(response.context['friends'], ['<Friend: user2>'])
+
+    def test_remove_friend(self):
+        user2 = User.objects.create_user(username="user2", password="password2",
+                                         email='mail2@example.com')
+        friend = Friend.objects.create(
+            user_profile=auth.get_user(self.client).profile, 
+            friend_profile=user2.profile
+        )
+
+        # check friend exists
+        response = self.client.get(reverse('friends'))
+        self.assertTemplateUsed(response, 'main/friends.html')
+        self.assertQuerysetEqual(response.context['friends'], ['<Friend: user2>'])
+
+        # now remove them
+        response = self.client.post(
+            reverse('remove_friend'),
+            data={'id': friend.id},
+            follow=True,
+        )
+
+        # and check they no longer exist
+        response = self.client.get(reverse('friends'))
+        self.assertTemplateUsed(response, 'main/friends.html')
+        self.assertQuerysetEqual(response.context['friends'], [])
