@@ -431,13 +431,29 @@ class ViewTests(TestCase):
             just_for_fun=True,
         )
 
+        # add a friend how has gone to the same race
+        user2 = User.objects.create_user(username="user2", password="password2",
+                                         email='mail2@example.com')
+        user2_race = UserRace.objects.create(
+            user=user2,
+            race=race,
+            status='3',
+            just_for_fun=True,
+        )
+
+        # add a friend
+        friend = Friend.objects.create(
+            user_profile=user.profile, 
+            friend_profile=user2.profile
+        )
+
         # view individual completed race page
         response = self.client.get(reverse('completed_race', 
                     kwargs={ 'id': user_race.id }))
         self.assertTemplateUsed(response, 'main/completed_race.html')
         self.assertEqual(response.context['race'], user_race)
+        self.assertEqual(response.context['friends_who_completed_race'], [friend])
 
-    
     def test_ind_completed_page_set_results(self):
         race = Race.objects.create(
             race_name = "Completed Race",

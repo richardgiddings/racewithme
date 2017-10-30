@@ -27,6 +27,12 @@
     {% if race.achieved_hours > 0 or race.achieved_minutes > 0 or race.achieved_seconds > 0 %}
     <p>You finished in: {{ race.achieved_hours|default_if_none:"0" }} hours {{ race.achieved_minutes|default_if_none:"0" }} minutes {{ race.achieved_seconds|default_if_none:"0" }} seconds</p>
     {% endif %}
+    <p>
+    <h3>Friends who also ran</h3>
+    {% for friend in friends_who_completed_race %}
+        {% if friend.friend_profile.first_name %}{{friend.friend_profile.first_name}}&nbsp;{{friend.friend_profile.last_name}}{% else %}{{ friend.friend_profile.user.username }}{% endif %}{% if not forloop.last %}&#44;{% endif %}
+    {% endfor %}
+    </p>
     <div id="toggle-extra-detail">
         <i class="fa fa-toggle-on fa-2x detail-active" id="on" style="display:none;"></i>
         <i class="fa fa-toggle-on fa-2x fa-rotate-180 detail-inactive" id="off" ></i>

@@ -175,10 +175,25 @@ def completed(request):
 def completed_race(request, id):
     race = UserRace.objects.get(pk=id)
 
+    # get a list of friends who completed race too
+    friends = request.user.profile.get_friends()
+
+    friends_who_completed_race = []
+    for friend in friends:
+        # get completed races for the friend
+        user_races = friend.get_races().filter(status='3')
+        friends_races = [user_race.race.id for user_race in user_races]
+        if race.race.id in friends_races:
+            friends_who_completed_race.append(friend)
+
     results_form = RaceResultsForm(instance=race)
 
     return render(request, template_name='main/completed_race.html',
-                  context={'race': race, 'results_form': results_form })
+                  context={
+                           'race': race, 
+                           'results_form': results_form,
+                           'friends_who_completed_race': friends_who_completed_race
+                           })
 
 @login_required
 def set_target_time(request):
