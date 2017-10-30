@@ -31,6 +31,8 @@
     <h3>Friends who also ran</h3>
     {% for friend in friends_who_completed_race %}
         {% if friend.friend_profile.first_name %}{{friend.friend_profile.first_name}}&nbsp;{{friend.friend_profile.last_name}}{% else %}{{ friend.friend_profile.user.username }}{% endif %}{% if not forloop.last %}&#44;{% endif %}
+    {% empty %}
+        None of your friends ran this race.
     {% endfor %}
     </p>
     <div id="toggle-extra-detail">
