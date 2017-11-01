@@ -20,6 +20,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 import django_rq
 from .tasks import send_email
+from django.conf import settings
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -46,10 +47,25 @@ def user_profile(request):
 @login_required
 def suggest_race(request):
     if request.method == 'POST':
-        # send email with form contents to admin
-        # send email to user saying it has been sent to admin
         # go back to races page
-        suggest_form = RaceSuggestionForm()
+        suggest_form = RaceSuggestionForm(request.POST)
+        if suggest_form.is_valid():
+            race_name = "Race name: '{}'".format(suggest_form.cleaned_data['race_name'])
+            race_distance = "Race distance: {}".format(suggest_form.cleaned_data['race_distance'])
+            race_date = "Race date: {:%d-%m-%Y}".format(suggest_form.cleaned_data['race_date'])
+            race_time = "Race time: {}".format(suggest_form.cleaned_data['race_time'])
+
+            # send email with form contents to admin
+            # send email to user saying it has been sent to admin
+            subject = "Race suggestion submitted"
+            body = "The following race suggestion has been submitted.\n\n{}\n{}\n{}\n{}".format(
+                    race_name, race_distance, race_date, race_time)
+
+            # queue emails using redis
+            queue = django_rq.get_queue('email')
+            job = queue.enqueue(send_email, subject, body, [settings.DEFAULT_FROM_EMAIL])
+            job = queue.enqueue(send_email, subject, body, [request.user.email])
+
     else:
         # give form to user to fill in
         suggest_form = RaceSuggestionForm()
