@@ -2,7 +2,8 @@ from django.shortcuts import render
 from users.models import Profile
 from .models import Race, UserRace
 from users.models import User, Friend
-from .forms import UserProfileForm, RaceTargetsForm, RaceResultsForm, DistanceSelectionForm
+from .forms import UserProfileForm, RaceTargetsForm, RaceResultsForm
+from .forms import DistanceSelectionForm, RaceSuggestionForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -41,6 +42,20 @@ def user_profile(request):
 
     return render(request, template_name='main/user_profile.html', 
                   context={'form': form})
+
+@login_required
+def suggest_race(request):
+    if request.method == 'POST':
+        # send email with form contents to admin
+        # send email to user saying it has been sent to admin
+        # go back to races page
+        suggest_form = RaceSuggestionForm()
+    else:
+        # give form to user to fill in
+        suggest_form = RaceSuggestionForm()
+
+    return render(request, template_name='main/suggest_race.html',
+                  context={'suggest_form': suggest_form})
 
 @login_required
 def races(request):

@@ -206,6 +206,40 @@ PAGES
 #home-page {
   font-size: 1.2em; }
 
+#suggest-race-page {
+  font-size: 1em; }
+  #suggest-race-page button {
+    font-size: 1.2em;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #338a44;
+    width: 100px;
+    border-radius: 4px;
+    color: white;
+    border: none; }
+    #suggest-race-page button:hover {
+      cursor: pointer;
+      background-color: #3ea853; }
+  #suggest-race-page label {
+    display: inline-block;
+    width: 120px; }
+  #suggest-race-page select {
+    font-size: 1.2em;
+    color: #338a44;
+    margin-top: 20px;
+    margin-bottom: 20px; }
+  #suggest-race-page input[type="text"], #suggest-race-page input[type="url"] {
+    display: inline-block;
+    width: 200px;
+    outline: none;
+    padding: 10px;
+    margin-right: 10px;
+    border: solid 1px #c9c9c9;
+    border-radius: 4px;
+    transition: border 0.3s; }
+    #suggest-race-page input[type="text"]:focus, #suggest-race-page input[type="text"].focus, #suggest-race-page input[type="url"]:focus, #suggest-race-page input[type="url"].focus {
+      border: solid 1px #338a44; }
+
 #races-page, #interested-page {
   /* 
   Max width before this PARTICULAR table gets nasty
@@ -218,6 +252,16 @@ PAGES
     color: white;
     margin-top: 20px;
     margin-bottom: 20px; }
+  #races-page button, #interested-page button {
+    font-size: 1.2em;
+    padding: 6px;
+    background-color: #338a44;
+    border-radius: 4px;
+    color: white;
+    border: none; }
+    #races-page button:hover, #interested-page button:hover {
+      cursor: pointer;
+      background-color: #3ea853; }
   @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
     #races-page, #interested-page {
       margin-left: 10px;

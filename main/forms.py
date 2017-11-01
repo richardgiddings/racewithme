@@ -1,6 +1,8 @@
 from django import forms
 from users.models import Profile
-from main.models import Distance, UserRace
+from main.models import Distance, UserRace, Race
+from django.forms import extras
+from racewithme.widgets.selecttimewidget import SelectTimeWidget
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -10,6 +12,18 @@ class UserProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         self.fields['favourite_distance']=forms.ModelChoiceField(queryset=Distance.objects.all())
+
+class RaceSuggestionForm(forms.ModelForm):
+
+    class Meta:
+        model = Race
+        fields = ('race_name', 'race_distance', 'race_site_link', 'race_date', 'race_time')
+        widgets = {
+            'race_date': extras.SelectDateWidget(
+                            empty_label=("Choose Year", "Choose Month", "Choose Day"),
+                        ),
+            'race_time': SelectTimeWidget(twelve_hr=True)
+        }
 
 class RaceTargetsForm(forms.ModelForm):
     class Meta:

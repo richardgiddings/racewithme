@@ -287,6 +287,52 @@ PAGES
     font-size: 1.2em;
 }
 
+#suggest-race-page {
+    font-size: 1em;
+
+    button {
+        font-size: 1.2em;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: $theme-colour1;
+        width: 100px;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        &:hover {
+            cursor: pointer;
+            background-color: $theme-colour2;
+        }
+    }
+
+    label {
+        display: inline-block;
+        width: 120px;
+    }
+
+    select {
+        font-size: 1.2em;
+        color: $theme-colour1;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="url"] {
+        display: inline-block;
+        width: 200px;
+        outline: none;
+        padding: 10px;
+        margin-right: 10px;
+        border: solid 1px #c9c9c9;
+        border-radius: 4px;
+        transition: border 0.3s;
+
+        &:focus, &.focus {
+            border: solid 1px $theme-colour1;
+        }
+    }
+}
+
 #races-page, #interested-page {
 
     select {
@@ -295,6 +341,19 @@ PAGES
         color: white;
         margin-top: 20px;
         margin-bottom: 20px;
+    }
+
+    button {
+        font-size: 1.2em;
+        padding: 6px;
+        background-color: $theme-colour1;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        &:hover {
+            cursor: pointer;
+            background-color: $theme-colour2;
+        }
     }
 
     /* 

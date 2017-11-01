@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block extra_jquery %}
+
+{% endblock %}
+
+{% block main %}
+<div id="suggest-race-page" class="default-margins">
+    <header>
+        <h1>Suggest a race</h1>
+        <p>
+            Suggest a race. When you click Send it will be sent for consideration to be added to the list of available races. You will be sent an email with details of the race you suggested.
+        </p>
+    </header>
+    <h2>Enter race details</h2>
+    <form action="{% url 'suggest_race' %}" method="post">{% csrf_token %}
+        {{ suggest_form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</div>
+{% endblock %}
