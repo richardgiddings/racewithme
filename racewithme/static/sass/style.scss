@@ -178,7 +178,22 @@ PAGES
     margin-right: 40px;    
 }
 
-#forgot-password-page {
+#forgot-password-page, #change-password-page {
+
+    input[type="text"], input[type="password"] {
+        display: inline-block;
+        outline: none;
+        padding: 10px;
+        margin-right: 10px;
+        border: solid 1px #c9c9c9;
+        border-radius: 4px;
+        transition: border 0.3s;
+
+        &:focus, &.focus {
+            border: solid 1px $theme-colour1;
+        }
+    }
+
     button {
         font-size: 1.2em;
         padding: 10px;

@@ -129,14 +129,24 @@ PAGES
   margin-left: 40px;
   margin-right: 40px; }
 
-#forgot-password-page button {
+#forgot-password-page input[type="text"], #forgot-password-page input[type="password"], #change-password-page input[type="text"], #change-password-page input[type="password"] {
+  display: inline-block;
+  outline: none;
+  padding: 10px;
+  margin-right: 10px;
+  border: solid 1px #c9c9c9;
+  border-radius: 4px;
+  transition: border 0.3s; }
+  #forgot-password-page input[type="text"]:focus, #forgot-password-page input[type="text"].focus, #forgot-password-page input[type="password"]:focus, #forgot-password-page input[type="password"].focus, #change-password-page input[type="text"]:focus, #change-password-page input[type="text"].focus, #change-password-page input[type="password"]:focus, #change-password-page input[type="password"].focus {
+    border: solid 1px #338a44; }
+#forgot-password-page button, #change-password-page button {
   font-size: 1.2em;
   padding: 10px;
   background-color: #338a44;
   border-radius: 4px;
   color: white;
   border: none; }
-  #forgot-password-page button:hover {
+  #forgot-password-page button:hover, #change-password-page button:hover {
     cursor: pointer;
     background-color: #3ea853; }
 
