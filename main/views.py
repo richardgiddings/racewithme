@@ -66,6 +66,9 @@ def suggest_race(request):
             job = queue.enqueue(send_email, subject, body, [settings.DEFAULT_FROM_EMAIL])
             job = queue.enqueue(send_email, subject, body, [request.user.email])
 
+            messages.info(request, "Your suggestion of '{}' has been sent.".format(
+                                    suggest_form.cleaned_data['race_name']))
+
     else:
         # give form to user to fill in
         suggest_form = RaceSuggestionForm()

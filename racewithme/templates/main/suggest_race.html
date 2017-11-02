@@ -13,5 +13,10 @@
         {{ suggest_form.as_p }}
         <button type="submit">Send</button>
     </form>
+    <p id="messages">
+    {% for message in messages %}
+        {{ message }}<br/>
+    {% endfor %}
+    </p>
 </div>
 {% endblock %}
