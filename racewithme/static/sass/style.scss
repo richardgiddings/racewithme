@@ -309,6 +309,21 @@ PAGES
         margin-top: 20px;
     }
 
+    @media 
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        select {
+            font-size: 1em;
+            color: $theme-colour1;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
+        }
+    }
+
     button {
         font-size: 1.2em;
         padding: 10px;
@@ -326,7 +341,7 @@ PAGES
 
     label {
         display: inline-block;
-        width: 120px;
+        width: 100px;
     }
 
     select {
@@ -356,8 +371,7 @@ PAGES
 
     select {
         font-size: 1.4em;
-        background-color: $theme-colour2;
-        color: white;
+        color: $theme-colour2;
         margin-top: 20px;
         margin-bottom: 20px;
     }

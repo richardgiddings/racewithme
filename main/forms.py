@@ -3,6 +3,7 @@ from users.models import Profile
 from main.models import Distance, UserRace, Race
 from django.forms import extras
 from racewithme.widgets.selecttimewidget import SelectTimeWidget
+from django.utils.translation import ugettext_lazy as _
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -18,11 +19,17 @@ class RaceSuggestionForm(forms.ModelForm):
     class Meta:
         model = Race
         fields = ('race_name', 'race_distance', 'race_site_link', 'race_date', 'race_time')
+        labels = {
+            'race_distance': _('Distance'),
+            'race_site_link': _('Link to site'),
+            'race_date': _('Date'),
+            'race_time': _('Time'),
+        }
         widgets = {
             'race_date': extras.SelectDateWidget(
                             empty_label=("Choose Year", "Choose Month", "Choose Day"),
                         ),
-            'race_time': SelectTimeWidget(twelve_hr=True)
+            'race_time': SelectTimeWidget()
         }
 
 class RaceTargetsForm(forms.ModelForm):
