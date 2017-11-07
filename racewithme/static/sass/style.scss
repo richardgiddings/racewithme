@@ -903,6 +903,11 @@ PAGES
         margin-bottom: 40px;
     }
 
+    label {
+        display: inline-block;
+        width: 130px;
+    }
+
     select {
         outline: none;
         padding: 10px;
