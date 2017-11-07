@@ -7,7 +7,6 @@
         <p>Change details in your user profile here.</p>
     </header>
     <form action="{% url 'user_profile' %}" method="post">{% csrf_token %}
-        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
