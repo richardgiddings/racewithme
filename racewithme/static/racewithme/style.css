@@ -676,6 +676,66 @@ PAGES
       cursor: pointer;
       background-color: #3ea853; }
 
+#user-settings {
+  font-size: 1em; }
+  #user-settings form {
+    font-size: 1.2em;
+    /**
+    * Create the checkbox state for the tick
+    */
+    /**
+    * The label is the checkbox
+    */ }
+    #user-settings form input[type=checkbox] {
+      visibility: hidden; }
+    #user-settings form input[type=checkbox]:checked + label:after {
+      opacity: 1; }
+    #user-settings form .form-checkbox {
+      position: relative;
+      margin-top: 20px; }
+      #user-settings form .form-checkbox span {
+        margin-left: 20px; }
+    #user-settings form .form-checkbox label {
+      cursor: pointer;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 0;
+      left: 0;
+      background: #eee;
+      border: 1px solid #ddd;
+      /**
+       * Create the hover event of the tick
+       */ }
+      #user-settings form .form-checkbox label:after {
+        opacity: 0.2;
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 3px;
+        background: transparent;
+        top: 6px;
+        left: 6px;
+        border: 3px solid #333;
+        border-top: none;
+        border-right: none;
+        transform: rotate(-45deg); }
+      #user-settings form .form-checkbox label:hover::after {
+        opacity: 0.5; }
+    #user-settings form button {
+      display: block;
+      margin-top: 20px;
+      width: 192px;
+      height: 36px;
+      padding: 6px;
+      background-color: #338a44;
+      border-radius: 4px;
+      color: white;
+      border: none; }
+      #user-settings form button:hover {
+        cursor: pointer;
+        background-color: #3ea853; }
+
 .ui-dialog {
   font-size: 1.4em;
   background-color: white; }

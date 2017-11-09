@@ -5,5 +5,18 @@
     <header>
         <h1>User settings</h1>
     </header>
+    <form action="{% url 'user_settings' %}" method="post">{% csrf_token %}
+        <div class="form-checkbox">
+            <input type="checkbox" name="" id="just_username" value="1" />
+            <label for="just_username"></label>
+            <span>Only show username (not name) to others</span>
+        </div>
+        <div class="form-checkbox">
+            <input type="checkbox" name="" id="use_default_distance" value="1" />
+            <label for="use_default_distance"></label>
+            <span>Set default race distance to favourite distance</span>
+        </div>
+        <button type="submit">Save</button>
+    </form>
 </div>
 {% endblock %}

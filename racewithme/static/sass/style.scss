@@ -944,6 +944,88 @@ PAGES
     }
 }
 
+#user-settings {
+    font-size: 1em;
+
+    form {
+
+        font-size: 1.2em;
+
+        input[type=checkbox] {
+            visibility: hidden;
+        }
+        /**
+        * Create the checkbox state for the tick
+        */
+        input[type=checkbox]:checked + label:after {
+            opacity: 1;
+        }
+
+        .form-checkbox {
+            position: relative;
+            margin-top: 20px;
+
+            span {
+                margin-left: 20px;
+            }
+        }
+
+        /**
+        * The label is the checkbox
+        */        
+        .form-checkbox label {
+            cursor: pointer;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 0;
+            background: #eee;
+            border:1px solid #ddd;
+
+            &:after {
+                opacity: 0.2;
+                content: '';
+                position: absolute;
+                width: 6px;
+                height: 3px;
+                background: transparent;
+                top: 6px;
+                left: 6px;
+                border: 3px solid #333;
+                border-top: none;
+                border-right: none;
+
+                transform: rotate(-45deg);
+            }
+
+            /**
+             * Create the hover event of the tick
+             */
+            &:hover::after {
+                opacity: 0.5;
+            }
+        }
+
+
+        button {
+            display: block;
+            margin-top: 20px;
+            width: 192px;
+            height: 36px;
+            padding: 6px;
+            background-color: $theme-colour1;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            &:hover {
+                cursor: pointer;
+                background-color: $theme-colour2;
+            }
+        }
+    }
+}
+
 .ui-dialog {
     font-size: 1.4em;
     background-color: white;
