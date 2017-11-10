@@ -25,16 +25,20 @@ from django.conf import settings
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-@login_required
-def user_settings(request):
-
+def get_settings(user):
     settings, created = UserSettings.objects.get_or_create(
-                            user=request.user,
+                            user=user,
                             defaults={
                                 'just_username': False,
                                 'use_default_distance': False,
                             }
                         )
+    return settings
+
+@login_required
+def user_settings(request):
+
+    settings = get_settings(request.user)
 
     if request.method == 'POST':
         form = UserSettingsForm(request.POST, instance=settings)
@@ -110,6 +114,16 @@ def races(request):
     if distance_id != '':
         races = races.filter(race_distance__id=distance_id)
         user_races = user_races.filter(race__race_distance__id=distance_id)
+    else:
+        # get settings to see if we want to default to favourite distance
+        settings = get_settings(request.user)
+        if settings.use_default_distance:
+            favourite_distance = request.user.profile.favourite_distance
+            if favourite_distance is not None:
+                distance_id = favourite_distance.id
+                # set distance dropdown to favourite distance
+                races = races.filter(race_distance__id=distance_id)
+                user_races = user_races.filter(race__race_distance__id=distance_id)
 
     return_list = []
     for race in races:
@@ -134,7 +148,6 @@ def races(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         return_list = paginator.page(paginator.num_pages)
-
 
     return render(request, template_name='main/races.html',
                   context={'races': return_list, 'distance_list': distance_list})
