@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from users.models import Profile
+from users.models import Profile, UserSettings
 from .models import Race, UserRace
 from users.models import User, Friend
-from .forms import UserProfileForm, RaceTargetsForm, RaceResultsForm
+from .forms import UserProfileForm, UserSettingsForm
+from .forms import RaceTargetsForm, RaceResultsForm
 from .forms import DistanceSelectionForm, RaceSuggestionForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -26,7 +27,25 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def user_settings(request):
-    return render(request, template_name='main/user_settings.html')
+
+    settings, created = UserSettings.objects.get_or_create(
+                            user=request.user,
+                            defaults={
+                                'just_username': False,
+                                'use_default_distance': False,
+                            }
+                        )
+
+    if request.method == 'POST':
+        form = UserSettingsForm(request.POST, instance=settings)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Settings changes have been saved.') 
+    else:
+        form = UserSettingsForm(instance=settings) 
+
+    return render(request, template_name='main/user_settings.html',
+                  context={'form': form})
 
 @login_required
 def user_profile(request):

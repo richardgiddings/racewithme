@@ -5,6 +5,18 @@ from django.dispatch import receiver
 from main.models import Distance, UserRace
 from django.urls import reverse
 
+class UserSettings(models.Model):
+
+    user = models.OneToOneField(User, 
+                               on_delete=models.CASCADE,
+                               related_name="settings")
+
+    # whether to only show username to other users instead of name
+    just_username = models.BooleanField()
+
+    # whether to default distance dropdown on Races page to favourite distance
+    use_default_distance = models.BooleanField()
+
 class Profile(models.Model):
     user = models.OneToOneField(User, 
                                on_delete=models.CASCADE,
