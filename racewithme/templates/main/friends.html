@@ -28,7 +28,7 @@ $("#friends").addClass("active");
     <div id="friends-container">
     {% for friend in friends %}
         <div>
-            <a href="{{ friend.get_absolute_url }}">{% if friend.friend_profile.first_name %}{{friend.friend_profile.first_name}}&nbsp;{{friend.friend_profile.last_name}}{% else %}{{ friend.friend_profile.user.username }}{% endif %}</a>
+            <a href="{{ friend.get_absolute_url }}">{{ friend.get_friend_name }}</a>
         </div>
     {% endfor %}
     </div>

@@ -53,6 +53,13 @@ class Friend(models.Model):
     user_profile = models.ForeignKey(Profile, related_name="friend_user")
     friend_profile = models.ForeignKey(Profile, related_name="friend")
 
+    def get_friend_name(self):
+        if self.friend_profile.first_name:
+            return "{} {}".format(self.friend_profile.first_name, 
+                                  self.friend_profile.last_name)
+        else:
+            return self.friend_profile.user.username
+
     def get_races(self):
         user_races = UserRace.objects.filter(user=self.friend_profile.user)
         user_races = user_races.order_by("race__race_date")

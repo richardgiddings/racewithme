@@ -54,7 +54,7 @@ $("form").submit(function( e ) {
 <div id="friend-detail-page" class="default-margins">
     <a href="{% url 'friends' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Back to friends</a>
     <header>
-        <h1>{% if friend.friend_profile.first_name %}{{friend.friend_profile.first_name}}&nbsp;{{friend.friend_profile.last_name}}{% else %}{{ friend.friend_profile.user.username }}{% endif %}</h1>
+        <h1>{{ friend.get_friend_name }}</h1>
     </header>
     <p>
         <form id="remove-form" action="{% url 'remove_friend' %}" method="post">{% csrf_token %}
