@@ -7,6 +7,7 @@ from users.forms import SignUpForm
 from users.tokens import account_activation_token
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from .models import UserSettings
 import django_rq
 
 def account_activation_sent(request):
@@ -47,6 +48,12 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
+
+        # add user settings
+        UserSettings.objects.create(user=user, 
+                                    just_username=False, 
+                                    use_default_distance=False)
+
         login(request, user)
         return redirect('home')
     else:
