@@ -104,17 +104,14 @@ def races(request):
 
     # get the distance selected from the filter dropdown
     distance_id = request.GET.get('distance_list')
-    if distance_id is None:
-        distance_id = ''
-
+    
     races = Race.objects.filter(race_date__gte=datetime.now()).order_by('race_date')
     user_races = UserRace.objects.filter(user=request.user)
 
     # filter the races if a distance is selected
-    if distance_id != '':
-        races = races.filter(race_distance__id=distance_id)
-        user_races = user_races.filter(race__race_distance__id=distance_id)
-    else:
+    if distance_id is None: # first time to page
+        distance_id = ''
+
         # get settings to see if we want to default to favourite distance
         settings = get_settings(request.user)
         if settings.use_default_distance:
@@ -124,6 +121,10 @@ def races(request):
                 # set distance dropdown to favourite distance
                 races = races.filter(race_distance__id=distance_id)
                 user_races = user_races.filter(race__race_distance__id=distance_id)
+    else:
+        if distance_id != '':
+            races = races.filter(race_distance__id=distance_id)
+            user_races = user_races.filter(race__race_distance__id=distance_id)
 
     return_list = []
     for race in races:
@@ -325,7 +326,7 @@ def add_friend(request):
         settings = get_settings(user=friend.profile.user)
         if settings:
             just_username = settings.just_username
-            
+
         if friend.profile.first_name and not just_username:
             display_name = "{} {}".format(friend.profile.first_name, 
                                           friend.profile.last_name)
