@@ -22,7 +22,4 @@ class ProfileAdmin(admin.ModelAdmin):
 
 admin.site.register(Profile, ProfileAdmin)
 
-class UserSettingsAdmin(admin.ModelAdmin):
-    fields = ('just_username', 'use_default_distance')
-
-admin.site.register(UserSettings, UserSettingsAdmin)
+admin.site.register(UserSettings)
