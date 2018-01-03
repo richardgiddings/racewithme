@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Friend
+from .models import Profile, Friend, UserSettings
 from .forms import SignUpForm, UserChangeForm
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -21,3 +21,8 @@ class ProfileAdmin(admin.ModelAdmin):
     inlines=[FriendInline]
 
 admin.site.register(Profile, ProfileAdmin)
+
+class UserSettingsAdmin(admin.ModelAdmin):
+    fields = ('just_username', 'use_default_distance')
+
+admin.site.register(UserSettings, UserSettingsAdmin)
