@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Race, UserRace, Distance
-from users.models import Friend
+from users.models import Friend, UserSettings
 from .forms import RaceTargetsForm
 
 from datetime import datetime, timedelta
@@ -24,8 +24,11 @@ class ViewTests(TestCase):
         cls.yesterday = cls.today - timedelta(1)
 
     def setUp(self):
-        User.objects.create_user(username="user1", password="password1",
-                                 email='mail@example.com')
+        user= User.objects.create_user(username="user1", password="password1",
+                                       email='mail@example.com')
+        UserSettings.objects.create(user=user, 
+                                    use_default_distance=False, just_username=False)
+
         self.client.login(username='user1', password='password1')
 
     """
@@ -585,6 +588,9 @@ class ViewTests(TestCase):
         # 2) /races/racewithme/manage.py rqworker email
         user2 = User.objects.create_user(username="user2", password="password2",
                                          email='mail2@example.com')
+        UserSettings.objects.create(user=user2, 
+                                    use_default_distance=False, just_username=False)
+
         response = self.client.post(
             reverse('add_friend'),
             data={'email': 'mail2@example.com'},

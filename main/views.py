@@ -320,7 +320,13 @@ def add_friend(request):
                               friend_profile=friend.profile)
 
         # get the new friend's name
-        if friend.profile.first_name:
+        # but first check if they only want you to know username
+        just_username = False
+        settings = get_settings(user=friend.profile.user)
+        if settings:
+            just_username = settings.just_username
+            
+        if friend.profile.first_name and not just_username:
             display_name = "{} {}".format(friend.profile.first_name, 
                                           friend.profile.last_name)
         else:
@@ -332,7 +338,13 @@ def add_friend(request):
         already_friend = Friend.objects.filter(user_profile=friend.profile, 
                                                    friend_profile=request.user.profile)
 
-        if request.user.profile.first_name:
+        # do settings mean we should only send username?
+        just_username = False
+        settings = get_settings(user=request.user)
+        if settings:
+            just_username = settings.just_username
+
+        if request.user.profile.first_name and not just_username:
             user_name = "{} {}".format(request.user.profile.first_name, 
                                        request.user.profile.last_name)
         else:

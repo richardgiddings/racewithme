@@ -17,6 +17,12 @@ class UserSettings(models.Model):
     # whether to default distance dropdown on Races page to favourite distance
     use_default_distance = models.BooleanField()
 
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name_plural = "User Settings"
+
 class Profile(models.Model):
     user = models.OneToOneField(User, 
                                on_delete=models.CASCADE,
@@ -54,7 +60,14 @@ class Friend(models.Model):
     friend_profile = models.ForeignKey(Profile, related_name="friend")
 
     def get_friend_name(self):
-        if self.friend_profile.first_name:
+        # check if the friend wants people to see their name    
+        try:
+            settings = UserSettings.objects.get(user=self.friend_profile.user)
+            just_username = settings.just_username
+        except UserSettings.DoesNotExist:
+            just_username = False
+
+        if self.friend_profile.first_name and not just_username:
             return "{} {}".format(self.friend_profile.first_name, 
                                   self.friend_profile.last_name)
         else:
