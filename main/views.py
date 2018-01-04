@@ -75,22 +75,24 @@ def suggest_race(request):
         if suggest_form.is_valid():
             race_name = "Race name: '{}'".format(suggest_form.cleaned_data['race_name'])
             race_distance = "Race distance: {}".format(suggest_form.cleaned_data['race_distance'])
+            race_link = "Race link: {}".format(suggest_form.cleaned_data['race_site_link'])
             race_date = "Race date: {:%d-%m-%Y}".format(suggest_form.cleaned_data['race_date'])
             race_time = "Race time: {}".format(suggest_form.cleaned_data['race_time'])
 
             # send email with form contents to admin
             # send email to user saying it has been sent to admin
             subject = "Race suggestion submitted"
-            body = "The following race suggestion has been submitted.\n\n{}\n{}\n{}\n{}".format(
-                    race_name, race_distance, race_date, race_time)
+            body = "The following race suggestion has been submitted.\n\n{}\n{}\n{}\n{}\n{}".format(
+                    race_name, race_distance, race_link, race_date, race_time)
 
             # queue emails using redis
             queue = django_rq.get_queue('email')
             job = queue.enqueue(send_email, subject, body, [settings.DEFAULT_FROM_EMAIL])
             job = queue.enqueue(send_email, subject, body, [request.user.email])
 
-            messages.info(request, "Your suggestion of '{}' has been sent.".format(
-                                    suggest_form.cleaned_data['race_name']))
+            messages.info(request, body.replace('\n', '<br/>'), extra_tags='safe')
+
+            suggest_form = None # indicate that we just want to see the message
 
     else:
         # give form to user to fill in
