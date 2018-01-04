@@ -8,15 +8,22 @@
             Suggest a race. When you click Send it will be sent for consideration to be added to the list of available races. You will be sent an email with details of the race you suggested.
         </p>
     </header>
-    <h2>Enter race details</h2>
-    <form action="{% url 'suggest_race' %}" method="post">{% csrf_token %}
-        {{ suggest_form.as_p }}
-        <button type="submit">Send</button>
-    </form>
-    <p id="messages">
-    {% for message in messages %}
-        {{ message }}<br/>
-    {% endfor %}
-    </p>
+    {% if suggest_form %}
+        <h2>Enter race details</h2>
+        <form action="{% url 'suggest_race' %}" method="post">{% csrf_token %}
+            {{ suggest_form.as_p }}
+            <input type="hidden" name="race_time_second" id="id_race_time_second" value="0" />
+            <button type="submit">Send</button>
+        </form>
+    {% else %}
+        <p id="messages">
+        {% for message in messages %}
+            {{ message|safe }}<br/>
+        {% endfor %}
+        </p>
+        <form action="{% url 'races' %}" method="get">
+            <button type="submit">Back&nbsp;to&nbsp;Races</button>
+        </form>
+    {% endif %}
 </div>
 {% endblock %}
