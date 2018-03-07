@@ -209,40 +209,24 @@ PAGES
 }
 
 #login-page {
-    text-align: center;
-    width: 266px; 
-    margin: auto;
+    background-color: $theme-colour2;
 
-    input[type="text"], input[type="password"] {
-        outline: none;
-        padding: 10px;
-        border: solid 1px #c9c9c9;
-        border-radius: 4px;
-        width: 170px;
-        transition: border 0.3s;
-
-        &:focus, &.focus {
-            border: solid 1px $theme-colour1;
+    #form {
+        background-color: white;
+        a {
+            text-decoration: none;
+            color: $theme-colour1;
+            &:hover {
+                color: $theme-colour2;
+            }
         }
-    }    
 
-    button {
-        width: 100%;
-        font-size: 1.2em;
-        padding: 10px;
-        background-color: $theme-colour1;
-        border-radius: 4px;
-        color: white;
-        border: none;
-        &:hover {
-            cursor: pointer;
-            background-color: $theme-colour2;
+        .submit-button {
+            background-color: $theme-colour1;
+            &:hover {
+                background-color: $theme-colour2;
+            }
         }
-    }
-
-    label[for="id_username"], label[for="id_password"] {
-        display: inline-block;
-        width: 68px;
     }
 }
 

@@ -151,32 +151,18 @@ PAGES
     background-color: #3ea853; }
 
 #login-page {
-  text-align: center;
-  width: 266px;
-  margin: auto; }
-  #login-page input[type="text"], #login-page input[type="password"] {
-    outline: none;
-    padding: 10px;
-    border: solid 1px #c9c9c9;
-    border-radius: 4px;
-    width: 170px;
-    transition: border 0.3s; }
-    #login-page input[type="text"]:focus, #login-page input[type="text"].focus, #login-page input[type="password"]:focus, #login-page input[type="password"].focus {
-      border: solid 1px #338a44; }
-  #login-page button {
-    width: 100%;
-    font-size: 1.2em;
-    padding: 10px;
-    background-color: #338a44;
-    border-radius: 4px;
-    color: white;
-    border: none; }
-    #login-page button:hover {
-      cursor: pointer;
-      background-color: #3ea853; }
-  #login-page label[for="id_username"], #login-page label[for="id_password"] {
-    display: inline-block;
-    width: 68px; }
+  background-color: #3ea853; }
+  #login-page #form {
+    background-color: white; }
+    #login-page #form a {
+      text-decoration: none;
+      color: #338a44; }
+      #login-page #form a:hover {
+        color: #3ea853; }
+    #login-page #form .submit-button {
+      background-color: #338a44; }
+      #login-page #form .submit-button:hover {
+        background-color: #3ea853; }
 
 #signup-page .helptext {
   display: block;
