@@ -14,7 +14,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
     <body id="login-page">
-        <div class="container mt-5">
+        <div class="container mt-md-3">
             <div class="row align-items-center">
                 <div class="col-sm-6 rounded p-5" id="text">
                     <h1>RACEWITHME</h1>
@@ -28,7 +28,7 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 {% for field in form %}
-                                <div class="input-group mt-3 mb-3">
+                                <div class="input-group my-3">
                                     <label class="sr-only" for="id_{{ field.name }}">{{ field.label }}</label>
                                     {% ifequal field.name 'username' %}
                                     <span class="input-group-prepend">
