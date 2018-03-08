@@ -151,7 +151,8 @@ PAGES
     background-color: #3ea853; }
 
 #login-page {
-  background-color: #3ea853; }
+  background-color: #3ea853;
+  font-family: Helvetica, Times, serif; }
   #login-page #form {
     background-color: white; }
     #login-page #form a {
