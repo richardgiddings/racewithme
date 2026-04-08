@@ -1,9 +1,9 @@
 from django import forms
 from users.models import Profile, UserSettings
 from main.models import Distance, UserRace, Race
-from django.forms import extras
+from django import forms
 from racewithme.widgets.selecttimewidget import SelectTimeWidget
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -31,7 +31,7 @@ class RaceSuggestionForm(forms.ModelForm):
             'race_time': _('Time'),
         }
         widgets = {
-            'race_date': extras.SelectDateWidget(
+            'race_date': forms.SelectDateWidget(
                             empty_label=("Choose Year", "Choose Month", "Choose Day"),
                         ),
             'race_time': SelectTimeWidget()

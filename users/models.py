@@ -56,8 +56,8 @@ class Friend(models.Model):
     Store friendship between a user and a friend
     """
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    user_profile = models.ForeignKey(Profile, related_name="friend_user")
-    friend_profile = models.ForeignKey(Profile, related_name="friend")
+    user_profile = models.ForeignKey(Profile, related_name="friend_user", on_delete=models.CASCADE)
+    friend_profile = models.ForeignKey(Profile, related_name="friend", on_delete=models.CASCADE)
 
     def get_friend_name(self):
         # check if the friend wants people to see their name    

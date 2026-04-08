@@ -7,7 +7,7 @@ from .forms import RaceTargetsForm, RaceResultsForm
 from .forms import DistanceSelectionForm, RaceSuggestionForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from datetime import datetime
 
 from calendar import HTMLCalendar

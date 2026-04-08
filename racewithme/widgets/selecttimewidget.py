@@ -1,6 +1,5 @@
 import re
-from django.forms.extras.widgets import SelectDateWidget
-from django.forms.widgets import Widget, Select, MultiWidget
+from django.forms.widgets import Widget, Select
 from django.utils.safestring import mark_safe
 
 __all__ = ('SelectTimeWidget', 'SplitSelectDateTimeWidget')
@@ -53,7 +52,7 @@ class SelectTimeWidget(Widget):
         else:
             self.minutes = range(0,60)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         try: # try to get time values from a datetime.time object (value)
             hour_val, minute_val = value.hour, value.minute
             if self.twelve_hr:
