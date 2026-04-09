@@ -12,6 +12,12 @@ Plan the running races you want to do, either marking yourself as interested or 
 
 The settings are currently pointing to the dev.py. In the dev environment emails are sent to the console. The production environment was setup originally to deploy to Heroku but needs re-testing. The production environment also requires environment variables.
 
+Requirements are in requirements.txt and can be installed with:
+```
+pip install -r requirements.txt
+```
+(recommended to be in a virtual environment when using locally)
+
 We are using a Postgres database, once this is installed run:
 ```
 python manage.py migrate
