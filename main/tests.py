@@ -94,7 +94,7 @@ class ViewTests(TestCase):
 
         response = self.client.get(reverse('races'), {'distance_list': '2'})
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['races'],["(<Race: Race 2>, '')"]) 
+        self.assertQuerySetEqual([repr(i) for i in response.context['races']],["(<Race: Race 2>, '')"]) 
 
     # mark as interested
     def test_races_page_mark_interested(self):
@@ -122,8 +122,7 @@ class ViewTests(TestCase):
 
         # check that a userrace is created
         self.assertEqual(UserRace.objects.count(), 1)
-        self.assertQuerysetEqual(response.context['races'], 
-                                 ['<UserRace: Race 1>'])
+        self.assertQuerySetEqual(response.context['races'], [UserRace.objects.first()])
 
         # check that we are on interested page
         self.assertTemplateUsed(response, 'main/interested.html')
@@ -156,9 +155,10 @@ class ViewTests(TestCase):
 
         # check that a userrace is created
         self.assertEqual(UserRace.objects.count(), 1)
-        self.assertQuerysetEqual(response.context['race_tuples'], 
-            ['(<UserRace: Race 1>, <RaceTargetsForm bound=False, valid=Unknown, '
-                                    'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'])
+        self.assertQuerySetEqual([repr(i) for i in response.context['race_tuples']], 
+            ['(<UserRace: Race 1>, <RaceTargetsForm bound=False, valid=False, '
+                                    'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'],
+            transform=lambda x: x)
 
         # check that we are on going page
         self.assertTemplateUsed(response, 'main/going.html')
@@ -191,7 +191,7 @@ class ViewTests(TestCase):
         # go to interested page and check the race is there
         response = self.client.get(reverse('interested'))
         self.assertTemplateUsed(response, 'main/interested.html')
-        self.assertQuerysetEqual(response.context['races'], 
+        self.assertQuerySetEqual([repr(i) for i in response.context['races']], 
                                  ['<UserRace: Interested Race>'])
         self.assertContains(response, 'Interested Race')
 
@@ -232,7 +232,7 @@ class ViewTests(TestCase):
         # the userrace is deleted
         self.assertEqual(UserRace.objects.count(), 0)
         # no races in context
-        self.assertQuerysetEqual(response.context['races'], [])
+        self.assertQuerySetEqual(response.context['races'], [])
 
     # mark as going
     def test_interested_page_mark_going(self):
@@ -266,8 +266,8 @@ class ViewTests(TestCase):
         # check that we are on going page and there is a 
         # userrace in the context
         self.assertTemplateUsed(response, 'main/going.html')
-        self.assertQuerysetEqual(response.context['race_tuples'], 
-            ['(<UserRace: Int to Going Race>, <RaceTargetsForm bound=False, valid=Unknown, '
+        self.assertQuerySetEqual([repr(i) for i in response.context['race_tuples']], 
+            ['(<UserRace: Int to Going Race>, <RaceTargetsForm bound=False, valid=False, '
             'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'])
 
     """
@@ -297,8 +297,8 @@ class ViewTests(TestCase):
         # check that it appears on going page
         response = self.client.get(reverse('going'))
         self.assertTemplateUsed(response, 'main/going.html')
-        self.assertQuerysetEqual(response.context['race_tuples'],
-            ['(<UserRace: Going Race>, <RaceTargetsForm bound=False, valid=Unknown, '
+        self.assertQuerySetEqual([repr(i) for i in response.context['race_tuples']],
+            ['(<UserRace: Going Race>, <RaceTargetsForm bound=False, valid=False, '
             'fields=(just_for_fun;target_hours;target_minutes;target_seconds)>)'])
 
     # remove race
@@ -341,7 +341,7 @@ class ViewTests(TestCase):
         # the userrace is deleted
         self.assertEqual(UserRace.objects.count(), 0)
         # no races in context
-        self.assertQuerysetEqual(response.context['races'], [])
+        self.assertQuerySetEqual(response.context['races'], [])
 
     # mark as completed 
     def test_going_page_mark_completed(self):
@@ -375,7 +375,7 @@ class ViewTests(TestCase):
         # check that we are on going page and there is a 
         # userrace in the context
         self.assertTemplateUsed(response, 'main/completed.html')
-        self.assertQuerysetEqual(response.context['races'], 
+        self.assertQuerySetEqual([repr(i) for i in response.context['races']], 
                                  ['<UserRace: Going to Complete Race>'])
 
     # mark as just for fun
@@ -412,7 +412,7 @@ class ViewTests(TestCase):
         # view completed race page
         response = self.client.get(reverse('completed'))
         self.assertTemplateUsed(response, 'main/completed.html')
-        self.assertQuerysetEqual(response.context['races'], 
+        self.assertQuerySetEqual([repr(i) for i in response.context['races']], 
                                  ['<UserRace: Completed Race>'])
 
     # view individua race
@@ -545,7 +545,7 @@ class ViewTests(TestCase):
 
         # check context contains friend and race details
         self.assertEqual(response.context['friend'], friend)
-        self.assertQuerysetEqual(response.context['user_races'], 
+        self.assertQuerySetEqual([repr(i) for i in response.context['user_races']], 
             ['<UserRace: Completed Race>'])
 
     def test_add_friend_does_not_exist(self):
@@ -600,7 +600,7 @@ class ViewTests(TestCase):
         self.assertEqual(str(messages[0]), "{} added.".format(user2.username))
 
         self.assertTemplateUsed(response, 'main/friends.html')
-        self.assertQuerysetEqual(response.context['friends'], ['<Friend: user2>'])
+        self.assertQuerySetEqual([repr(i) for i in response.context['friends']], ['<Friend: user2>'])
 
     def test_remove_friend(self):
         user2 = User.objects.create_user(username="user2", password="password2",
@@ -613,7 +613,7 @@ class ViewTests(TestCase):
         # check friend exists
         response = self.client.get(reverse('friends'))
         self.assertTemplateUsed(response, 'main/friends.html')
-        self.assertQuerysetEqual(response.context['friends'], ['<Friend: user2>'])
+        self.assertQuerySetEqual([repr(i) for i in response.context['friends']], ['<Friend: user2>'])
 
         # now remove them
         response = self.client.post(
@@ -625,4 +625,4 @@ class ViewTests(TestCase):
         # and check they no longer exist
         response = self.client.get(reverse('friends'))
         self.assertTemplateUsed(response, 'main/friends.html')
-        self.assertQuerysetEqual(response.context['friends'], [])
+        self.assertQuerySetEqual(response.context['friends'], [])

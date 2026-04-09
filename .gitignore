@@ -7,3 +7,4 @@ racewithme/settings/__pycache__/
 racewithme/static/.sass-cache/
 users/__pycache__/
 users/migrations/__pycache__/
+.env
