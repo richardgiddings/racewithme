@@ -113,6 +113,16 @@ header p {
         display: block; }
         .main-nav #user-dropdown #user-dropdown-content a:hover {
           background-color: #338a44; }
+      .main-nav #user-dropdown #user-dropdown-content button {
+        cursor: pointer;
+        color: white;
+        display: block;
+        text-align: left;
+        width: 100%;
+        font-size: 2em;
+        padding: 4px 20px; }
+        .main-nav #user-dropdown #user-dropdown-content button:hover {
+        background-color: #338a44; }
 
 .main-content a {
   text-decoration: none;
