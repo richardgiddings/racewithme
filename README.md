@@ -55,7 +55,7 @@ Once you have created an account (note registration confirmation email sent to c
 **Welcome screen**
 ![Welcome screen](screenshots/welcome-screen.png)
 
-(note either your name or username will appear here, depending if you set your name in you profile)
+(note either your name or username will appear here, depending if you set your name in your profile)
 
 ### User menu
 
