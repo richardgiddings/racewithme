@@ -44,8 +44,12 @@ $(function() {
     });
 });
 $("form").submit(function( e ) {
-    e.preventDefault();
-    $("#remove-dialog").dialog("open");
+    var form = $(this);
+    var id = form.attr('id');
+    if(id === "remove-form") {
+        e.preventDefault();
+        $("#remove-dialog").dialog("open");
+    }
 });
 
 {% endblock %}
